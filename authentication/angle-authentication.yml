@@ -1,0 +1,41 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/angle-api-openapi.json + openapi/angle-api-openapi-github.yaml + live probe of https://api.angle.money
+summary:
+  model: none
+  authenticated: false
+  description: >-
+    The Angle API is a public, read-only data API. No credential is required. Every
+    published operation is an HTTP GET over a public host, and the API returned data
+    on an unauthenticated request during this pass.
+  types: []
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  status: declared-not-applied
+  sources:
+  - openapi/angle-api-openapi-github.yaml
+  note: >-
+    The older OpenAPI published in the AngleProtocol/swagger GitHub repository declares
+    a `BasicAuth` securityScheme under components.securitySchemes, but it is never
+    applied — there is no root-level `security` object and no operation-level `security`
+    on any of its 13 paths. The newer specification served live from
+    https://api.angle.money/api-docs/ drops the scheme entirely.
+evidence:
+- check: unauthenticated request succeeds
+  request: GET https://api.angle.money/v1/activeChains
+  status: 200
+  result: '{"borrowModule":["1","10","137","42161","43114"]}'
+  date: '2026-07-19'
+- check: live spec declares no securitySchemes
+  source: https://api.angle.money/api-docs/
+  result: components.securitySchemes absent; no root security object
+notes:
+- No API keys, no OAuth 2.0, no OpenID Connect and no mutual TLS are published for
+  this API, so scopes/ is intentionally not produced.
+- Authorization in the Angle system is on-chain rather than at the API layer — state
+  changes are performed by signing transactions with a wallet against the protocol's
+  smart contracts. Several endpoints (`/v1/leverage`, `/v1/deleverage`,
+  `/v1/integrators/payload/deposit`, `/v1/integrators/payload/withdraw`) only BUILD
+  unsigned transaction payloads; the caller signs and submits them on chain.
