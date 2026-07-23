@@ -1,0 +1,84 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances App API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: App
+paths:
+  /v1/app:
+    get:
+      description: Return data about tokens at stake in the Angle Protocol along with their price.
+      parameters:
+      - name: chainId
+        in: query
+        description: Chain requested - Default is 1 (Ethereum mainnet)
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Maps token addresses on the requested chain to their associated data and returns a list of pairs of tokens identified by their name with their price (in USD).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tokens:
+                    $ref: '#/components/schemas/tokens'
+                  prices:
+                    $ref: '#/components/schemas/prices'
+      tags:
+      - App
+components:
+  schemas:
+    tokens:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          name:
+            type: string
+            description: Token name
+          address:
+            type: string
+            description: Token address
+          decimals:
+            type: number
+            description: ERC20 decimals
+          symbol:
+            type: string
+            description: Token symbol
+          useInSwap:
+            type: boolean
+            description: Whether this token is used in Angle swaps
+          hasPermit:
+            type: boolean
+            description: Whether the token supports permit
+          permitVersion:
+            type: string
+            description: Permit version, otherwise '-1'
+          logoURI:
+            type: string
+            description: Logo URI
+          tags:
+            type: array
+            items:
+              type: string
+            description: Token tags
+    prices:
+      type: array
+      items:
+        type: object
+        properties:
+          token:
+            type: string
+            description: Token symbol
+          rate:
+            type: number
+            description: Token price (in USD)
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

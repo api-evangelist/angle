@@ -1,0 +1,171 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Dao API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Dao
+paths:
+  /v1/dao:
+    get:
+      description: Return data related to gauges as well as to the ANGLE and veANGLE tokens for a given user including vote and rewards data
+      parameters:
+      - name: chainId
+        in: query
+        description: Chain requested - Default is 1 (Ethereum mainnet)
+        schema:
+          type: integer
+      - name: user
+        in: query
+        description: User blockchain `address`. This address is optional and the query could work without.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Different elements are returned by this call. Under the gauges entry, is returned a mapping between a gauge address and all its related data (with some specific user information). This call also returns veANGLE and ANGLE related data, as well as data related to the weekly rewards which are given to veANGLE holders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  veANGLE:
+                    schema: null
+                    $ref: '#/components/schemas/veANGLE'
+                  ANGLE:
+                    schema: null
+                    $ref: '#/components/schemas/ANGLE'
+                  rewardsData:
+                    schema: null
+                    $ref: '#/components/schemas/rewardsData'
+                  gauges:
+                    schema: null
+                    $ref: '#/components/schemas/gauges'
+      tags:
+      - Dao
+components:
+  schemas:
+    rewardsData:
+      type: object
+      properties:
+        times:
+          type: array
+          items:
+            type: number
+            description: Timestamp at which the `FeeDistributor` contract was checkpointed for the corresponding week. Each item in the array corresponds to a new week.
+        tokenPerWeek:
+          type: array
+          items:
+            type: number
+            description: Amount of sanUSDC_EUR distributed in the corresponding week. Each item in the array corresponds to a new week.
+        claimable:
+          type: array
+          items:
+            type: number
+            description: Amount claimable by the user for the week of interest. Each item in the array corresponds to a new week.
+        totalClaimable:
+          type: string
+          description: Total amount of tokens still claimable by the user in the contract
+    veANGLE:
+      type: object
+      properties:
+        totalSupply:
+          type: number
+          description: Total supply of the token
+        totalLocked:
+          type: number
+          description: Amount of ANGLE token locked
+        rate:
+          type: number
+          description: ANGLE emission rate per second
+        nextRate:
+          type: number
+          description: ANGLE emission rate per second next week
+        locked:
+          type: number
+          description: Amount of ANGLE tokens locked by the users
+        endLock:
+          type: number
+          description: Timestamp at which the lock should end
+        balance:
+          type: string
+          description: User veANGLE balance
+        allowance:
+          type: string
+          description: Allowance for the ANGLE token to the veANGLE contract by the user
+    ANGLE:
+      type: object
+      properties:
+        totalSupply:
+          type: number
+          description: Total supply of the ANGLE token
+        circulatingSupply:
+          type: number
+          description: Circulating supply of the ANGLE
+        balance:
+          type: string
+          description: ANGLE balance of the user
+    gauges:
+      type: object
+      properties:
+        totalWeight:
+          type: number
+          description: Total veANGLE voting power used to vote for gauges
+        voteUserPower:
+          type: number
+          description: Total voting power of the user used across all gauges
+        list:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              address:
+                type: string
+                description: Gauge address
+              name:
+                type: string
+                description: Gauge name
+              icon:
+                type: string
+                description: Shortened symbol of the gauge
+              type:
+                type: number
+                description: Type of the gauge in the whole system
+              currentWeight:
+                type: number
+                description: Share of overall ANGLE emissions allocated to this gauge for the current week
+              absoluteWeight:
+                type: number
+                description: Total veANGLE voting power for this gauge
+              futureWeight:
+                type: number
+                description: Share of overall ANGLE emissions that is going to go to this gauge next week
+              userWeight:
+                type: number
+                description: Share of the user's voting power used for this gauge
+              lastUserVote:
+                type: number
+                description: Amount of veANGLE with which the user voted for this gauge
+              tvl:
+                type: number
+                description: USD value in this gauge
+              apr:
+                type: number
+                description: Minimum ANGLE boost for participating in this gauge (this APR does not include that the token natively staked may have)
+              workingSupply:
+                type: number
+                description: Working supply in the gauge contract
+              totalSupply:
+                type: number
+                description: Total supply of the gauge contract
+              workingBalance:
+                type: number
+                description: Working balance of the user in the gauge (it's the balance corrected by the veANGLE boost)
+              balance:
+                type: number
+                description: Balance of the user in the gauge contract
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

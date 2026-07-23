@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Allowances
+paths:
+  /v1/allowances:
+    get:
+      description: Return the allowances for tokens in the for Angle token list for a given user
+      parameters:
+      - name: user
+        in: query
+        description: User blockchain `address`
+        schema:
+          type: string
+      - name: spender
+        in: query
+        description: Spender blockchain `address`
+        schema:
+          type: string
+      - name: chainId
+        in: query
+        description: Chain requested - Default is 1 (Ethereum mainnet)
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Mapping between a token address and for each token the allowance of the user with respect to the spender, the decimals of the token as well as the token symbol
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/allowances'
+      tags:
+      - Allowances
+components:
+  schemas:
+    allowances:
+      type: object
+      items:
+        additionalProperties:
+          type: object
+          properties:
+            decimals:
+              type: string
+              description: Token decimals
+          additionalProperties:
+            type: object
+            properties:
+              allowance:
+                type: string
+                description: Token allowance
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

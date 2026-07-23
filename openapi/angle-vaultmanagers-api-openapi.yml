@@ -1,0 +1,95 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances VaultManagers API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: VaultManagers
+paths:
+  /v1/vaultManagers:
+    get:
+      description: Return the global state of `VaultManagers` listed by the treasuries associated to a stablecoin
+      parameters:
+      - name: chainId
+        in: query
+        description: Chain requested - Default is 1 (Ethereum mainnet)
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of all `VaultManager` with their details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/vaultManagers'
+      tags:
+      - VaultManagers
+components:
+  schemas:
+    vaultManagers:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          address:
+            type: string
+            description: Address of the `VaultManager`
+          symbol:
+            type: string
+            description: Symbol of the `VaultManager`
+          collateral:
+            type: number
+            description: Address of the collateral token
+          collateralHasPermit:
+            type: boolean
+            description: Whether the collateral token supports permit
+          collateralPermitVersion:
+            type: number
+            description: Permit version used in case of
+          stablecoin:
+            type: string
+            description: Address of the minted stablecoin
+          swapper:
+            type: string
+            description: Address of the swapper contract recommended by the protocol
+          decimals:
+            type: string
+            description: Decimals of the collateral token
+          treasury:
+            type: string
+            description: Address of the Treasury
+          borrowFee:
+            type: number
+            description: Percentage of up-front fees
+          stabilityFee:
+            type: number
+            description: Annual interest rate
+          liquidationPenalty:
+            type: number
+            description: Percentage of penalty on liquidated debt
+          maxLTV:
+            type: number
+            description: Max debt value versus collateral value
+          minCollateralRatio:
+            type: number
+            description: Min percentage of collateral versus debt
+          dust:
+            type: number
+            description: Minimum debt
+          totalCollateral:
+            type: number
+            description: Total collateral on the contract
+          totalDebt:
+            type: number
+            description: Total debt on the contract
+          rate:
+            type: number
+            description: Underlying oracle price
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

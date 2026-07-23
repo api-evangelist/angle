@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: searched
+source: https://registry.npmjs.org/@angleprotocol/sdk
+packages:
+- language: typescript
+  registry: npm
+  name: '@angleprotocol/sdk'
+  url: https://www.npmjs.com/package/@angleprotocol/sdk
+  install: npm install @angleprotocol/sdk
+  version: 3.0.129
+  license: GPL-3.0-or-later
+  repository: https://github.com/AngleProtocol/angle-sdk
+  description: SDK for Angle Protocol DApps
+  official: true
+notes:
+- 'The AngleProtocol GitHub org also publishes public-sdk ("SDK to build applications
+  on top of the Angle Protocol", TypeScript). It was observed in the org repo listing
+  but no separate registry package was verified for it in this pass.'
+- 'Registries probed this pass: npm (hit). PyPI, Maven Central, NuGet, pkg.go.dev,
+  RubyGems, Packagist and crates.io were NOT probed — network tooling was degraded
+  during this run.'

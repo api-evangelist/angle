@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/ 4xx-5xx responses
+format: custom
+rfc9457: false
+envelope:
+  media_type: application/json
+  fields:
+  - name: error
+    type: string
+    example: Invalid or missing params
+  - name: message
+    type: string
+    description: Detailed error message
+  schema: errorResponse
+problems:
+- status: 400
+  title: Error response for invalid or missing parameters
+  schema: errorResponse
+  source_operation: openapi/angle-api-openapi.json#GET /v2/historical/savings
+notes:
+- The specs declare only a single explicit 4xx response; the remaining operations document 200
+  only. No provider error-code reference was found to enrich this (the developer docs host is
+  offline).

@@ -1,0 +1,130 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Bridge API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Bridge
+paths:
+  /v1/layerZero:
+    get:
+      summary: Fetch bridge data for a user
+      description: This route fetches bridge data for a user from multiple chains.
+      tags:
+      - Bridge
+      parameters:
+      - $ref: '#/components/parameters/requiredChainId'
+      - $ref: '#/components/parameters/optionalUser'
+      - in: query
+        name: toChainId
+        description: destination of the bridge transaction
+        required: false
+        schema:
+          type: integer
+        examples:
+          AllBlockchains:
+            value: 0
+          Ethereum:
+            value: 1
+          Polygon:
+            value: 137
+          Optimism:
+            value: 10
+          Arbitrum:
+            value: 42161
+          Avalanche:
+            value: 43114
+      responses:
+        '200':
+          description: JSON object containing bridge data for the user on different chains.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bridgeInfo'
+components:
+  parameters:
+    requiredChainId:
+      in: query
+      name: chainId
+      description: Chain requested
+      required: true
+      schema:
+        type: integer
+      examples:
+        Ethereum:
+          value: 1
+        Polygon:
+          value: 137
+        Optimism:
+          value: 10
+        Arbitrum:
+          value: 42161
+        Avalanche:
+          value: 43114
+    optionalUser:
+      name: user
+      in: query
+      description: User blockchain `address` (optional)
+      required: false
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+  schemas:
+    bridgeInfo:
+      type: object
+      properties:
+        chainId:
+          type: object
+          properties:
+            EURA:
+              type: object
+              properties:
+                allowance:
+                  type: string
+                balance:
+                  type: string
+                canonicalTokenAddress:
+                  type: string
+                credit:
+                  type: string
+                fee:
+                  type: null
+                fromLimit:
+                  type: string
+                lzChainId:
+                  type: integer
+                oftAddress:
+                  type: string
+                toLimit:
+                  type: string
+                totalSupply:
+                  type: string
+            ANGLE:
+              type: object
+              properties:
+                allowance:
+                  type: string
+                balance:
+                  type: string
+                canonicalTokenAddress:
+                  type: string
+                credit:
+                  type: string
+                fee:
+                  type: null
+                fromLimit:
+                  type: string
+                lzChainId:
+                  type: integer
+                oftAddress:
+                  type: string
+                toLimit:
+                  type: string
+                totalSupply:
+                  type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

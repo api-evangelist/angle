@@ -1,0 +1,46 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/ + https://github.com/AngleProtocol/angle-docs
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: 'Both specs declare openapi: 3.0.0'
+- id: http-basic-auth
+  conforms: true
+  evidence: BasicAuth securityScheme (http/basic) in openapi/angle-api-openapi-github.yaml
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme in either spec
+- id: openid-connect
+  conforms: false
+  evidence: No openIdConnect scheme; no discovery document
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom {error, message} envelope, not application/problem+json
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: No /.well-known/security.txt published
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset/Deprecation header support observed
+- id: pagination
+  conforms: true
+  evidence: first/skip offset parameters on list endpoints
+- id: idempotency
+  conforms: false
+  evidence: No idempotency key parameter in either spec
+- id: erc20
+  conforms: true
+  evidence: AngleProtocol/angle-token-list publishes an ERC20 token list; EURA/USDA are ERC20
+    stablecoins
+audits:
+  note: Angle documents third-party smart-contract security audits (not an API compliance program).
+  auditors:
+  - ChainSecurity
+  - Sigma Prime
+  - Code4rena
+  source: https://github.com/AngleProtocol/angle-docs
+compliance_program:
+  published: false
+  note: No SOC 2 / ISO 27001 / PCI / HIPAA / FedRAMP program or trust center was found (probe-security-programs.py
+    reported trust=none), so no Compliance pointer is wired.

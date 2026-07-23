@@ -1,0 +1,418 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Borrow API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Borrow
+paths:
+  /v1/vaultManagers:
+    get:
+      summary: Get VaultManagers
+      description: Return the global state of `VaultManagers` listed by the treasuries associated to a stablecoin
+      tags:
+      - Borrow
+      parameters:
+      - $ref: '#/components/parameters/requiredChainId'
+      - $ref: '#/components/parameters/optionalUser'
+      - $ref: '#/components/parameters/agToken'
+      - $ref: '#/components/parameters/optionalBlockNumber'
+      responses:
+        '200':
+          description: List of all `VaultManager` with their details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/vaultManagers'
+  /v1/vaults:
+    get:
+      summary: Get Vaults
+      description: Return all vaults for a user on a chain.
+      tags:
+      - Borrow
+      parameters:
+      - $ref: '#/components/parameters/requiredChainId'
+      - $ref: '#/components/parameters/requiredUser'
+      - $ref: '#/components/parameters/agToken'
+      responses:
+        '200':
+          description: List of all the vaults for a given user on-chain
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/vaults'
+  /v1/leverage:
+    get:
+      summary: Build payloads for Angle's borrow module
+      tags:
+      - Borrow
+      parameters:
+      - name: agTokenAddress
+        in: query
+        description: The address of the stablecoin to borrow
+        required: true
+        schema:
+          type: string
+        examples:
+          EURA:
+            value: '0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8'
+      - name: agTokenToBorrow
+        in: query
+        description: The amount of agTokens to borrow
+        required: true
+        schema:
+          type: string
+      - name: agTokenToSwap
+        in: query
+        description: The amount of agTokens to swap for the collateral
+        schema:
+          type: string
+      - name: amountsBrought
+        in: query
+        description: An array of objects representing the amounts and addresses of assets brought
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              address:
+                type: string
+                description: The address of the asset
+              amount:
+                type: string
+                description: The amount of the asset
+              decimals:
+                type: number
+                description: The number of decimals for the asset
+              symbol:
+                type: string
+                description: The symbol of the asset
+      - name: chainId
+        in: query
+        description: The ID of the Ethereum chain on which to perform the operation
+        required: true
+        schema:
+          type: number
+          enum:
+          - 1
+          - 137
+          - 42161
+          - 10
+          - 43114
+      - name: collateralAddress
+        in: query
+        description: The address of the collateral contract
+        required: true
+        schema:
+          type: string
+      - name: collateralToAdd
+        in: query
+        description: The amount of collateral to deposit
+        required: true
+        schema:
+          type: string
+      - name: userAddress
+        in: query
+        description: The address of the user requesting the payload
+        required: true
+        schema:
+          type: string
+      - name: vaultId
+        in: query
+        description: The vault to act on
+        required: true
+        schema:
+          type: number
+      - name: vaultPermit
+        in: query
+        description: Vault permit
+        schema:
+          type: string
+      - name: permits
+        in: query
+        description: Array of permits
+        schema:
+          type: array
+          items:
+            type: string
+      - name: slippage
+        in: query
+        description: Slippage
+        required: true
+        schema:
+          type: number
+      - name: oneInchSlippage
+        in: query
+        description: One-inch slippage
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                    description: The calldata bytes needed to build the Ethereum transaction
+  /v1/deleverage:
+    get:
+      summary: Build payloads for Angle's borrow module
+      description: This route handles requests to build payloads for Angle's borrow module.
+      tags:
+      - Borrow
+      parameters:
+      - name: agTokenToRepay
+        in: query
+        description: The amount of agTokens to repay.
+        required: true
+        schema:
+          type: string
+          pattern: ^\d+$
+      - name: repayAll
+        in: query
+        description: If all the vault's debt is repaid.
+        required: true
+        schema:
+          type: boolean
+      - name: amountsBrought
+        in: query
+        description: An array of objects representing the amounts and addresses of assets brought.
+        schema:
+          type: array
+          items:
+            type: object
+      - name: chainId
+        in: query
+        description: The ID of the Ethereum chain on which to perform the operation.
+        required: true
+        schema:
+          type: number
+          enum:
+          - 1
+          - 137
+          - 42161
+          - 43114
+          - 10
+      - name: collateralAddress
+        in: query
+        description: The address of the collateral contract.
+        required: true
+        schema:
+          type: string
+          format: address
+      - name: collateralToWithdrawToWallet
+        in: query
+        description: The amount of collateral to withdraw.
+        required: true
+        schema:
+          type: string
+          pattern: ^\d+$
+      - name: collateralToSwap
+        in: query
+        description: The amount of collateral to swap to EURA.
+        required: true
+        schema:
+          type: string
+          pattern: ^\d+$
+      - name: userAddress
+        in: query
+        description: The address of the user requesting the payload.
+        required: true
+        schema:
+          type: string
+          format: address
+      - name: vaultId
+        in: query
+        description: The vault to act on.
+        required: true
+        schema:
+          type: number
+          minimum: 0
+      - name: agTokenAddress
+        in: query
+        description: The address of the agToken.
+        required: true
+        schema:
+          type: string
+          format: address
+      - name: outputTokenAddress
+        in: query
+        description: The address of the token wanted by the user.
+        required: true
+        schema:
+          type: string
+          format: address
+      responses:
+        '200':
+          description: JSON object containing the calldata bytes needed to build the Ethereum transaction.
+components:
+  schemas:
+    vaultManagers:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          address:
+            type: string
+            description: Address of the `VaultManager`
+          symbol:
+            type: string
+            description: Symbol of the `VaultManager`
+          collateral:
+            type: number
+            description: Address of the collateral token
+          collateralHasPermit:
+            type: boolean
+            description: Whether the collateral token supports permit
+          collateralPermitVersion:
+            type: number
+            description: Permit version used in case of
+          stablecoin:
+            type: string
+            description: Address of the minted stablecoin
+          swapper:
+            type: string
+            description: Address of the swapper contract recommended by the protocol
+          decimals:
+            type: string
+            description: Decimals of the collateral token
+          treasury:
+            type: string
+            description: Address of the Treasury
+          borrowFee:
+            type: number
+            description: Percentage of up-front fees
+          stabilityFee:
+            type: number
+            description: Annual interest rate
+          liquidationPenalty:
+            type: number
+            description: Percentage of penalty on liquidated debt
+          maxLTV:
+            type: number
+            description: Max debt value versus collateral value
+          minCollateralRatio:
+            type: number
+            description: Min percentage of collateral versus debt
+          dust:
+            type: number
+            description: Minimum debt
+          totalCollateral:
+            type: number
+            description: Total collateral on the contract
+          totalDebt:
+            type: number
+            description: Total debt on the contract
+          rate:
+            type: number
+            description: Underlying oracle price
+          maxLiquidationDiscount:
+            type: number
+            description: Maximum liquidation discount
+          targetHealthFactor:
+            type: number
+            description: Target health factor
+    vaults:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          address:
+            type: string
+            description: Address of the corresponding `VaultManager`
+          symbol:
+            type: string
+            description: Symbol of the `VaultManager`
+          id:
+            type: number
+            description: ERC721 standard `tokenID`
+          collateral:
+            type: number
+            description: Address of the collateral token
+          stablecoin:
+            type: string
+            description: Address of the minted stablecoin
+          rate:
+            type: number
+            description: Underlying oracle price
+          collateralAmount:
+            type: number
+            description: Collateral added to the vault
+          debt:
+            type: number
+            description: Amount currently due
+          debtString:
+            type: string
+            description: Amount currently due, as a string for precision
+          collateralRatio:
+            type: number
+            description: Collateral over Debt, in %
+          liquidationPrice:
+            type: number
+            description: Current liquidation price threshold, in USD
+  parameters:
+    requiredUser:
+      name: user
+      in: query
+      description: User blockchain `address`
+      required: true
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+    requiredChainId:
+      in: query
+      name: chainId
+      description: Chain requested
+      required: true
+      schema:
+        type: integer
+      examples:
+        Ethereum:
+          value: 1
+        Polygon:
+          value: 137
+        Optimism:
+          value: 10
+        Arbitrum:
+          value: 42161
+        Avalanche:
+          value: 43114
+    agToken:
+      name: agToken
+      in: query
+      description: agToken address
+      required: true
+      schema:
+        type: string
+      examples:
+        EURA:
+          value: '0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8'
+    optionalBlockNumber:
+      name: blockNumber
+      in: query
+      description: Block number
+      required: false
+      schema:
+        type: integer
+      example: 12345678
+    optionalUser:
+      name: user
+      in: query
+      description: User blockchain `address` (optional)
+      required: false
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

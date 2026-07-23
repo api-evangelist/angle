@@ -1,0 +1,3207 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Angle API",
+    "description": "With Angle API, you can easily track the state of the Angle Protocol or build an application on top of the protocol."
+  },
+  "servers": [
+    {
+      "url": "https://api.angle.money"
+    },
+    {
+      "url": "https://api-staging.angle.money"
+    }
+  ],
+  "paths": {
+    "/v1/savings": {
+      "get": {
+        "summary": "Fetch data relative to the stEUR contract",
+        "description": "This route fetches general stEUR contract data.",
+        "tags": [
+          "Savings"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/requiredChainId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON object containing stEUR ERC4626 contract data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/savings"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/savings": {
+      "get": {
+        "summary": "Get stablecoin savings data",
+        "tags": [
+          "Savings"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/requiredChainId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/historical/savings": {
+      "get": {
+        "summary": "Fetch historical savings data",
+        "description": "This route fetches historical savings data for specified chains, users, and agTokens.",
+        "tags": [
+          "Savings"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "agToken",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The agToken to fetch data for (EURA or USDA)"
+          },
+          {
+            "in": "query",
+            "name": "chainIds",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\[[\\d,]+\\]$"
+            },
+            "description": "JSON array of chain IDs to fetch data for",
+            "default": "[1,42161]"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "schema": {
+              "type": "string"
+            },
+            "description": "End date for historical data (omit for realtime data)"
+          },
+          {
+            "in": "query",
+            "name": "first",
+            "schema": {
+              "type": "integer",
+              "default": 1000
+            },
+            "description": "Number of records to fetch"
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip"
+          },
+          {
+            "in": "query",
+            "name": "startDate",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Start date for historical data"
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "schema": {
+              "type": "string"
+            },
+            "description": "User address to fetch data for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON array containing historical savings data for each specified chain",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/chainSavingsData"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error response for invalid or missing parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/integrators/payload/deposit": {
+      "get": {
+        "summary": "Get deposit payload",
+        "description": "Generate a payload for depositing tokens into Angle protocol strategies.",
+        "tags": [
+          "Integrators"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/requiredChainId"
+          },
+          {
+            "name": "inputTokenAddress",
+            "in": "query",
+            "description": "The address of the input token.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
+            }
+          },
+          {
+            "name": "inputTokenAmount",
+            "in": "query",
+            "description": "The amount of the input token to deposit using token decimals. For example, 1 USDC would be 1000000 (6 decimals).",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "example": 1000000
+            }
+          },
+          {
+            "name": "strategyAddress",
+            "in": "query",
+            "description": "The address of the strategy contract.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0xC0077E921C30c39cDD8b693E25Af572C10E82a05"
+            }
+          },
+          {
+            "name": "userAddress",
+            "in": "query",
+            "description": "The address of the user performing the transaction.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+            }
+          },
+          {
+            "name": "slippage",
+            "in": "query",
+            "description": "The maximum allowed slippage as a percentage value (i.e. 0.1 means 0.1%).",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "example": 0.1
+            }
+          },
+          {
+            "name": "ipAddress",
+            "in": "query",
+            "description": "The IP address of the user.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "192.168.1.100"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deposit payload information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/integrators/payload/withdraw": {
+      "get": {
+        "summary": "Get withdraw payload",
+        "description": "Generate a payload for withdrawing tokens from Angle protocol strategies.",
+        "tags": [
+          "Integrators"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/requiredChainId"
+          },
+          {
+            "name": "outputTokenAddress",
+            "in": "query",
+            "description": "The address of the output token (the token that the user wants to receive after the withdraw from strategy).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
+            }
+          },
+          {
+            "name": "inputTokenAmount",
+            "in": "query",
+            "description": "The amount of the input token to withdraw. This is the amount of the strategy token that the user wants to withdraw (with 18 decimals). For example, 1 stUSDStrat would be 1000000000000000000 (18 decimals).",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "example": 1000000000000000000
+            }
+          },
+          {
+            "name": "strategyAddress",
+            "in": "query",
+            "description": "The address of the strategy contract.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0xC0077E921C30c39cDD8b693E25Af572C10E82a05"
+            }
+          },
+          {
+            "name": "userAddress",
+            "in": "query",
+            "description": "The address of the user performing the transaction.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+            }
+          },
+          {
+            "name": "slippage",
+            "in": "query",
+            "description": "The maximum allowed slippage as a percentage value (i.e. 0.1 means 0.1%).",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "example": 0.1
+            }
+          },
+          {
+            "name": "ipAddress",
+            "in": "query",
+            "description": "The IP address of the user.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "192.168.1.100"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The withdraw payload information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/integrators/vaults/overview": null,
+    "get": {
+      "summary": "Get vault overview",
+      "description": "Retrieve overview data for a specific vault strategy.",
+      "tags": [
+        "Integrators"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "chainId",
+          "required": true,
+          "schema": {
+            "type": "number",
+            "enum": [
+              42161
+            ]
+          },
+          "description": "The chain ID (only Arbitrum is supported)"
+        },
+        {
+          "name": "strategyAddress",
+          "in": "query",
+          "description": "The address of the strategy contract.",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "0xC0077E921C30c39cDD8b693E25Af572C10E82a05"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Successful response with vault overview data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/integrators/vaults/positions": {
+      "get": {
+        "summary": "Get vault positions",
+        "description": "Retrieve positions data for a specific vault strategy. Position are ordered by the most recent first.",
+        "tags": [
+          "Integrators"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "chainId",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "enum": [
+                42161
+              ]
+            },
+            "description": "The chain ID (only Arbitrum is supported)"
+          },
+          {
+            "name": "strategyAddress",
+            "in": "query",
+            "description": "The address of the strategy contract.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0xC0077E921C30c39cDD8b693E25Af572C10E82a05"
+            }
+          },
+          {
+            "in": "query",
+            "name": "first",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "minimum": 1
+            },
+            "description": "Number of items to retrieve"
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "minimum": 0
+            },
+            "description": "Number of items to skip"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with vault positions data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/integrators/vaults/user/positions": {
+      "get": {
+        "summary": "Get user's vault positions",
+        "description": "Retrieve position data for a specific user in a vault strategy.",
+        "tags": [
+          "Integrators"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "chainId",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                42161
+              ]
+            },
+            "description": "Chain ID (optional, currently only Arbitrum is supported)"
+          },
+          {
+            "in": "query",
+            "name": "first",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 5
+            },
+            "description": "Number of results to return (optional)"
+          },
+          {
+            "in": "query",
+            "name": "includeOperations",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            },
+            "description": "Whether to include operations (deposits, withdrawals) in the response (optional)"
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "description": "Number of results to skip (optional)"
+          },
+          {
+            "in": "query",
+            "name": "strategyAddress",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Address of the strategy (optional)"
+          },
+          {
+            "in": "query",
+            "name": "userAddress",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Address of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with user's vault positions data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/integrators/vaults/positions/historical": {
+      "get": {
+        "summary": "Get historical vault positions",
+        "description": "Retrieve historical position data for a specific vault strategy. Position are ordered by the most recent first.",
+        "tags": [
+          "Integrators"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "chainId",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "enum": [
+                42161
+              ]
+            },
+            "description": "The chain ID (only Arbitrum is supported)"
+          },
+          {
+            "name": "strategyAddress",
+            "in": "query",
+            "description": "The address of the strategy contract.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0xC0077E921C30c39cDD8b693E25Af572C10E82a05"
+            }
+          },
+          {
+            "in": "query",
+            "name": "first",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "minimum": 1
+            },
+            "description": "Number of items to retrieve"
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "minimum": 0
+            },
+            "description": "Number of items to skip"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with historical vault positions data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/integrators/vaults/operations/historical": {
+      "get": {
+        "summary": "Get historical vault operations",
+        "description": "Retrieve historical operation data for a specific vault strategy.",
+        "tags": [
+          "Integrators"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "chainId",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "enum": [
+                42161
+              ]
+            },
+            "description": "The chain ID (only Arbitrum is supported)"
+          },
+          {
+            "name": "strategyAddress",
+            "in": "query",
+            "description": "The address of the strategy contract.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0xC0077E921C30c39cDD8b693E25Af572C10E82a05"
+            }
+          },
+          {
+            "in": "query",
+            "name": "userAddresses",
+            "required": false,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "description": "User address or array of user addresses"
+          },
+          {
+            "in": "query",
+            "name": "firstDeposits",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "minimum": 1
+            },
+            "description": "Number of deposit items to retrieve"
+          },
+          {
+            "in": "query",
+            "name": "skipDeposits",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "minimum": 0
+            },
+            "description": "Number of deposit items to skip"
+          },
+          {
+            "in": "query",
+            "name": "firstWithdrawals",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "minimum": 1
+            },
+            "description": "Number of withdrawal items to retrieve"
+          },
+          {
+            "in": "query",
+            "name": "skipWithdrawals",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "minimum": 0
+            },
+            "description": "Number of withdrawal items to skip"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with historical vault operations data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/activeChains": {
+      "get": {
+        "summary": "Get active chains for the protocol",
+        "description": "Return the list of chains supported by the Borrow module.",
+        "tags": [
+          "Angle Protocol Data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "borrowModule": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "coreModule": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tvl": {
+      "get": {
+        "summary": "Get TVL on a given chain",
+        "description": "Return the TVL of the Angle Protocol on the requested chain. If no chainId is specified, will return the TVL accross all blockchains.",
+        "tags": [
+          "Angle Protocol Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/optionalChainId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TVL on the requested chain"
+          }
+        }
+      }
+    },
+    "/v1/volume": {
+      "get": {
+        "summary": "Get EURA volume on a given chain",
+        "description": "Return data related to the EURA volume on a given chain. If no chainId is specified, will return the volume accross all blockchains.",
+        "tags": [
+          "Angle Protocol Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/optionalChainId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "EURA volume and circulating supply data on the requested chain",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/volume"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/incentives": {
+      "get": {
+        "summary": "Get earning opportunities",
+        "description": "Return data related to earning opportunities for a given user.",
+        "tags": [
+          "Helpers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/optionalUser"
+          },
+          {
+            "name": "isTest",
+            "in": "query",
+            "description": "Optional flag to get Rinkeby data",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mapping between a staking contract address (used as a key) and its data (like description, APR, links, ...)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/incentives"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/allowances": {
+      "get": {
+        "summary": "Get allowances for a user",
+        "description": "Return the allowances for a given user on a given chain for specific spenders. Can include additional token addresses.",
+        "tags": [
+          "User related information"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/requiredChainId"
+          },
+          {
+            "$ref": "#/components/parameters/requiredUser"
+          },
+          {
+            "$ref": "#/components/parameters/spenders"
+          },
+          {
+            "$ref": "#/components/parameters/additionalTokenAddresses"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "allowances": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "object",
+                          "properties": {
+                            "symbol": {
+                              "type": "string"
+                            },
+                            "allowance": {
+                              "type": "string"
+                            },
+                            "decimals": {
+                              "type": "number"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/collect": {
+      "get": {
+        "summary": "Get token information",
+        "description": "Retrieve data regarding a token used by a given user.",
+        "tags": [
+          "User related information"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/requiredChainId"
+          },
+          {
+            "$ref": "#/components/parameters/optionalUser"
+          },
+          {
+            "in": "query",
+            "name": "spender",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Spender address",
+            "example": "REPLACE_ME"
+          },
+          {
+            "$ref": "#/components/parameters/tokenAddress"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tokenInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/balances": {
+      "get": {
+        "summary": "Get balances of Angle tokens for a user",
+        "description": "Return the balances for tokens in the for Angle token list for a given user. Can include additional token addresses.",
+        "tags": [
+          "User related information"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/requiredChainId"
+          },
+          {
+            "$ref": "#/components/parameters/requiredUser"
+          },
+          {
+            "$ref": "#/components/parameters/additionalTokenAddresses"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mapping between a token address and for each token the user balance, the decimals of the token as well as the token name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/balances"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/layerZero": {
+      "get": {
+        "summary": "Fetch bridge data for a user",
+        "description": "This route fetches bridge data for a user from multiple chains.",
+        "tags": [
+          "Bridge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/requiredChainId"
+          },
+          {
+            "$ref": "#/components/parameters/optionalUser"
+          },
+          {
+            "in": "query",
+            "name": "toChainId",
+            "description": "destination of the bridge transaction",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "examples": {
+              "AllBlockchains": {
+                "value": 0
+              },
+              "Ethereum": {
+                "value": 1
+              },
+              "Polygon": {
+                "value": 137
+              },
+              "Optimism": {
+                "value": 10
+              },
+              "Arbitrum": {
+                "value": 42161
+              },
+              "Avalanche": {
+                "value": 43114
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON object containing bridge data for the user on different chains.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bridgeInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/vaultManagers": {
+      "get": {
+        "summary": "Get VaultManagers",
+        "description": "Return the global state of `VaultManagers` listed by the treasuries associated to a stablecoin",
+        "tags": [
+          "Borrow"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/requiredChainId"
+          },
+          {
+            "$ref": "#/components/parameters/optionalUser"
+          },
+          {
+            "$ref": "#/components/parameters/agToken"
+          },
+          {
+            "$ref": "#/components/parameters/optionalBlockNumber"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all `VaultManager` with their details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/vaultManagers"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/vaults": {
+      "get": {
+        "summary": "Get Vaults",
+        "description": "Return all vaults for a user on a chain.",
+        "tags": [
+          "Borrow"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/requiredChainId"
+          },
+          {
+            "$ref": "#/components/parameters/requiredUser"
+          },
+          {
+            "$ref": "#/components/parameters/agToken"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all the vaults for a given user on-chain",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/vaults"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/leverage": {
+      "get": {
+        "summary": "Build payloads for Angle's borrow module",
+        "tags": [
+          "Borrow"
+        ],
+        "parameters": [
+          {
+            "name": "agTokenAddress",
+            "in": "query",
+            "description": "The address of the stablecoin to borrow",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "EURA": {
+                "value": "0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8"
+              }
+            }
+          },
+          {
+            "name": "agTokenToBorrow",
+            "in": "query",
+            "description": "The amount of agTokens to borrow",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agTokenToSwap",
+            "in": "query",
+            "description": "The amount of agTokens to swap for the collateral",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "amountsBrought",
+            "in": "query",
+            "description": "An array of objects representing the amounts and addresses of assets brought",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "type": "string",
+                    "description": "The address of the asset"
+                  },
+                  "amount": {
+                    "type": "string",
+                    "description": "The amount of the asset"
+                  },
+                  "decimals": {
+                    "type": "number",
+                    "description": "The number of decimals for the asset"
+                  },
+                  "symbol": {
+                    "type": "string",
+                    "description": "The symbol of the asset"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "chainId",
+            "in": "query",
+            "description": "The ID of the Ethereum chain on which to perform the operation",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "enum": [
+                1,
+                137,
+                42161,
+                10,
+                43114
+              ]
+            }
+          },
+          {
+            "name": "collateralAddress",
+            "in": "query",
+            "description": "The address of the collateral contract",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collateralToAdd",
+            "in": "query",
+            "description": "The amount of collateral to deposit",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userAddress",
+            "in": "query",
+            "description": "The address of the user requesting the payload",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vaultId",
+            "in": "query",
+            "description": "The vault to act on",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "vaultPermit",
+            "in": "query",
+            "description": "Vault permit",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "permits",
+            "in": "query",
+            "description": "Array of permits",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "slippage",
+            "in": "query",
+            "description": "Slippage",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "oneInchSlippage",
+            "in": "query",
+            "description": "One-inch slippage",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "string",
+                      "description": "The calldata bytes needed to build the Ethereum transaction"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/deleverage": {
+      "get": {
+        "summary": "Build payloads for Angle's borrow module",
+        "description": "This route handles requests to build payloads for Angle's borrow module.",
+        "tags": [
+          "Borrow"
+        ],
+        "parameters": [
+          {
+            "name": "agTokenToRepay",
+            "in": "query",
+            "description": "The amount of agTokens to repay.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d+$"
+            }
+          },
+          {
+            "name": "repayAll",
+            "in": "query",
+            "description": "If all the vault's debt is repaid.",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "amountsBrought",
+            "in": "query",
+            "description": "An array of objects representing the amounts and addresses of assets brought.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          {
+            "name": "chainId",
+            "in": "query",
+            "description": "The ID of the Ethereum chain on which to perform the operation.",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "enum": [
+                1,
+                137,
+                42161,
+                43114,
+                10
+              ]
+            }
+          },
+          {
+            "name": "collateralAddress",
+            "in": "query",
+            "description": "The address of the collateral contract.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "address"
+            }
+          },
+          {
+            "name": "collateralToWithdrawToWallet",
+            "in": "query",
+            "description": "The amount of collateral to withdraw.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d+$"
+            }
+          },
+          {
+            "name": "collateralToSwap",
+            "in": "query",
+            "description": "The amount of collateral to swap to EURA.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d+$"
+            }
+          },
+          {
+            "name": "userAddress",
+            "in": "query",
+            "description": "The address of the user requesting the payload.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "address"
+            }
+          },
+          {
+            "name": "vaultId",
+            "in": "query",
+            "description": "The vault to act on.",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "agTokenAddress",
+            "in": "query",
+            "description": "The address of the agToken.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "address"
+            }
+          },
+          {
+            "name": "outputTokenAddress",
+            "in": "query",
+            "description": "The address of the token wanted by the user.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "address"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON object containing the calldata bytes needed to build the Ethereum transaction."
+          }
+        }
+      }
+    },
+    "/v1/app": {
+      "get": {
+        "summary": "Get tokens and prices",
+        "description": "Return data about tokens at stake in the Angle Protocol (price, icon, decimals etc)",
+        "tags": [
+          "Helpers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Maps token addresses on the requested chain to their associated data and returns a list of pairs of tokens identified by their name with their price (in USD).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tokens": {
+                      "$ref": "#/components/schemas/tokens"
+                    },
+                    "prices": {
+                      "$ref": "#/components/schemas/prices"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/prices": {
+      "get": {
+        "summary": "Get prices",
+        "description": "Return prices for tokens used by the Angle Protocol.",
+        "tags": [
+          "Helpers"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of pairs of tokens identified by their name with their price (in USD).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/prices"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/simulate": {
+      "get": {
+        "summary": "Simulate Transaction",
+        "description": "Simulate a transaction based on provided parameters and return the Tenderly url.",
+        "tags": [
+          "Helpers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/requiredChainId"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The address of the sender.",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The address of the recipient.",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "data",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The transaction data.",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "value",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The transaction value.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/simulate/multicall": {
+      "get": {
+        "summary": "Multicall simulation",
+        "description": "Execute multiple transactions in a single request and return the Tenderly url.",
+        "tags": [
+          "Helpers"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "calls",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/callObject"
+              }
+            },
+            "description": "Array of call objects containing details of each call.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/multicallResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "optionalChainId": {
+        "in": "query",
+        "name": "chainId",
+        "description": "Chain requested",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "examples": {
+          "AllBlockchains": {
+            "value": 0
+          },
+          "Ethereum": {
+            "value": 1
+          },
+          "Polygon": {
+            "value": 137
+          },
+          "Optimism": {
+            "value": 10
+          },
+          "Arbitrum": {
+            "value": 42161
+          },
+          "Avalanche": {
+            "value": 43114
+          }
+        }
+      },
+      "requiredChainId": {
+        "in": "query",
+        "name": "chainId",
+        "description": "Chain requested",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        },
+        "examples": {
+          "Ethereum": {
+            "value": 1
+          },
+          "Polygon": {
+            "value": 137
+          },
+          "Optimism": {
+            "value": 10
+          },
+          "Arbitrum": {
+            "value": 42161
+          },
+          "Avalanche": {
+            "value": 43114
+          }
+        }
+      },
+      "optionalUser": {
+        "name": "user",
+        "in": "query",
+        "description": "User blockchain `address` (optional)",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": "0xa116f421ff82A9704428259fd8CC63347127B777"
+      },
+      "requiredUser": {
+        "name": "user",
+        "in": "query",
+        "description": "User blockchain `address`",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "0xa116f421ff82A9704428259fd8CC63347127B777"
+      },
+      "spenders": {
+        "name": "spenders",
+        "in": "query",
+        "description": "Array of spenders",
+        "required": true,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "example": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "additionalTokenAddresses": {
+        "name": "additionalTokenAddresses",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "example": [
+          "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          "0x6B175474E89094C44Da98b954EedeAC495271d0F"
+        ]
+      },
+      "tokenAddress": {
+        "name": "tokenAddress",
+        "in": "query",
+        "description": "Token address",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+      },
+      "agToken": {
+        "name": "agToken",
+        "in": "query",
+        "description": "agToken address",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "examples": {
+          "EURA": {
+            "value": "0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8"
+          }
+        }
+      },
+      "optionalBlockNumber": {
+        "name": "blockNumber",
+        "in": "query",
+        "description": "Block number",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "example": 12345678
+      },
+      "optionalAmms": {
+        "name": "AMMs",
+        "in": "query",
+        "description": "Array of AMMs supported",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "example": [
+          "uniswapv3",
+          "pancakeswapv3",
+          "sushiswapv3"
+        ]
+      },
+      "optionalLimit": {
+        "name": "limit",
+        "in": "query",
+        "description": "Maximum number of elements to retrieve",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "example": 3
+      }
+    },
+    "schemas": {
+      "tokens": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Token name"
+            },
+            "address": {
+              "type": "string",
+              "description": "Token address"
+            },
+            "decimals": {
+              "type": "number",
+              "description": "ERC20 decimals"
+            },
+            "symbol": {
+              "type": "string",
+              "description": "Token symbol"
+            },
+            "useInSwap": {
+              "type": "boolean",
+              "description": "Whether this token is used in Angle swaps"
+            },
+            "hasPermit": {
+              "type": "boolean",
+              "description": "Whether the token supports permit"
+            },
+            "permitVersion": {
+              "type": "string",
+              "description": "Permit version, otherwise '-1'"
+            },
+            "logoURI": {
+              "type": "string",
+              "description": "Logo URI"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Token tags"
+            }
+          }
+        }
+      },
+      "prices": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string",
+              "description": "Token symbol"
+            },
+            "rate": {
+              "type": "number",
+              "description": "Token price (in USD)"
+            }
+          }
+        }
+      },
+      "balances": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "symbol": {
+                "type": "string",
+                "description": "Token symbol"
+              },
+              "balance": {
+                "type": "string",
+                "description": "Token balance"
+              },
+              "decimals": {
+                "type": "number",
+                "description": "Number of decimals of the token"
+              }
+            }
+          }
+        }
+      },
+      "oracleData": {
+        "type": "object",
+        "properties": {
+          "tokenTicker": {
+            "type": "string",
+            "description": "Ticker of non-USD token"
+          },
+          "price": {
+            "type": "number",
+            "description": "Price reported by oracle"
+          }
+        }
+      },
+      "borrowTransaction": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/borrowTransactionType",
+            "description": "Type of BorrowTransaction"
+          },
+          "hash": {
+            "type": "string",
+            "description": "Hash of the transaction"
+          },
+          "txOrigin": {
+            "type": "string",
+            "description": "Address of the transaction origin"
+          },
+          "txTarget": {
+            "type": "string",
+            "description": "Address of the transaction target"
+          },
+          "vaultManagerName": {
+            "type": "string",
+            "description": "Name of the VaultManager"
+          },
+          "vaultID": {
+            "type": "number",
+            "description": "Vault ID"
+          },
+          "stable": {
+            "type": "string",
+            "description": "Address of the stable token"
+          },
+          "collat": {
+            "type": "string",
+            "description": "Address of the collateral token"
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Timestamp of the transaction"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            },
+            "description": "Array of values associated with the transaction"
+          }
+        }
+      },
+      "borrowTransactionType": {
+        "type": "string",
+        "enum": [
+          "VAULT_CREATION",
+          "VAULT_CLOSING",
+          "ADD_COLLATERAL",
+          "RM_COLLATERAL",
+          "BORROW",
+          "REPAY_DEBT",
+          "DEBT_TRANSFER",
+          "LIQUIDATION",
+          "FLASH_LOAN"
+        ],
+        "description": "Type of BorrowTransaction"
+      },
+      "treasuryData": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Address of the treasury"
+          },
+          "agToken": {
+            "type": "string",
+            "description": "Address of the stablecoin"
+          },
+          "treasury": {
+            "type": "string",
+            "description": "Address of the treasury"
+          },
+          "vaultManagers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/vaultManagerData"
+            },
+            "description": "List of vaultManagers reporting to this treasury"
+          },
+          "badDebt": {
+            "type": "number",
+            "description": "Amount of bad debt"
+          },
+          "surplusBuffer": {
+            "type": "number",
+            "description": "Amount of unprocessed surplus available"
+          },
+          "surplusForGovernance": {
+            "type": "number",
+            "description": "Share of the `surplusBuffer` distributed to governance"
+          },
+          "surplusManager": {
+            "type": "string",
+            "description": "Address of the contract managing surplus"
+          },
+          "surplus": {
+            "type": "number",
+            "description": "Amount of surplus available for safety"
+          },
+          "governanceProfits": {
+            "type": "number",
+            "description": "Sum of all profits successfully forwarded to governance"
+          },
+          "blockNumber": {
+            "type": "number",
+            "description": "BlockNumber of last update"
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Timestamp of last update"
+          }
+        }
+      },
+      "vaultManagerData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of VaultManager"
+          },
+          "id": {
+            "type": "string",
+            "description": "Address of VaultManager"
+          },
+          "vaultManager": {
+            "type": "string",
+            "description": "Address of VaultManager"
+          },
+          "agToken": {
+            "type": "string",
+            "description": "Address of agToken"
+          },
+          "collateral": {
+            "type": "string",
+            "description": "Address of collateral"
+          },
+          "collateralBase": {
+            "type": "number",
+            "description": "Base of collateral"
+          },
+          "dust": {
+            "type": "number",
+            "description": "Minimum debt of a healthy vault"
+          },
+          "agTokenTicker": {
+            "type": "string",
+            "description": "Ticker of agToken target (e.g: EUR)"
+          },
+          "collateralTicker": {
+            "type": "string",
+            "description": "Ticker of collateral (e.g: ETH)"
+          },
+          "collateralAmount": {
+            "type": "number",
+            "description": "Amount of collateral deposited"
+          },
+          "totalNormalizedDebt": {
+            "type": "number",
+            "description": "Total amount of debt across vaults in agToken, normalized"
+          },
+          "interestAccumulator": {
+            "type": "number",
+            "description": "Value of interestAccumulator"
+          },
+          "lastInterestAccumulatorUpdated": {
+            "type": "number",
+            "description": "Timestamp when interestAccumulator was last updated"
+          },
+          "totalDebt": {
+            "type": "number",
+            "description": "Amount of debt in agToken"
+          },
+          "tvl": {
+            "type": "number",
+            "description": "Amount of collateral in USD"
+          },
+          "activeVaultsCount": {
+            "type": "number",
+            "description": "Number of active vaults"
+          },
+          "vaults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/vaultData"
+            },
+            "description": "List of vaults"
+          },
+          "surplus": {
+            "type": "number",
+            "description": "Total surplus accumulated by this VM since inception"
+          },
+          "surplusFromInterests": {
+            "type": "number",
+            "description": "Total surplus accumulated from vault's interests"
+          },
+          "surplusFromBorrowFees": {
+            "type": "number",
+            "description": "Total surplus accumulated from vault's fees at borrow time"
+          },
+          "surplusFromRepayFees": {
+            "type": "number",
+            "description": "Total surplus accumulated from vault's fees at repayment time"
+          },
+          "surplusFromLiquidationSurcharges": {
+            "type": "number",
+            "description": "Total surplus accumulated from protocol surcharge when a liquidation occurs"
+          },
+          "badDebt": {
+            "type": "number",
+            "description": "Total bad debt created by vaults on this VM since inception"
+          },
+          "profits": {
+            "type": "number",
+            "description": "Surplus - bad debt (since inception)"
+          },
+          "pendingSurplus": {
+            "type": "number",
+            "description": "Pending surplus accumulated since last accrual to treasury"
+          },
+          "pendingBadDebt": {
+            "type": "number",
+            "description": "Pending bad debt accumulated since last accrual to treasury"
+          },
+          "oracleValue": {
+            "type": "number",
+            "description": "Current value of the oracle"
+          },
+          "liquidationDebtsRepayed": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "List of amounts of debt repaid in USD"
+          },
+          "liquidationDebtsRemoved": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "List of amounts of debt removed in USD"
+          },
+          "liquidationDebtsRemaining": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "List of debts remaining in vault after liquidation"
+          },
+          "liquidationCollateralsBought": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "List of USD amounts of collateral bought through liquidation"
+          },
+          "liquidationCollateralsRemaining": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "List of USD amounts of collateral remaining in liquidated vault"
+          },
+          "liquidationTimestamps": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "List of liquidation timestamps"
+          },
+          "debtCeiling": {
+            "type": "number",
+            "description": "Maximum debt this VaultManager can handle"
+          },
+          "veBoostProxy": {
+            "type": "string",
+            "description": "Proxy contract giving veAngle balances"
+          },
+          "xLiquidationBoost": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Liquidation boost parameters (x-values)"
+          },
+          "yLiquidationBoost": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Liquidation boost parameters (y-values)"
+          },
+          "collateralFactor": {
+            "type": "number",
+            "description": "Value of collateral factor"
+          },
+          "targetHealthFactor": {
+            "type": "number",
+            "description": "Value of target health factor"
+          },
+          "borrowFee": {
+            "type": "number",
+            "description": "Value of borrow fee"
+          },
+          "repayFee": {
+            "type": "number",
+            "description": "Value of repay fee"
+          },
+          "interestRate": {
+            "type": "number",
+            "description": "Value of borrow interest rate"
+          },
+          "liquidationSurcharge": {
+            "type": "number",
+            "description": "Value of liquidation surcharge"
+          },
+          "maxLiquidationDiscount": {
+            "type": "number",
+            "description": "Value of max liquidation discount"
+          },
+          "blockNumber": {
+            "type": "number",
+            "description": "BlockNumber of last update"
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Timestamp of last update"
+          },
+          "estimatedYearlyRevenuFromInterests": {
+            "type": "number",
+            "description": "Estimated yearly revenue from interests (computed in frontend)"
+          },
+          "liquidationCount": {
+            "type": "number",
+            "description": "Number of liquidations recorded"
+          },
+          "liquidationRepayments": {
+            "type": "number",
+            "description": "Sum of debt repaid by liquidators on the vaults of this manager"
+          },
+          "liquidationAverageDebtRepayed": {
+            "type": "number",
+            "description": "Average amount of debt repaid"
+          },
+          "liquidationAverageDebtRemoved": {
+            "type": "number",
+            "description": "Average amount of debt removed"
+          },
+          "liquidationMedianDebtRepayed": {
+            "type": "number",
+            "description": "Median amount of debt repaid"
+          },
+          "liquidationMedianDebtRemoved": {
+            "type": "number",
+            "description": "Median amount of debt removed"
+          },
+          "liquidationAverageRatioOfDebtRepayed": {
+            "type": "number",
+            "description": "Average percentage of debt repaid"
+          },
+          "liquidationAverageRatioOfDebtRemoved": {
+            "type": "number",
+            "description": "Average percentage of debt removed"
+          },
+          "liquidationMedianRatioOfDebtRepayed": {
+            "type": "number",
+            "description": "Median percentage of debt repaid"
+          },
+          "liquidationMedianRatioOfDebtRemoved": {
+            "type": "number",
+            "description": "Median percentage of debt removed"
+          },
+          "liquidationAverageDiscount": {
+            "type": "number",
+            "description": "Average liquidation discount"
+          },
+          "liquidationAverageHealthFactor": {
+            "type": "number",
+            "description": "Average health factor of vaults that have been liquidated"
+          }
+        }
+      },
+      "vaultData": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Address of VaultManager + '_' + vaultID"
+          },
+          "vaultID": {
+            "type": "number",
+            "description": "tokenID"
+          },
+          "openingDate": {
+            "type": "number",
+            "description": "Opening date"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Address of vault owner"
+          },
+          "collateralAmount": {
+            "type": "number",
+            "description": "Amount of collateral deposited"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Indicates whether the vault is active or burned"
+          },
+          "debt": {
+            "type": "number",
+            "description": "Amount of debt in agToken"
+          },
+          "healthFactor": {
+            "type": "number",
+            "description": "Vault's health factor (in base 1e9)"
+          },
+          "fees": {
+            "type": "number",
+            "description": "Sum of all fees (borrow, repay, interests, liquidation) accrued by this vault"
+          },
+          "blockNumber": {
+            "type": "number",
+            "description": "BlockNumber of last update"
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Timestamp of last update"
+          }
+        }
+      },
+      "vaultManagerHistoricalData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of VaultManager"
+          },
+          "vaultManager": {
+            "type": "string",
+            "description": "Address of VaultManager"
+          },
+          "agToken": {
+            "type": "string",
+            "description": "Address of agToken"
+          },
+          "collateral": {
+            "type": "string",
+            "description": "Address of collateral"
+          },
+          "collateralBase": {
+            "type": "number",
+            "description": "Base of collateral"
+          },
+          "dust": {
+            "type": "number",
+            "description": "Minimum debt of a healthy vault"
+          },
+          "treasury": {
+            "type": "string",
+            "description": "Address of treasury"
+          },
+          "collateralAmount": {
+            "type": "number",
+            "description": "Amount of collateral deposited"
+          },
+          "totalNormalizedDebt": {
+            "type": "number",
+            "description": "Total amount of debt across vaults in agToken, normalized"
+          },
+          "interestAccumulator": {
+            "type": "number",
+            "description": "Value of interestAccumulator"
+          },
+          "lastInterestAccumulatorUpdated": {
+            "type": "number",
+            "description": "Timestamp when interestAccumulator was last updated"
+          },
+          "totalDebt": {
+            "type": "number",
+            "description": "Amount of debt in agToken"
+          },
+          "tvl": {
+            "type": "number",
+            "description": "Amount of collateral in USD"
+          },
+          "activeVaultsCount": {
+            "type": "number",
+            "description": "Number of active vaults"
+          },
+          "surplus": {
+            "type": "number",
+            "description": "Total surplus accumulated by this VM since inception"
+          },
+          "surplusFromInterests": {
+            "type": "number",
+            "description": "Total surplus accumulated from vault's interests"
+          },
+          "surplusFromBorrowFees": {
+            "type": "number",
+            "description": "Total surplus accumulated from vault's fees at borrow time"
+          },
+          "surplusFromRepayFees": {
+            "type": "number",
+            "description": "Total surplus accumulated from vault's fees at repayment time"
+          },
+          "surplusFromLiquidationSurcharges": {
+            "type": "number",
+            "description": "Total surplus accumulated from protocol surcharge when a liquidation occurs"
+          },
+          "badDebt": {
+            "type": "number",
+            "description": "Total bad debt created by vaults on this VM since inception"
+          },
+          "profits": {
+            "type": "number",
+            "description": "Surplus - bad debt (since inception)"
+          },
+          "pendingSurplus": {
+            "type": "number",
+            "description": "Pending surplus accumulated since last accrual to treasury"
+          },
+          "pendingBadDebt": {
+            "type": "number",
+            "description": "Pending bad debt accumulated since last accrual to treasury"
+          },
+          "oracleValue": {
+            "type": "number",
+            "description": "Current value of the oracle"
+          },
+          "liquidationRepayments": {
+            "type": "number",
+            "description": "Sum of debt repaid by liquidators on the vaults of this manager"
+          },
+          "liquidationCount": {
+            "type": "number",
+            "description": "Total number of liquidations that ever occurred to the vaults of this manager"
+          },
+          "debtCeiling": {
+            "type": "number",
+            "description": "Maximum debt this VaultManager can handle"
+          },
+          "veBoostProxy": {
+            "type": "string",
+            "description": "Proxy contract giving veAngle balances"
+          },
+          "xLiquidationBoost": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Liquidation boost parameters (x values)"
+          },
+          "yLiquidationBoost": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Liquidation boost parameters (y values)"
+          },
+          "collateralFactor": {
+            "type": "number",
+            "description": "Value of collateral factor"
+          },
+          "targetHealthFactor": {
+            "type": "number",
+            "description": "Value of target health factor"
+          },
+          "borrowFee": {
+            "type": "number",
+            "description": "Value of borrow fee"
+          },
+          "repayFee": {
+            "type": "number",
+            "description": "Value of repay fee"
+          },
+          "interestRate": {
+            "type": "number",
+            "description": "Value of borrow interest rate"
+          },
+          "liquidationSurcharge": {
+            "type": "number",
+            "description": "Value of liquidation surcharge"
+          },
+          "maxLiquidationDiscount": {
+            "type": "number",
+            "description": "Value of max liquidation discount"
+          },
+          "blockNumber": {
+            "type": "number",
+            "description": "BlockNumber of last update"
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Timestamp of last update"
+          }
+        }
+      },
+      "BorrowData": {
+        "type": "object",
+        "properties": {
+          "oracleData": {
+            "$ref": "#/components/schemas/oracleData"
+          },
+          "transactions": {
+            "$ref": "#/components/schemas/borrowTransaction"
+          },
+          "treasuryData": {
+            "$ref": "#/components/schemas/treasuryData"
+          },
+          "vaultManagerHistoricalData": {
+            "$ref": "#/components/schemas/vaultManagerHistoricalData"
+          }
+        }
+      },
+      "tokenInfoResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "decimals": {
+            "type": "number"
+          },
+          "balance": {
+            "type": "string"
+          },
+          "allowance": {
+            "type": "string"
+          }
+        }
+      },
+      "veAngle": {
+        "type": "object",
+        "properties": {
+          "totalSupply": {
+            "type": "number",
+            "description": "Total supply of the token"
+          },
+          "totalLocked": {
+            "type": "number",
+            "description": "Amount of ANGLE token locked"
+          },
+          "rate": {
+            "type": "number",
+            "description": "ANGLE emission rate per second"
+          },
+          "nextRate": {
+            "type": "number",
+            "description": "ANGLE emission rate per second next week"
+          },
+          "locked": {
+            "type": "number",
+            "description": "Amount of ANGLE tokens locked by the users"
+          },
+          "endLock": {
+            "type": "number",
+            "description": "Timestamp at which the lock should end"
+          },
+          "balance": {
+            "type": "string",
+            "description": "User veANGLE balance"
+          },
+          "allowance": {
+            "type": "string",
+            "description": "Allowance for the ANGLE token to the veANGLE contract by the user"
+          }
+        }
+      },
+      "angle": {
+        "type": "object",
+        "properties": {
+          "totalSupply": {
+            "type": "number",
+            "description": "Total supply of the ANGLE token"
+          },
+          "circulatingSupply": {
+            "type": "number",
+            "description": "Circulating supply of the ANGLE"
+          },
+          "balance": {
+            "type": "string",
+            "description": "ANGLE balance of the user"
+          }
+        }
+      },
+      "rewardsData": {
+        "type": "object",
+        "properties": {
+          "times": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "description": "Timestamp at which the `FeeDistributor` contract was checkpointed for the corresponding week. Each item in the array corresponds to a new week."
+            }
+          },
+          "tokenPerWeek": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "description": "Amount of sanUSDC_EUR distributed in the corresponding week. Each item in the array corresponds to a new week."
+            }
+          },
+          "claimable": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "description": "Amount claimable by the user for the week of interest. Each item in the array corresponds to a new week."
+            }
+          },
+          "totalClaimable": {
+            "type": "string",
+            "description": "Total amount of tokens still claimable by the user in the contract"
+          }
+        }
+      },
+      "gauges": {
+        "type": "object",
+        "properties": {
+          "totalWeight": {
+            "type": "number",
+            "description": "Total veANGLE voting power used to vote for gauges"
+          },
+          "voteUserPower": {
+            "type": "number",
+            "description": "Total voting power of the user used across all gauges"
+          },
+          "list": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "description": "Gauge address"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Gauge name"
+                },
+                "icon": {
+                  "type": "string",
+                  "description": "Shortened symbol of the gauge"
+                },
+                "type": {
+                  "type": "number",
+                  "description": "Type of the gauge in the whole system"
+                },
+                "currentWeight": {
+                  "type": "number",
+                  "description": "Share of overall ANGLE emissions allocated to this gauge for the current week"
+                },
+                "absoluteWeight": {
+                  "type": "number",
+                  "description": "Total veANGLE voting power for this gauge"
+                },
+                "futureWeight": {
+                  "type": "number",
+                  "description": "Share of overall ANGLE emissions that is going to go to this gauge next week"
+                },
+                "userWeight": {
+                  "type": "number",
+                  "description": "Share of the user's voting power used for this gauge"
+                },
+                "lastUserVote": {
+                  "type": "number",
+                  "description": "Amount of veANGLE with which the user voted for this gauge"
+                },
+                "tvl": {
+                  "type": "number",
+                  "description": "USD value in this gauge"
+                },
+                "apr": {
+                  "type": "number",
+                  "description": "Minimum ANGLE boost for participating in this gauge (this APR does not include that the token natively staked may have)"
+                },
+                "workingSupply": {
+                  "type": "number",
+                  "description": "Working supply in the gauge contract"
+                },
+                "totalSupply": {
+                  "type": "number",
+                  "description": "Total supply of the gauge contract"
+                },
+                "workingBalance": {
+                  "type": "number",
+                  "description": "Working balance of the user in the gauge (it's the balance corrected by the veANGLE boost)"
+                },
+                "balance": {
+                  "type": "number",
+                  "description": "Balance of the user in the gauge contract"
+                }
+              }
+            }
+          }
+        }
+      },
+      "incentives": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string",
+              "description": "Address of the staking contract"
+            },
+            "name": {
+              "type": "string",
+              "description": "Name of the farm"
+            },
+            "deprecated": {
+              "type": "boolean",
+              "description": "Whether the farm is deprecated or not"
+            },
+            "underlyingToken": {
+              "type": "object",
+              "properties": {
+                "balances": {
+                  "type": "string",
+                  "description": "Balance of the user of the underlying staking token"
+                },
+                "allowance": {
+                  "type": "string",
+                  "description": "Allowance of the user for the underlying staking token to the staking contract"
+                },
+                "address": {
+                  "type": "string",
+                  "description": "Address of the token to stake"
+                },
+                "base": {
+                  "type": "number",
+                  "description": "Base of the staking token"
+                }
+              }
+            },
+            "rewardTokens": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "symbol": {
+                    "type": "string",
+                    "description": "Symbol of the reward token"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "Address of the reward token"
+                  },
+                  "amount": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "network": {
+              "type": "number",
+              "description": "Network where the incentive is given"
+            },
+            "platform": {
+              "type": "string",
+              "description": "Platform where staking is taking place"
+            },
+            "icon": {
+              "type": "string",
+              "description": "Icon of the staking platform"
+            },
+            "tvl": {
+              "type": "number",
+              "description": "TVL in the staking contract"
+            },
+            "deposit": {
+              "type": "object",
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "description": "User deposited amount"
+                },
+                "usdValue": {
+                  "type": "number",
+                  "description": "USD value of the user amount in the farm"
+                }
+              }
+            },
+            "apr": {
+              "type": "object",
+              "properties": {
+                "details": {
+                  "type": "object"
+                },
+                "value": {
+                  "type": "number",
+                  "description": "Value of the APR"
+                }
+              }
+            }
+          }
+        }
+      },
+      "bridgeInfo": {
+        "type": "object",
+        "properties": {
+          "chainId": {
+            "type": "object",
+            "properties": {
+              "EURA": {
+                "type": "object",
+                "properties": {
+                  "allowance": {
+                    "type": "string"
+                  },
+                  "balance": {
+                    "type": "string"
+                  },
+                  "canonicalTokenAddress": {
+                    "type": "string"
+                  },
+                  "credit": {
+                    "type": "string"
+                  },
+                  "fee": {
+                    "type": null
+                  },
+                  "fromLimit": {
+                    "type": "string"
+                  },
+                  "lzChainId": {
+                    "type": "integer"
+                  },
+                  "oftAddress": {
+                    "type": "string"
+                  },
+                  "toLimit": {
+                    "type": "string"
+                  },
+                  "totalSupply": {
+                    "type": "string"
+                  }
+                }
+              },
+              "ANGLE": {
+                "type": "object",
+                "properties": {
+                  "allowance": {
+                    "type": "string"
+                  },
+                  "balance": {
+                    "type": "string"
+                  },
+                  "canonicalTokenAddress": {
+                    "type": "string"
+                  },
+                  "credit": {
+                    "type": "string"
+                  },
+                  "fee": {
+                    "type": null
+                  },
+                  "fromLimit": {
+                    "type": "string"
+                  },
+                  "lzChainId": {
+                    "type": "integer"
+                  },
+                  "oftAddress": {
+                    "type": "string"
+                  },
+                  "toLimit": {
+                    "type": "string"
+                  },
+                  "totalSupply": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "pools": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "collateralSymbol": {
+              "type": "string",
+              "description": "Symbol of the associated collateral token"
+            },
+            "stablecoinSymbol": {
+              "type": "string",
+              "description": "Symbol of the associated stablecoin"
+            },
+            "decimals": {
+              "type": "number",
+              "description": "Decimals of the associated collateral token"
+            },
+            "liquidityGaugeAddress": {
+              "type": "string",
+              "description": "Address (if any) of the corresponding liquidity gauge address"
+            },
+            "perpetualManagerAddress": {
+              "type": "string",
+              "description": "Address of the corresponding `PerpetualManager` contract"
+            },
+            "poolManagerAddress": {
+              "type": "string"
+            },
+            "collateralAddress": {
+              "type": "string",
+              "description": "Address of the corresponding collateral"
+            },
+            "stablecoinAddress": {
+              "type": "string",
+              "description": "Address of the corresponding stablecoin"
+            },
+            "sanRate": {
+              "type": "string",
+              "description": "Exchange rate between the associated collateral and the stablecoin"
+            },
+            "poolManagerBalance": {
+              "type": "string",
+              "description": "Collateral balance of the `PoolManager` contract"
+            },
+            "stablecoinBalance": {
+              "type": "string",
+              "description": "User stablecoin balance"
+            },
+            "collateralBalance": {
+              "type": "string",
+              "description": "User collateral balance"
+            },
+            "sanTokenBalance": {
+              "type": "string",
+              "description": "User sanToken balance"
+            },
+            "gaugeBalance": {
+              "type": "string",
+              "description": "User balance in the gauge potentially associated to the sanToken"
+            },
+            "gaugeWorkingBalance": {
+              "type": "string",
+              "description": "User working balance in the gauge associated to the sanToken"
+            },
+            "boost": {
+              "type": "number",
+              "description": "User boost in the gauge"
+            },
+            "theoricBoost": {
+              "type": "number",
+              "description": "Theoric boost the user could get based on its veANGLE balance"
+            },
+            "collateralAllowance": {
+              "type": "string",
+              "description": "Allowance by the user for the collateral token to the `StableMaster` contract"
+            },
+            "collateralRouterAllowance": {
+              "type": "string",
+              "description": "Allowance by the user for the collateral token to the router contract"
+            }
+          }
+        }
+      },
+      "queryRevenueResult": {
+        "type": "object",
+        "properties": {
+          "endTimestamp": {
+            "type": "number"
+          },
+          "startTimestamp": {
+            "type": "number"
+          },
+          "borrow": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "object",
+                "properties": {
+                  "surplusFromInterests": {
+                    "type": "number"
+                  },
+                  "surplusFromBorrowFees": {
+                    "type": "number"
+                  },
+                  "surplusFromRepayFees": {
+                    "type": "number"
+                  },
+                  "surplusFromLiquidationSurcharges": {
+                    "type": "number"
+                  }
+                }
+              },
+              "delta": {
+                "$ref": "#/components/schemas/queryRevenueResult/properties/borrow/properties/total"
+              }
+            }
+          },
+          "veANGLE": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "number"
+              },
+              "delta": {
+                "type": "number"
+              }
+            }
+          },
+          "global": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "number"
+              },
+              "delta": {
+                "type": "number"
+              },
+              "totalProfit": {
+                "type": "number"
+              },
+              "deltaProfit": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      },
+      "uniswapV3PoolData": {
+        "type": "object",
+        "properties": {
+          "token0": {
+            "type": "string"
+          },
+          "token1": {
+            "type": "string"
+          },
+          "fee": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "amm": {
+            "type": "string",
+            "enum": [
+              "UniswapV3",
+              "SushiSwapV3",
+              "Retro"
+            ]
+          }
+        }
+      },
+      "vaultManagers": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string",
+              "description": "Address of the `VaultManager`"
+            },
+            "symbol": {
+              "type": "string",
+              "description": "Symbol of the `VaultManager`"
+            },
+            "collateral": {
+              "type": "number",
+              "description": "Address of the collateral token"
+            },
+            "collateralHasPermit": {
+              "type": "boolean",
+              "description": "Whether the collateral token supports permit"
+            },
+            "collateralPermitVersion": {
+              "type": "number",
+              "description": "Permit version used in case of"
+            },
+            "stablecoin": {
+              "type": "string",
+              "description": "Address of the minted stablecoin"
+            },
+            "swapper": {
+              "type": "string",
+              "description": "Address of the swapper contract recommended by the protocol"
+            },
+            "decimals": {
+              "type": "string",
+              "description": "Decimals of the collateral token"
+            },
+            "treasury": {
+              "type": "string",
+              "description": "Address of the Treasury"
+            },
+            "borrowFee": {
+              "type": "number",
+              "description": "Percentage of up-front fees"
+            },
+            "stabilityFee": {
+              "type": "number",
+              "description": "Annual interest rate"
+            },
+            "liquidationPenalty": {
+              "type": "number",
+              "description": "Percentage of penalty on liquidated debt"
+            },
+            "maxLTV": {
+              "type": "number",
+              "description": "Max debt value versus collateral value"
+            },
+            "minCollateralRatio": {
+              "type": "number",
+              "description": "Min percentage of collateral versus debt"
+            },
+            "dust": {
+              "type": "number",
+              "description": "Minimum debt"
+            },
+            "totalCollateral": {
+              "type": "number",
+              "description": "Total collateral on the contract"
+            },
+            "totalDebt": {
+              "type": "number",
+              "description": "Total debt on the contract"
+            },
+            "rate": {
+              "type": "number",
+              "description": "Underlying oracle price"
+            },
+            "maxLiquidationDiscount": {
+              "type": "number",
+              "description": "Maximum liquidation discount"
+            },
+            "targetHealthFactor": {
+              "type": "number",
+              "description": "Target health factor"
+            }
+          }
+        }
+      },
+      "vaults": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string",
+              "description": "Address of the corresponding `VaultManager`"
+            },
+            "symbol": {
+              "type": "string",
+              "description": "Symbol of the `VaultManager`"
+            },
+            "id": {
+              "type": "number",
+              "description": "ERC721 standard `tokenID`"
+            },
+            "collateral": {
+              "type": "number",
+              "description": "Address of the collateral token"
+            },
+            "stablecoin": {
+              "type": "string",
+              "description": "Address of the minted stablecoin"
+            },
+            "rate": {
+              "type": "number",
+              "description": "Underlying oracle price"
+            },
+            "collateralAmount": {
+              "type": "number",
+              "description": "Collateral added to the vault"
+            },
+            "debt": {
+              "type": "number",
+              "description": "Amount currently due"
+            },
+            "debtString": {
+              "type": "string",
+              "description": "Amount currently due, as a string for precision"
+            },
+            "collateralRatio": {
+              "type": "number",
+              "description": "Collateral over Debt, in %"
+            },
+            "liquidationPrice": {
+              "type": "number",
+              "description": "Current liquidation price threshold, in USD"
+            }
+          }
+        }
+      },
+      "volume": {
+        "type": "object",
+        "properties": {
+          "circulatingSupply": {
+            "type": "number",
+            "description": "Total circulating supply of the token"
+          },
+          "holder": {
+            "type": "number",
+            "description": "Number of addresses holding the token"
+          },
+          "rate": {
+            "type": "number",
+            "description": "Per second increase rate of the EURA volume over the last 30 minutes based on `Transfer` event"
+          },
+          "volume": {
+            "type": "number",
+            "description": "Per second EURA volume based on `Transfer` event"
+          }
+        }
+      },
+      "savings": {
+        "type": "object",
+        "properties": {
+          "chainId": {
+            "type": "integer"
+          },
+          "totalAssets": {
+            "type": "string"
+          },
+          "totalSupply": {
+            "type": "string"
+          },
+          "paused": {
+            "type": "boolean"
+          },
+          "lastUpdate": {
+            "type": "integrer"
+          },
+          "apr": {
+            "type": "float"
+          }
+        }
+      },
+      "callObject": {
+        "type": "object",
+        "properties": {
+          "chainId": {
+            "type": "number"
+          },
+          "data": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string",
+            "pattern": "^[0-9A-Fa-f]+$"
+          }
+        }
+      },
+      "multicallResponse": {
+        "type": "object",
+        "properties": {
+          "transfers": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "chainSavingsData": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/savingsData"
+        },
+        "description": "Object with chain IDs as keys and savings data as values"
+      },
+      "savingsData": {
+        "type": "object",
+        "description": "Historical savings data for a specific chain"
+      },
+      "errorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Invalid or missing params"
+          },
+          "message": {
+            "type": "string",
+            "description": "Detailed error message"
+          }
+        }
+      }
+    }
+  }
+}

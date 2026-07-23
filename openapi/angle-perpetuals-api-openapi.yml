@@ -1,0 +1,100 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Perpetuals API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Perpetuals
+paths:
+  /v1/perpetuals:
+    get:
+      description: Return data related to the perpetuals of a given user
+      parameters:
+      - name: user
+        in: query
+        description: User blockchain `address`
+        schema:
+          type: string
+      - name: chainId
+        in: query
+        description: Chain requested - Default is 1 (Ethereum mainnet)
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of all the perpetuals controlled by the user on that chain
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/perpetuals'
+      tags:
+      - Perpetuals
+components:
+  schemas:
+    perpetuals:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          id:
+            type: string
+          perpetualID:
+            type: string
+            description: ID of the perpetual
+          owner:
+            type: string
+            description: Owner of the perpetual
+          margin:
+            type: string
+            description: Margin of the perp
+          committedAmount:
+            type: string
+            description: Committed amount in the perp
+          entryRate:
+            type: string
+            description: Oracle rate at which the perpetual was created
+          perpetualManager:
+            type: string
+            description: Address of the corresponding `PerpetualManager`
+          stableAddress:
+            type: string
+            description: Address of the corresponding stablecoin
+          collatAddress:
+            type: string
+            description: Address of the corresponding collateral
+          decimals:
+            type: string
+            description: Decimals of the corresponding collateral
+          stableName:
+            type: string
+            description: Name of the associated stablecoin
+          collatName:
+            type: string
+            description: Name of the associated collateral
+          liquidationPrice:
+            type: string
+            description: Price at which the perp may get liquidated
+          openingBlockNumber:
+            type: string
+            description: Block number at which the perp was opened
+          openingTimestamp:
+            type: string
+            description: Opening timestamp of the perp
+          lastUpdateBlockNumber:
+            type: string
+            description: Block number at which the perp was last updated
+          lastUpdateTimestamp:
+            type: string
+            description: Timestamp at which the perp was last updated
+          status:
+            type: string
+            description: Whether the perpetual is open or close
+          claimable:
+            type: number
+            description: Amount of claimable ANGLE tokens
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

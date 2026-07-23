@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Balances API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Balances
+paths:
+  /v1/balances:
+    get:
+      description: Return the balances for tokens in the for Angle token list for a given user.
+      parameters:
+      - name: user
+        in: query
+        description: User blockchain `address`
+        schema:
+          type: string
+      - name: chainId
+        in: query
+        description: Chain requested - Default is 1 (Ethereum mainnet)
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Mapping between a token address and for each token the user balance, the decimals of the token as well as the token name
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/balances'
+      tags:
+      - Balances
+components:
+  schemas:
+    balances:
+      type: array
+      items:
+        type: object
+        additionalProperties:
+          type: object
+          properties:
+            symbol:
+              type: string
+              description: Token symbol
+            balance:
+              type: string
+              description: Token balance
+            decimals:
+              type: number
+              description: Number of decimals of the token
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

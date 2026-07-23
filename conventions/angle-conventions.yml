@@ -1,0 +1,54 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/ + authentication/angle-authentication.yml
+authentication:
+  style: http-basic
+  detail: Single BasicAuth (http/basic) securityScheme declared in openapi/angle-api-openapi-github.yaml;
+    no global security requirement is applied, and the other spec declares no securitySchemes.
+  artifact: authentication/angle-authentication.yml
+idempotency:
+  supported: false
+  note: No Idempotency-Key header or equivalent parameter appears in either spec, and the API
+    surface is predominantly read-only GET. No Idempotency pointer is wired.
+pagination:
+  style: offset
+  params:
+  - name: first
+    role: page size
+  - name: skip
+    role: offset
+  note: Subgraph-style first/skip pairs on the historical and list endpoints.
+chain_scoping:
+  param: chainId
+  note: chainId is the dominant query parameter across both specs; most resources are scoped
+    to an EVM chain.
+user_scoping:
+  params:
+  - userAddress
+  - user
+  note: User-scoped reads take an on-chain address rather than an authenticated subject.
+versioning:
+  scheme: uri-path
+  versions:
+  - v1
+  - v2
+  note: v1 and v2 coexist; /v2/savings and /v2/historical/savings supersede /v1/savings.
+error_envelope:
+  artifact: errors/angle-problem-types.yml
+  fields:
+  - error
+  - message
+  rfc9457: false
+rate_limiting:
+  documented: false
+environments:
+- name: production
+  url: https://api.angle.money
+- name: staging
+  url: https://api-staging.angle.money
+  reachable: false
+  note: Declared in the JSON spec servers[]; did not resolve over HTTPS when probed on 2026-07-19.
+status:
+  note: Partially degraded, not down. A 2026-07-19 sweep of all 25 GET operations returned 2x200,
+    17x400 (input validation, i.e. the service is answering) and 6x503 (backend down). See sandbox/angle-sandbox.yml
+    for the per-endpoint breakdown.

@@ -1,0 +1,79 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Vaults API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Vaults
+paths:
+  /v1/vaults:
+    get:
+      description: Return all vaults for a user on a chain
+      parameters:
+      - name: user
+        in: query
+        description: User blockchain `address`
+        schema:
+          type: string
+      - name: chainId
+        in: query
+        description: Chain requested - Default is 1 (Ethereum mainnet)
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of all the vaults for a given user on-chain
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/vaults'
+      tags:
+      - Vaults
+components:
+  schemas:
+    vaults:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          address:
+            type: string
+            description: Address of the corresponding `VaultManager`
+          symbol:
+            type: string
+            description: Symbol of the `VaultManager`
+          id:
+            type: number
+            description: ERC721 standard `tokenID`
+          collateral:
+            type: number
+            description: Address of the collateral token
+          stablecoin:
+            type: string
+            description: Address of the minted stablecoin
+          rate:
+            type: number
+            description: Underlying oracle price
+          collateralAmount:
+            type: number
+            description: Collateral added to the vault
+          debt:
+            type: number
+            description: Amount currently due
+          debtString:
+            type: string
+            description: Amount currently due, as a string for precision
+          collateralRatio:
+            type: number
+            description: Collateral over Debt, in %
+          liquidationPrice:
+            type: number
+            description: Current liquidation price threshold, in USD
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

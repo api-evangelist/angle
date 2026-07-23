@@ -1,0 +1,100 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Angle Protocol Data API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Angle Protocol Data
+paths:
+  /v1/activeChains:
+    get:
+      summary: Get active chains for the protocol
+      description: Return the list of chains supported by the Borrow module.
+      tags:
+      - Angle Protocol Data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  borrowModule:
+                    type: array
+                    items:
+                      type: string
+                  coreModule:
+                    type: array
+                    items:
+                      type: string
+  /v1/tvl:
+    get:
+      summary: Get TVL on a given chain
+      description: Return the TVL of the Angle Protocol on the requested chain. If no chainId is specified, will return the TVL accross all blockchains.
+      tags:
+      - Angle Protocol Data
+      parameters:
+      - $ref: '#/components/parameters/optionalChainId'
+      responses:
+        '200':
+          description: TVL on the requested chain
+  /v1/volume:
+    get:
+      summary: Get EURA volume on a given chain
+      description: Return data related to the EURA volume on a given chain. If no chainId is specified, will return the volume accross all blockchains.
+      tags:
+      - Angle Protocol Data
+      parameters:
+      - $ref: '#/components/parameters/optionalChainId'
+      responses:
+        '200':
+          description: EURA volume and circulating supply data on the requested chain
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/volume'
+components:
+  parameters:
+    optionalChainId:
+      in: query
+      name: chainId
+      description: Chain requested
+      required: false
+      schema:
+        type: integer
+      examples:
+        AllBlockchains:
+          value: 0
+        Ethereum:
+          value: 1
+        Polygon:
+          value: 137
+        Optimism:
+          value: 10
+        Arbitrum:
+          value: 42161
+        Avalanche:
+          value: 43114
+  schemas:
+    volume:
+      type: object
+      properties:
+        circulatingSupply:
+          type: number
+          description: Total circulating supply of the token
+        holder:
+          type: number
+          description: Number of addresses holding the token
+        rate:
+          type: number
+          description: Per second increase rate of the EURA volume over the last 30 minutes based on `Transfer` event
+        volume:
+          type: number
+          description: Per second EURA volume based on `Transfer` event
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

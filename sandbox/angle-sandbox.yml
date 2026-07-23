@@ -1,0 +1,103 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/angle-api-openapi.json servers[] + live probes of https://api.angle.money
+status: no-sandbox-published
+summary: >-
+  Angle publishes no sandbox documentation, no test credentials and no fixture tooling.
+  It declares a staging environment in its OpenAPI servers[], but that host does not
+  resolve. None of this blocks testing: the production API is unauthenticated and
+  read-only, so production is itself the safe environment to explore.
+
+environments:
+- name: production
+  url: https://api.angle.money
+  reachable: true
+  note: Public, unauthenticated and read-only. Partially degraded — see availability.
+- name: staging
+  url: https://api-staging.angle.money
+  reachable: false
+  declared_in: openapi/angle-api-openapi.json (servers[1])
+  probe:
+    result: host did not resolve over HTTPS
+    date: '2026-07-19'
+  note: Declared in the spec but not reachable. Do not point integrations at it.
+
+availability:
+  date: '2026-07-19'
+  method: >-
+    Probed every GET operation in openapi/angle-api-openapi.json once, sending
+    ?chainId=1 where the operation takes a chainId.
+  results:
+    total_get_operations: 25
+    responding: 19
+    http_200: 2
+    http_400: 17
+    http_503: 6
+  http_200:
+  - /v1/activeChains
+  - /v1/volume
+  http_503:
+  - /v1/tvl
+  - /v1/incentives
+  - /v1/collect
+  - /v1/app
+  - /v1/prices
+  - /v1/simulate
+  - /v1/simulate/multicall
+  interpretation: >-
+    The 400s are the service validating input, not an outage — those operations need
+    required parameters beyond the chainId the sweep supplied, so the backend is up
+    and answering. Only the 503 group ("upstream connect error or disconnect/reset
+    before headers") is genuinely down. Most of the API still responds while a
+    minority of backing services are off, consistent with the wind-down recorded in
+    lifecycle/angle-lifecycle.yml. Treat every endpoint as best-effort.
+
+test_credentials:
+  required: false
+  note: No credential is needed — the probed endpoints are unauthenticated.
+
+test_data:
+  published: false
+  note: >-
+    No sandbox fixtures are published. The specification's reusable parameters do
+    carry example values that serve as de-facto test inputs. Reproduced verbatim
+    from components.parameters below.
+  examples:
+  - parameter: chainId
+    source: components.parameters.requiredChainId.examples
+    values:
+      Ethereum: 1
+      Optimism: 10
+      Polygon: 137
+      Arbitrum: 42161
+      Avalanche: 43114
+  - parameter: user
+    source: components.parameters.requiredUser.example
+    value: '0xa116f421ff82A9704428259fd8CC63347127B777'
+  - parameter: tokenAddress
+    source: components.parameters.tokenAddress.example
+    value: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+  - parameter: agToken
+    source: components.parameters.agToken.examples
+    label: EURA
+    value: '0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8'
+  discovery_endpoint: GET /v1/activeChains
+  discovery_note: >-
+    Returns the currently supported chain ids, so a caller can pick a live chainId
+    without guessing. Confirmed returning 200 on 2026-07-19.
+
+time_simulation:
+  supported: false
+test_clocks:
+  supported: false
+triggers:
+  supported: false
+notes:
+- >-
+  No Sandbox pointer is wired in apis.yml: the provider publishes no sandbox, console
+  or playground, and the declared staging host is unreachable. This artifact records
+  that honest absence plus the live availability sweep.
+- >-
+  A prior draft of this file carried a user example address that did not match the
+  specification; every example value above was re-verified verbatim against
+  openapi/angle-api-openapi.json on 2026-07-19.

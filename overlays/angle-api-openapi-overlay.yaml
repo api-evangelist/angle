@@ -1,0 +1,21 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Angle
+  version: 1.0.0
+extends: openapi/angle-api-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-slug: angle
+    x-apievangelist-generated: '2026-07-19'
+    x-apievangelist-lifecycle: sunsetting
+    x-apievangelist-note: 'Angle Protocol has announced end of operations; stablecoins redeemable
+      1:1 until 2027-03-01. The API is partially operational as of 2026-07-19: most endpoints
+      respond, 6 return 503.'
+    x-apievangelist-artifacts:
+      conventions: conventions/angle-conventions.yml
+      errors: errors/angle-problem-types.yml
+      lifecycle: lifecycle/angle-lifecycle.yml
+      data-model: data-model/angle-data-model.yml
+      authentication: authentication/angle-authentication.yml
+      sandbox: sandbox/angle-sandbox.yml

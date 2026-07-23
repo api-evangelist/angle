@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: angle.money
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  6 12:00:05 2026 GMT
+  hsts: false
+- host: api.angle.money
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  6 12:00:05 2026 GMT
+  hsts: false
+- host: api-staging.angle.money
+  https: false
+domains:
+- domain: angle.money
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

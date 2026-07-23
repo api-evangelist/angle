@@ -1,0 +1,568 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/angle-api-openapi.json
+status: candidate
+summary: No official or community MCP server for Angle was found on the provider docs, the AngleProtocol
+  GitHub organization, npm, or the public MCP registries. The tool list below is a CANDIDATE surface derived
+  one-to-one from the 26 operations of the live Angle OpenAPI. Tool names are synthesised from method
+  + path because the specification declares no operationId anywhere.
+server:
+  name: angle
+  published: false
+  transport: null
+  url: null
+auth:
+  required: false
+  note: The Angle API is public and unauthenticated, so an MCP server needs no credential passthrough.
+caveats:
+- The Angle protocol is winding down (redemption deadline 2027-03-01) and the API was observed flapping
+  between HTTP 200 and HTTP 503 on 2026-07-19 — any MCP server built on it must treat every call as failure-prone.
+- Four tools (getLeverageV1, getDeleverageV1, getIntegratorsPayloadDepositV1, getIntegratorsPayloadWithdrawV1)
+  BUILD unsigned on-chain transaction payloads. They are read-only at the HTTP layer, but their output
+  is intended to be signed and broadcast, so an agent must treat them as consequential and require human
+  confirmation before the resulting transaction is signed.
+- getIntegratorsVaultsOverviewV1 is derived from a malformed section of the published spec (see overlays/angle-api-overlay.yaml);
+  confirm it against the live API before relying on it.
+tool_count: 26
+tools:
+- name: getActiveChainsV1
+  description: Get active chains for the protocol
+  method: GET
+  path: /v1/activeChains
+  tags:
+  - Angle Protocol Data
+  parameters: []
+  source_operation: openapi/angle-api-openapi.json#GET /v1/activeChains
+- name: getAllowancesV1
+  description: Get allowances for a user
+  method: GET
+  path: /v1/allowances
+  tags:
+  - User related information
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+    ref: requiredChainId
+  - name: user
+    required: true
+    in: query
+    ref: requiredUser
+  - name: spenders
+    required: true
+    in: query
+    ref: spenders
+  - name: additionalTokenAddresses
+    required: false
+    in: query
+    ref: additionalTokenAddresses
+  source_operation: openapi/angle-api-openapi.json#GET /v1/allowances
+- name: getAppV1
+  description: Get tokens and prices
+  method: GET
+  path: /v1/app
+  tags:
+  - Helpers
+  parameters: []
+  source_operation: openapi/angle-api-openapi.json#GET /v1/app
+- name: getBalancesV1
+  description: Get balances of Angle tokens for a user
+  method: GET
+  path: /v1/balances
+  tags:
+  - User related information
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+    ref: requiredChainId
+  - name: user
+    required: true
+    in: query
+    ref: requiredUser
+  - name: additionalTokenAddresses
+    required: false
+    in: query
+    ref: additionalTokenAddresses
+  source_operation: openapi/angle-api-openapi.json#GET /v1/balances
+- name: getCollectV1
+  description: Get token information
+  method: GET
+  path: /v1/collect
+  tags:
+  - User related information
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+    ref: requiredChainId
+  - name: user
+    required: false
+    in: query
+    ref: optionalUser
+  - name: spender
+    required: false
+    in: query
+  - name: tokenAddress
+    required: true
+    in: query
+    ref: tokenAddress
+  source_operation: openapi/angle-api-openapi.json#GET /v1/collect
+- name: getDeleverageV1
+  description: Build payloads for Angle's borrow module
+  method: GET
+  path: /v1/deleverage
+  tags:
+  - Borrow
+  parameters:
+  - name: agTokenToRepay
+    required: true
+    in: query
+  - name: repayAll
+    required: true
+    in: query
+  - name: amountsBrought
+    required: false
+    in: query
+  - name: chainId
+    required: true
+    in: query
+  - name: collateralAddress
+    required: true
+    in: query
+  - name: collateralToWithdrawToWallet
+    required: true
+    in: query
+  - name: collateralToSwap
+    required: true
+    in: query
+  - name: userAddress
+    required: true
+    in: query
+  - name: vaultId
+    required: true
+    in: query
+  - name: agTokenAddress
+    required: true
+    in: query
+  - name: outputTokenAddress
+    required: true
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/deleverage
+- name: getIncentivesV1
+  description: Get earning opportunities
+  method: GET
+  path: /v1/incentives
+  tags:
+  - Helpers
+  parameters:
+  - name: user
+    required: false
+    in: query
+    ref: optionalUser
+  - name: isTest
+    required: false
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/incentives
+- name: getIntegratorsPayloadDepositV1
+  description: Get deposit payload
+  method: GET
+  path: /v1/integrators/payload/deposit
+  tags:
+  - Integrators
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+    ref: requiredChainId
+  - name: inputTokenAddress
+    required: true
+    in: query
+  - name: inputTokenAmount
+    required: true
+    in: query
+  - name: strategyAddress
+    required: true
+    in: query
+  - name: userAddress
+    required: true
+    in: query
+  - name: slippage
+    required: true
+    in: query
+  - name: ipAddress
+    required: false
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/integrators/payload/deposit
+- name: getIntegratorsPayloadWithdrawV1
+  description: Get withdraw payload
+  method: GET
+  path: /v1/integrators/payload/withdraw
+  tags:
+  - Integrators
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+    ref: requiredChainId
+  - name: outputTokenAddress
+    required: true
+    in: query
+  - name: inputTokenAmount
+    required: true
+    in: query
+  - name: strategyAddress
+    required: true
+    in: query
+  - name: userAddress
+    required: true
+    in: query
+  - name: slippage
+    required: true
+    in: query
+  - name: ipAddress
+    required: false
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/integrators/payload/withdraw
+- name: getIntegratorsVaultsOperationsHistoricalV1
+  description: Get historical vault operations
+  method: GET
+  path: /v1/integrators/vaults/operations/historical
+  tags:
+  - Integrators
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+  - name: strategyAddress
+    required: true
+    in: query
+  - name: userAddresses
+    required: false
+    in: query
+  - name: firstDeposits
+    required: false
+    in: query
+  - name: skipDeposits
+    required: false
+    in: query
+  - name: firstWithdrawals
+    required: false
+    in: query
+  - name: skipWithdrawals
+    required: false
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/integrators/vaults/operations/historical
+- name: getIntegratorsVaultsOverviewV1
+  description: Get vault overview
+  method: GET
+  path: /v1/integrators/vaults/overview
+  tags:
+  - Integrators
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+  - name: strategyAddress
+    required: true
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/integrators/vaults/overview
+- name: getIntegratorsVaultsPositionsV1
+  description: Get vault positions
+  method: GET
+  path: /v1/integrators/vaults/positions
+  tags:
+  - Integrators
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+  - name: strategyAddress
+    required: true
+    in: query
+  - name: first
+    required: false
+    in: query
+  - name: skip
+    required: false
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/integrators/vaults/positions
+- name: getIntegratorsVaultsPositionsHistoricalV1
+  description: Get historical vault positions
+  method: GET
+  path: /v1/integrators/vaults/positions/historical
+  tags:
+  - Integrators
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+  - name: strategyAddress
+    required: true
+    in: query
+  - name: first
+    required: false
+    in: query
+  - name: skip
+    required: false
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/integrators/vaults/positions/historical
+- name: getIntegratorsVaultsUserPositionsV1
+  description: Get user's vault positions
+  method: GET
+  path: /v1/integrators/vaults/user/positions
+  tags:
+  - Integrators
+  parameters:
+  - name: chainId
+    required: false
+    in: query
+  - name: first
+    required: false
+    in: query
+  - name: includeOperations
+    required: false
+    in: query
+  - name: skip
+    required: false
+    in: query
+  - name: strategyAddress
+    required: false
+    in: query
+  - name: userAddress
+    required: true
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/integrators/vaults/user/positions
+- name: getLayerZeroV1
+  description: Fetch bridge data for a user
+  method: GET
+  path: /v1/layerZero
+  tags:
+  - Bridge
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+    ref: requiredChainId
+  - name: user
+    required: false
+    in: query
+    ref: optionalUser
+  - name: toChainId
+    required: false
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/layerZero
+- name: getLeverageV1
+  description: Build payloads for Angle's borrow module
+  method: GET
+  path: /v1/leverage
+  tags:
+  - Borrow
+  parameters:
+  - name: agTokenAddress
+    required: true
+    in: query
+  - name: agTokenToBorrow
+    required: true
+    in: query
+  - name: agTokenToSwap
+    required: false
+    in: query
+  - name: amountsBrought
+    required: false
+    in: query
+  - name: chainId
+    required: true
+    in: query
+  - name: collateralAddress
+    required: true
+    in: query
+  - name: collateralToAdd
+    required: true
+    in: query
+  - name: userAddress
+    required: true
+    in: query
+  - name: vaultId
+    required: true
+    in: query
+  - name: vaultPermit
+    required: false
+    in: query
+  - name: permits
+    required: false
+    in: query
+  - name: slippage
+    required: true
+    in: query
+  - name: oneInchSlippage
+    required: false
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/leverage
+- name: getPricesV1
+  description: Get prices
+  method: GET
+  path: /v1/prices
+  tags:
+  - Helpers
+  parameters: []
+  source_operation: openapi/angle-api-openapi.json#GET /v1/prices
+- name: getSavingsV1
+  description: Fetch data relative to the stEUR contract
+  method: GET
+  path: /v1/savings
+  tags:
+  - Savings
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+    ref: requiredChainId
+  source_operation: openapi/angle-api-openapi.json#GET /v1/savings
+- name: getSimulateV1
+  description: Simulate Transaction
+  method: GET
+  path: /v1/simulate
+  tags:
+  - Helpers
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+    ref: requiredChainId
+  - name: from
+    required: true
+    in: query
+  - name: to
+    required: true
+    in: query
+  - name: data
+    required: true
+    in: query
+  - name: value
+    required: true
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/simulate
+- name: getSimulateMulticallV1
+  description: Multicall simulation
+  method: GET
+  path: /v1/simulate/multicall
+  tags:
+  - Helpers
+  parameters:
+  - name: calls
+    required: true
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v1/simulate/multicall
+- name: getTvlV1
+  description: Get TVL on a given chain
+  method: GET
+  path: /v1/tvl
+  tags:
+  - Angle Protocol Data
+  parameters:
+  - name: chainId
+    required: false
+    in: query
+    ref: optionalChainId
+  source_operation: openapi/angle-api-openapi.json#GET /v1/tvl
+- name: getVaultManagersV1
+  description: Get VaultManagers
+  method: GET
+  path: /v1/vaultManagers
+  tags:
+  - Borrow
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+    ref: requiredChainId
+  - name: user
+    required: false
+    in: query
+    ref: optionalUser
+  - name: agToken
+    required: true
+    in: query
+    ref: agToken
+  - name: blockNumber
+    required: false
+    in: query
+    ref: optionalBlockNumber
+  source_operation: openapi/angle-api-openapi.json#GET /v1/vaultManagers
+- name: getVaultsV1
+  description: Get Vaults
+  method: GET
+  path: /v1/vaults
+  tags:
+  - Borrow
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+    ref: requiredChainId
+  - name: user
+    required: true
+    in: query
+    ref: requiredUser
+  - name: agToken
+    required: true
+    in: query
+    ref: agToken
+  source_operation: openapi/angle-api-openapi.json#GET /v1/vaults
+- name: getVolumeV1
+  description: Get EURA volume on a given chain
+  method: GET
+  path: /v1/volume
+  tags:
+  - Angle Protocol Data
+  parameters:
+  - name: chainId
+    required: false
+    in: query
+    ref: optionalChainId
+  source_operation: openapi/angle-api-openapi.json#GET /v1/volume
+- name: getHistoricalSavingsV2
+  description: Fetch historical savings data
+  method: GET
+  path: /v2/historical/savings
+  tags:
+  - Savings
+  parameters:
+  - name: agToken
+    required: false
+    in: query
+  - name: chainIds
+    required: false
+    in: query
+  - name: endDate
+    required: false
+    in: query
+  - name: first
+    required: false
+    in: query
+  - name: skip
+    required: false
+    in: query
+  - name: startDate
+    required: false
+    in: query
+  - name: user
+    required: false
+    in: query
+  source_operation: openapi/angle-api-openapi.json#GET /v2/historical/savings
+- name: getSavingsV2
+  description: Get stablecoin savings data
+  method: GET
+  path: /v2/savings
+  tags:
+  - Savings
+  parameters:
+  - name: chainId
+    required: true
+    in: query
+    ref: requiredChainId
+  source_operation: openapi/angle-api-openapi.json#GET /v2/savings
+pointer_policy: No `MCPServer` pointer is wired in apis.yml. Angle publishes no MCP server — this file
+  is a derived candidate tool surface only, and emitting MCPServer for it would claim a capability the
+  provider does not have.

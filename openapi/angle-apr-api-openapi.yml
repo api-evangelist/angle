@@ -1,0 +1,42 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Apr API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Apr
+paths:
+  /v1/apr:
+    get:
+      description: Return APRs for tokens used by the Angle Protocol. Data is based on approximations, it should be cautiously taken.
+      responses:
+        '200':
+          description: Mapping between a token name and the overall APR you can get with it and optionally a breakdown on the APR displayed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apr'
+      tags:
+      - Apr
+components:
+  schemas:
+    apr:
+      type: object
+      properties:
+        value:
+          type: number
+          description: Value of the APR with the token
+        address:
+          type: string
+          description: Optional, it is the address associated to the token name
+        details:
+          type: object
+          additionalProperties:
+            type: number
+            description: These additional properties can be the APR from fees, the APR from interest, the min ANGLE rewards you can get or the ANGLE rewards with max boost
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

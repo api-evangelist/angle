@@ -1,0 +1,29 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Tvl API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Tvl
+paths:
+  /v1/tvl:
+    get:
+      description: Return the TVL of the Angle Protocol on the requested chain
+      parameters:
+      - name: chainId
+        in: query
+        description: Chain requested - Default is 1 (Ethereum mainnet)
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Angle TVL on the requested chain
+      tags:
+      - Tvl
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

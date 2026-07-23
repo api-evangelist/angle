@@ -1,0 +1,40 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of https://angle.money and https://api.angle.money
+result: none-published
+hosts:
+- host: https://angle.money
+  note: Single-page app returns an identical 674871-byte HTML document for every path, so all
+    200s below are soft-404s, not published well-known documents.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    soft_404: true
+  - path: /.well-known/openid-configuration
+    status: 200
+    soft_404: true
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    soft_404: true
+  - path: /.well-known/api-catalog
+    status: 200
+    soft_404: true
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    soft_404: true
+- host: https://api.angle.money
+  note: Returns a genuine JSON 404 for each path.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+notes:
+- No well-known documents are published. No apis.yml pointer is wired, since nothing is genuinely
+  present.

@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: searched
+source: https://angle.money/
+status: sunsetting
+summary: Angle Protocol has announced the end of its operations. The protocol states it remains
+  fully collateralized and that every USDA and EURA stablecoin is redeemable 1:1 through the
+  application portal until the published redemption deadline.
+deprecation:
+  announced: true
+  policy_url: https://angle.money/
+  end_of_redemption: '2027-03-01'
+  redemption_url: https://app.angle.money
+  note: Wind-down notice published on the protocol homepage. Angle Labs team activity has moved
+    to Merkl (https://app.merkl.xyz).
+successor:
+  name: Merkl
+  url: https://merkl.xyz
+  source: https://api.github.com/orgs/AngleProtocol (org blog field)
+status_page: null
+sla: null
+deprecated_operations: []
+notes:
+- No status page, SLA page, or RFC 8594 Sunset/Deprecation header support was verified in this
+  pass.
+- developers.angle.money and docs.angle.money both returned DNS NXDOMAIN when probed on 2026-07-19,
+  though the angle-docs repository README still references developers.angle.money — consistent
+  with the wind-down.
+api_availability:
+  date: '2026-07-19'
+  summary: Partially operational. Of 25 GET operations, 19 respond (2x200, 17x400 input validation)
+    and 6 return 503 with upstream connection errors.
+  detail: sandbox/angle-sandbox.yml

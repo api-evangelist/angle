@@ -1,0 +1,38 @@
+# Angle
+
+> Angle (Angle Labs, Inc.) is a decentralized, over-collateralized stablecoin protocol that issued the euro-pegged EURA and dollar-pegged USDA stablecoins. Angle has announced the end of its operations: the protocol remains fully collateralized and every USDA and EURA is redeemable 1:1 until 1 March 2027. The team's ongoing work has moved to Merkl. The Angle API described below is partially operational as of 2026-07-19: most endpoints still respond, while six return HTTP 503.
+
+## Status
+
+- Lifecycle: sunsetting. Redemption deadline 2027-03-01 via https://app.angle.money
+- Successor project: Merkl — https://merkl.xyz
+- The developer docs hosts (docs.angle.money, developers.angle.money) no longer resolve.
+
+## APIs
+
+- [Angle API](https://api.angle.money): Track the state of the Angle Protocol or build an application on top of it. Read-only REST over EVM chain data; v1 and v2 coexist. Endpoints cover savings, vaults, borrowing, prices, APR, TVL, volume, incentives, gauges, perpetuals and bridge info, most scoped by a `chainId` query parameter.
+
+## Specs
+
+- [OpenAPI 3.0 (full)](openapi/angle-api-openapi.json): 25 operations across Savings, Integrators, Angle Protocol Data, Helpers, User related information, Bridge and Borrow.
+- [OpenAPI 3.0 (github)](openapi/angle-api-openapi-github.yaml): 13 operations; declares a BasicAuth security scheme.
+
+## Artifacts
+
+- [Authentication](authentication/angle-authentication.yml): single HTTP Basic scheme; no OAuth, no scopes.
+- [Conventions](conventions/angle-conventions.yml): offset pagination via `first`/`skip`, `chainId` scoping, URI-path versioning, no idempotency.
+- [Errors](errors/angle-problem-types.yml): custom `{error, message}` envelope; not RFC 9457.
+- [Data model](data-model/angle-data-model.yml): entity graph derived from the OpenAPI schema `$ref` links.
+- [Lifecycle](lifecycle/angle-lifecycle.yml): wind-down notice and redemption deadline.
+- [Conformance](conformance/angle-conformance.yml): standards posture; smart-contract audits by ChainSecurity, Sigma Prime and Code4rena.
+- [Packages](packages/angle-packages.yml): `@angleprotocol/sdk` on npm (GPL-3.0-or-later).
+- [Domain security](security/angle-domain-security.yml): TLS 1.3, DNSSEC, SPF and DMARC (p=reject); no HSTS, no CAA.
+- [Well-known](well-known/angle-well-known.yml): no well-known documents published.
+- [Sandbox](sandbox/angle-sandbox.yml): no sandbox published; per-endpoint availability sweep.
+
+## Docs
+
+- [Website](https://angle.money)
+- [GitHub organization](https://github.com/AngleProtocol)
+- [Documentation source](https://github.com/AngleProtocol/angle-docs)
+- [SDK](https://www.npmjs.com/package/@angleprotocol/sdk)

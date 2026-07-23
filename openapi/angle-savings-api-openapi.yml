@@ -1,0 +1,156 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Savings API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Savings
+paths:
+  /v1/savings:
+    get:
+      summary: Fetch data relative to the stEUR contract
+      description: This route fetches general stEUR contract data.
+      tags:
+      - Savings
+      parameters:
+      - $ref: '#/components/parameters/requiredChainId'
+      responses:
+        '200':
+          description: JSON object containing stEUR ERC4626 contract data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/savings'
+  /v2/savings:
+    get:
+      summary: Get stablecoin savings data
+      tags:
+      - Savings
+      parameters:
+      - $ref: '#/components/parameters/requiredChainId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: null
+  /v2/historical/savings:
+    get:
+      summary: Fetch historical savings data
+      description: This route fetches historical savings data for specified chains, users, and agTokens.
+      tags:
+      - Savings
+      parameters:
+      - in: query
+        name: agToken
+        schema:
+          type: string
+        description: The agToken to fetch data for (EURA or USDA)
+      - in: query
+        name: chainIds
+        schema:
+          type: string
+          pattern: ^\[[\d,]+\]$
+        description: JSON array of chain IDs to fetch data for
+        default: '[1,42161]'
+      - in: query
+        name: endDate
+        schema:
+          type: string
+        description: End date for historical data (omit for realtime data)
+      - in: query
+        name: first
+        schema:
+          type: integer
+          default: 1000
+        description: Number of records to fetch
+      - in: query
+        name: skip
+        schema:
+          type: integer
+          default: 0
+        description: Number of records to skip
+      - in: query
+        name: startDate
+        schema:
+          type: string
+        description: Start date for historical data
+      - in: query
+        name: user
+        schema:
+          type: string
+        description: User address to fetch data for
+      responses:
+        '200':
+          description: JSON array containing historical savings data for each specified chain
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/chainSavingsData'
+        '400':
+          description: Error response for invalid or missing parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+components:
+  schemas:
+    chainSavingsData:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/savingsData'
+      description: Object with chain IDs as keys and savings data as values
+    savings:
+      type: object
+      properties:
+        chainId:
+          type: integer
+        totalAssets:
+          type: string
+        totalSupply:
+          type: string
+        paused:
+          type: boolean
+        lastUpdate:
+          type: integrer
+        apr:
+          type: float
+    errorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Invalid or missing params
+        message:
+          type: string
+          description: Detailed error message
+    savingsData:
+      type: object
+      description: Historical savings data for a specific chain
+  parameters:
+    requiredChainId:
+      in: query
+      name: chainId
+      description: Chain requested
+      required: true
+      schema:
+        type: integer
+      examples:
+        Ethereum:
+          value: 1
+        Polygon:
+          value: 137
+        Optimism:
+          value: 10
+        Arbitrum:
+          value: 42161
+        Avalanche:
+          value: 43114
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

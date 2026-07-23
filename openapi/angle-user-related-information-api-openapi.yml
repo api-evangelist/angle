@@ -1,0 +1,187 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances User related information API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: User related information
+paths:
+  /v1/allowances:
+    get:
+      summary: Get allowances for a user
+      description: Return the allowances for a given user on a given chain for specific spenders. Can include additional token addresses.
+      tags:
+      - User related information
+      parameters:
+      - $ref: '#/components/parameters/requiredChainId'
+      - $ref: '#/components/parameters/requiredUser'
+      - $ref: '#/components/parameters/spenders'
+      - $ref: '#/components/parameters/additionalTokenAddresses'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  allowances:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      additionalProperties:
+                        type: object
+                        properties:
+                          symbol:
+                            type: string
+                          allowance:
+                            type: string
+                          decimals:
+                            type: number
+  /v1/collect:
+    get:
+      summary: Get token information
+      description: Retrieve data regarding a token used by a given user.
+      tags:
+      - User related information
+      parameters:
+      - $ref: '#/components/parameters/requiredChainId'
+      - $ref: '#/components/parameters/optionalUser'
+      - in: query
+        name: spender
+        schema:
+          type: string
+        required: false
+        description: Spender address
+        example: REPLACE_ME
+      - $ref: '#/components/parameters/tokenAddress'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tokenInfoResponse'
+  /v1/balances:
+    get:
+      summary: Get balances of Angle tokens for a user
+      description: Return the balances for tokens in the for Angle token list for a given user. Can include additional token addresses.
+      tags:
+      - User related information
+      parameters:
+      - $ref: '#/components/parameters/requiredChainId'
+      - $ref: '#/components/parameters/requiredUser'
+      - $ref: '#/components/parameters/additionalTokenAddresses'
+      responses:
+        '200':
+          description: Mapping between a token address and for each token the user balance, the decimals of the token as well as the token name
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/balances'
+components:
+  schemas:
+    tokenInfoResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        symbol:
+          type: string
+        address:
+          type: string
+        decimals:
+          type: number
+        balance:
+          type: string
+        allowance:
+          type: string
+    balances:
+      type: array
+      items:
+        type: object
+        additionalProperties:
+          type: object
+          properties:
+            symbol:
+              type: string
+              description: Token symbol
+            balance:
+              type: string
+              description: Token balance
+            decimals:
+              type: number
+              description: Number of decimals of the token
+  parameters:
+    requiredUser:
+      name: user
+      in: query
+      description: User blockchain `address`
+      required: true
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+    spenders:
+      name: spenders
+      in: query
+      description: Array of spenders
+      required: true
+      schema:
+        type: array
+        items:
+          type: string
+      example:
+      - A
+      - B
+      - C
+    requiredChainId:
+      in: query
+      name: chainId
+      description: Chain requested
+      required: true
+      schema:
+        type: integer
+      examples:
+        Ethereum:
+          value: 1
+        Polygon:
+          value: 137
+        Optimism:
+          value: 10
+        Arbitrum:
+          value: 42161
+        Avalanche:
+          value: 43114
+    additionalTokenAddresses:
+      name: additionalTokenAddresses
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      example:
+      - '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+      - '0x6B175474E89094C44Da98b954EedeAC495271d0F'
+    tokenAddress:
+      name: tokenAddress
+      in: query
+      description: Token address
+      required: true
+      schema:
+        type: string
+      example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+    optionalUser:
+      name: user
+      in: query
+      description: User blockchain `address` (optional)
+      required: false
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Prices API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Prices
+paths:
+  /v1/prices:
+    get:
+      description: Return prices for tokens used by the Angle Protocol.
+      parameters:
+      - name: chainId
+        in: query
+        description: Chain requested - Default is 1 (Ethereum mainnet)
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of pairs of tokens identified by their name with their price (in USD).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/prices'
+      tags:
+      - Prices
+components:
+  schemas:
+    prices:
+      type: array
+      items:
+        type: object
+        properties:
+          token:
+            type: string
+            description: Token symbol
+          rate:
+            type: number
+            description: Token price (in USD)
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

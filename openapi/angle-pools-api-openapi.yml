@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Pools API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Pools
+paths:
+  /v1/pools:
+    get:
+      description: Return data related to the pools (collateral / agToken) of the Core Module of the protocol
+      parameters:
+      - name: user
+        in: query
+        description: User blockchain `address` (optional)
+        schema:
+          type: string
+      - name: chainId
+        in: query
+        description: Chain requested - Default is 1 (Ethereum mainnet)
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Mapping between `PoolManager` addresses of the Core Module and all the data related to it
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pools'
+      tags:
+      - Pools
+components:
+  schemas:
+    pools:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          collateralSymbol:
+            type: string
+            description: Symbol of the associated collateral token
+          stablecoinSymbol:
+            type: string
+            description: Symbol of the associated stablecoin
+          decimals:
+            type: number
+            description: Decimals of the associated collateral token
+          liquidityGaugeAddress:
+            type: string
+            description: Address (if any) of the corresponding liquidity gauge address
+          perpetualManagerAddress:
+            type: string
+            description: Address of the corresponding `PerpetualManager` contract
+          poolManagerAddress:
+            type: string
+          collateralAddress:
+            type: string
+            description: Address of the corresponding collateral
+          stablecoinAddress:
+            type: string
+            description: Address of the corresponding stablecoin
+          lower:
+            type: string
+            description: Lower oracle rate value
+          upper:
+            type: string
+            description: Upper oracle rate value
+          stocksUsers:
+            type: string
+            description: Amount of stablecoins that have been minted using this collateral
+          collatRatio:
+            type: string
+            description: Collateral ratio of the associated stablecoin for the Core Module
+          sanRate:
+            type: string
+            description: Exchange rate between the associated collateral and the stablecoin
+          slpData:
+            type: object
+            properties:
+              slippage:
+                type: string
+                description: Slippage faced by Standard Liquidity Providers
+          poolManagerBalance:
+            type: string
+            description: Collateral balance of the `PoolManager` contract
+          totalHedgeAmount:
+            type: string
+            description: Amount of stablecoins hedged by Hedging Agents
+          targetHAHedge:
+            type: string
+            description: Target HAs hedge ratio, it is compared to the ratio between the total hedge amount and the stocks users
+          limitHAHedge:
+            type: string
+            description: Limit HAs hedge ratio, it is compared to the ratio between the total hedge amount and the stocks users
+          maintenanceMargin:
+            type: string
+            description: Maintenance margin for this collateral
+          maxLeverage:
+            type: string
+            description: Max leverage allowed in the corresponding perps
+          lockTime:
+            type: string
+            description: Lock time once a perp is opened
+          perpRewardRate:
+            type: string
+            description: ANGLE token reward rate for associated perpetual owners
+          periodFinish:
+            type: string
+            description: Time at which ANGLE rewards are going to cease
+          aprFromFees:
+            type: number
+            description: APR for SLPs from transaction fees
+          aprFromInterests:
+            type: number
+            description: APR for SLPs from interest
+          aprFromAngle:
+            type: number
+            description: APR for SLPs from ANGLE tokens
+          stablecoinBalance:
+            type: string
+            description: User stablecoin balance
+          collateralBalance:
+            type: string
+            description: User collateral balance
+          sanTokenBalance:
+            type: string
+            description: User sanToken balance
+          gaugeBalance:
+            type: string
+            description: User balance in the gauge potentially associated to the sanToken
+          gaugeWorkingBalance:
+            type: string
+            description: User working balance in the gauge associated to the sanToken
+          boost:
+            type: number
+            description: User boost in the gauge
+          theoricBoost:
+            type: number
+            description: Theoric boost the user could get based on its veANGLE balance
+          collateralAllowance:
+            type: string
+            description: Allowance by the user for the collateral token to the `StableMaster` contract
+          collateralRouterAllowance:
+            type: string
+            description: Allowance by the user for the collateral token to the router contract
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

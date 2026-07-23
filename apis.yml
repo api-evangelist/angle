@@ -1,22 +1,496 @@
 aid: angle
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/angle.png
 name: Angle
-description: Angle is a company surfaced as a portfolio company of a16z and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: Angle (Angle Labs, Inc.) is a decentralized, over-collateralized stablecoin protocol
+  that issued the euro-pegged EURA and dollar-pegged USDA stablecoins, along with yield-bearing staked
+  versions of each. Its on-chain modules included the Transmuter basket-and-dynamic-fee minting system,
+  a borrowing module for depositing collateral against stablecoin debt, a native savings system,
+  and cross-chain liquidity infrastructure. The protocol is open source under the AngleProtocol GitHub
+  organization and ships a TypeScript SDK for building applications on top of it. Angle has announced
+  the end of its operations — the protocol remains fully collateralized and every USDA and EURA is
+  redeemable 1:1 until 1 March 2027 — and the team's ongoing work has moved to Merkl. Angle exposes
+  smart contracts and a client SDK rather than a documented public REST API.
 url: https://raw.githubusercontent.com/api-evangelist/angle/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - a16z
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Stablecoins
+- Decentralized Finance
+- Blockchain
+- Cryptocurrency
+- Smart Contracts
+- Ethereum
+- SDK
+apis:
+- aid: angle:angle-allowances-api
+  name: Angle Allowances API
+  description: The Allowances API from Angle — 1 operation(s) for allowances.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Allowances
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-allowances-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-angle-protocol-data-api
+  name: Angle Angle Protocol Data API
+  description: The Angle Protocol Data API from Angle — 3 operation(s) for angle protocol data.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Angle Protocol Data
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-angle-protocol-data-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-app-api
+  name: Angle App API
+  description: The App API from Angle — 1 operation(s) for app.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - App
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-app-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-apr-api
+  name: Angle Apr API
+  description: The Apr API from Angle — 1 operation(s) for apr.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Apr
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-apr-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-balances-api
+  name: Angle Balances API
+  description: The Balances API from Angle — 1 operation(s) for balances.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Balances
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-balances-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-borrow-api
+  name: Angle Borrow API
+  description: The Borrow API from Angle — 4 operation(s) for borrow.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Borrow
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-borrow-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-bridge-api
+  name: Angle Bridge API
+  description: The Bridge API from Angle — 1 operation(s) for bridge.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Bridge
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-bridge-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-dao-api
+  name: Angle Dao API
+  description: The Dao API from Angle — 1 operation(s) for dao.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Dao
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-dao-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-helpers-api
+  name: Angle Helpers API
+  description: The Helpers API from Angle — 5 operation(s) for helpers.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Helpers
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-helpers-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-incentives-api
+  name: Angle Incentives API
+  description: The Incentives API from Angle — 1 operation(s) for incentives.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Incentives
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-incentives-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-integrators-api
+  name: Angle Integrators API
+  description: The Integrators API from Angle — 6 operation(s) for integrators.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Integrators
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-integrators-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-perpetuals-api
+  name: Angle Perpetuals API
+  description: The Perpetuals API from Angle — 1 operation(s) for perpetuals.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Perpetuals
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-perpetuals-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-pools-api
+  name: Angle Pools API
+  description: The Pools API from Angle — 1 operation(s) for pools.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Pools
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-pools-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-prices-api
+  name: Angle Prices API
+  description: The Prices API from Angle — 1 operation(s) for prices.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Prices
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-prices-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-savings-api
+  name: Angle Savings API
+  description: The Savings API from Angle — 3 operation(s) for savings.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Savings
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-savings-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-tvl-api
+  name: Angle Tvl API
+  description: The Tvl API from Angle — 1 operation(s) for tvl.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Tvl
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-tvl-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-user-related-information-api
+  name: Angle User related information API
+  description: >-
+    The User related information API from Angle — 3 operation(s) for user related information.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - User related information
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-user-related-information-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-vaultmanagers-api
+  name: Angle VaultManagers API
+  description: The VaultManagers API from Angle — 1 operation(s) for vaultmanagers.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - VaultManagers
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-vaultmanagers-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-vaults-api
+  name: Angle Vaults API
+  description: The Vaults API from Angle — 1 operation(s) for vaults.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Vaults
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-vaults-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+- aid: angle:angle-volume-api
+  name: Angle Volume API
+  description: The Volume API from Angle — 1 operation(s) for volume.
+  humanURL: https://angle.money
+  baseURL: https://api.angle.money
+  tags:
+  - Volume
+  properties:
+  - type: OpenAPI
+    url: openapi/angle-volume-api-openapi.yml
+  - type: Authentication
+    url: authentication/angle-authentication.yml
+  - type: Conventions
+    url: conventions/angle-conventions.yml
+  - type: ErrorCatalog
+    url: errors/angle-problem-types.yml
+  - type: APIReference
+    url: https://api.angle.money/api-docs/
+  - type: DataModel
+    url: data-model/angle-data-model.yml
+common:
+- type: Authentication
+  url: authentication/angle-authentication.yml
+- type: DomainSecurity
+  url: security/angle-domain-security.yml
+- type: Website
+  url: https://angle.money
+- type: GitHubOrganization
+  url: https://github.com/AngleProtocol
+- type: SourceCode
+  url: https://github.com/AngleProtocol/angle-core
+- type: Packages
+  url: packages/angle-packages.yml
+- type: SDKs
+  url: packages/angle-packages.yml
+- type: Lifecycle
+  url: lifecycle/angle-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/angle-lifecycle.yml
+- type: Conventions
+  url: conventions/angle-conventions.yml
+- type: ErrorCatalog
+  url: errors/angle-problem-types.yml
+- type: DataModel
+  url: data-model/angle-data-model.yml
+- type: Conformance
+  url: conformance/angle-conformance.yml
+- type: Overlay
+  url: overlays/angle-api-openapi-overlay.yaml
+- type: Overlay
+  url: overlays/angle-api-openapi-github-overlay.yaml
+- type: LLMsTxt
+  url: llms/angle-llms.txt
+- type: OpenAPI
+  url: openapi/angle-api-openapi.json
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Documentation
+  url: https://github.com/AngleProtocol/angle-docs
+- type: TermsOfService
+  url: https://angle.money/terms
+- type: PrivacyPolicy
+  url: https://angle.money/privacy
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1

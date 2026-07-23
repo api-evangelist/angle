@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Angle Allowances Incentives API
+  description: API to track the Angle Protocol state
+servers:
+- url: https://api.angle.money
+tags:
+- name: Incentives
+paths:
+  /v1/incentives:
+    get:
+      description: Return data related to incentivized pools, by Angle or other partners
+      parameters:
+      - name: user
+        in: query
+        description: User blockchain `address`
+        schema:
+          type: string
+      - name: isTest
+        in: query
+        description: Optional flag to get Rinkeby data
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Mapping between a staking contract address (used as a key) and its data (like description, APR, links, ...)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/incentives'
+      tags:
+      - Incentives
+components:
+  schemas:
+    incentives:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          address:
+            type: string
+            description: Address of the staking contract
+          name:
+            type: string
+            description: Name of the farm
+          deprecated:
+            type: boolean
+            description: Whether the farm is deprecated or not
+          underlyingToken:
+            type: object
+            properties:
+              balances:
+                type: string
+                description: Balance of the user of the underlying staking token
+              allowance:
+                type: string
+                description: Allowance of the user for the underlying staking token to the staking contract
+              address:
+                type: string
+                description: Address of the token to stake
+              base:
+                type: number
+                description: Base of the staking token
+          rewardTokens:
+            type: array
+            items:
+              type: object
+              properties:
+                symbol:
+                  type: string
+                  description: Symbol of the reward token
+                address:
+                  type: string
+                  description: Address of the reward token
+                amount:
+                  type: number
+          network:
+            type: number
+            description: Network where the incentive is given
+          platform:
+            type: string
+            description: Platform where staking is taking place
+          icon:
+            type: string
+            description: Icon of the staking platform
+          tvl:
+            type: number
+            description: TVL in the staking contract
+          deposit:
+            type: object
+            properties:
+              amount:
+                type: string
+                description: User deposited amount
+              usdValue:
+                type: number
+                description: USD value of the user amount in the farm
+          apr:
+            type: object
+            properties:
+              details:
+                type: object
+              value:
+                type: number
+                description: Value of the APR
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

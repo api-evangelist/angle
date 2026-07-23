@@ -1,0 +1,65 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/angle-api-openapi.json
+summary: >-
+  Packaged Agent Skills for the Angle API, one per marquee flow. Angle publishes no
+  skills, no AGENTS.md and no llms.txt of its own, so these are generated from the
+  live OpenAPI plus the conventions, errors and lifecycle artifacts in this repo.
+grounding:
+  operation_ids: none
+  note: >-
+    The Angle specification declares no `operationId` on any of its 26 operations, so
+    every skill references operations by HTTP method + path — the real, verifiable
+    identifier this API provides. No operation names were invented.
+  verified_against: openapi/angle-api-openapi.json
+  example_values: >-
+    All addresses and chain ids quoted in the skills are reproduced verbatim from
+    components.parameters examples in the specification.
+skills:
+- name: angle-track-savings-yield
+  file: angle-track-savings-yield.md
+  description: >-
+    Read current and historical yield for Angle's staked stablecoins (stEUR, stUSD)
+    across supported chains.
+  operations:
+  - GET /v1/activeChains
+  - GET /v2/savings
+  - GET /v2/historical/savings
+  - GET /v1/savings
+  consequential: false
+- name: angle-monitor-borrow-vaults
+  file: angle-monitor-borrow-vaults.md
+  description: >-
+    Inspect borrowing-module vaults for a wallet — VaultManagers, per-vault collateral
+    and debt, balances and allowances.
+  operations:
+  - GET /v1/activeChains
+  - GET /v1/vaultManagers
+  - GET /v1/vaults
+  - GET /v1/balances
+  - GET /v1/allowances
+  consequential: false
+- name: angle-build-borrow-transaction
+  file: angle-build-borrow-transaction.md
+  description: >-
+    Build unsigned leverage/deleverage payloads for a vault and simulate them before
+    signing.
+  operations:
+  - GET /v1/vaultManagers
+  - GET /v1/leverage
+  - GET /v1/deleverage
+  - GET /v1/simulate
+  - GET /v1/simulate/multicall
+  consequential: true
+  note: >-
+    Read-only at the HTTP layer, but the output is intended to be signed and broadcast
+    on chain. The skill requires explicit human confirmation before signing and a
+    successful simulation as a hard gate.
+notes:
+- >-
+  The API is unauthenticated, so no credential handling appears in any skill. All
+  authorization in the Angle system happens at the wallet-signature boundary, which is
+  outside the API.
+- >-
+  Every skill carries the wind-down and intermittent-503 caveats, because an agent
+  operating against Angle today will hit both.
