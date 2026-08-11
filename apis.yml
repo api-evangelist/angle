@@ -442,6 +442,17 @@ apis:
   - type: DataModel
     url: data-model/angle-data-model.yml
 common:
+- type: MCPServer
+  url: mcp/angle-mcp.yml
+- type: IssueTracker
+  url: https://github.com/AngleProtocol/angle-core/issues
+- type: CodeOfConduct
+  url: https://github.com/AngleProtocol/angle-core/blob/main/CODE_OF_CONDUCT.md
+- type: ContributionGuide
+  url: https://github.com/AngleProtocol/angle-core/blob/main/CONTRIBUTING.md
+- type: License
+  name: GPL-3.0
+  url: https://github.com/AngleProtocol/angle-core/blob/main/LICENSE
 - type: Authentication
   url: authentication/angle-authentication.yml
 - type: DomainSecurity
@@ -475,7 +486,7 @@ common:
 - type: LLMsTxt
   url: llms/angle-llms.txt
 - type: OpenAPI
-  url: openapi/angle-api-openapi.json
+  url: openapi/_original/angle-api-openapi.json
 - type: AgentSkill
   url: skills/_index.yml
 - type: Documentation
