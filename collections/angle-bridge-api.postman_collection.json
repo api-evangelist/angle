@@ -1,0 +1,136 @@
+{
+  "item": [
+    {
+      "id": "deeb3c66-61cc-4669-a386-45fdbfd2b975",
+      "name": "Bridge",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "74be2ff6-9159-4327-a7c9-089832e958d8",
+          "name": "Fetch bridge data for a user",
+          "request": {
+            "name": "Fetch bridge data for a user",
+            "description": {
+              "content": "This route fetches bridge data for a user from multiple chains.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "layerZero"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "(Required) Chain requested"
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "User blockchain `address` (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "toChainId",
+                  "value": "<integer>",
+                  "description": "destination of the bridge transaction"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7474281e-92d3-4353-8594-e1d82cf0ea56",
+              "name": "JSON object containing bridge data for the user on different chains.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "layerZero"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "user",
+                      "value": "0xa116f421ff82A9704428259fd8CC63347127B777"
+                    },
+                    {
+                      "key": "toChainId",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"chainId\": {\n    \"EURA\": {\n      \"allowance\": \"string\",\n      \"balance\": \"string\",\n      \"canonicalTokenAddress\": \"string\",\n      \"credit\": \"string\",\n      \"fee\": \"string\",\n      \"fromLimit\": \"string\",\n      \"lzChainId\": 475,\n      \"oftAddress\": \"string\",\n      \"toLimit\": \"string\",\n      \"totalSupply\": \"string\"\n    },\n    \"ANGLE\": {\n      \"allowance\": \"string\",\n      \"balance\": \"string\",\n      \"canonicalTokenAddress\": \"string\",\n      \"credit\": \"string\",\n      \"fee\": \"string\",\n      \"fromLimit\": \"string\",\n      \"lzChainId\": 6205,\n      \"oftAddress\": \"string\",\n      \"toLimit\": \"string\",\n      \"totalSupply\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0c931ba1-6430-49a5-9403-a648fcc179fa",
+    "name": "Angle Allowances Bridge API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

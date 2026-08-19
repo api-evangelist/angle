@@ -1,0 +1,260 @@
+{
+  "item": [
+    {
+      "id": "0170a59b-f69e-42f2-9b33-4c1eedf96506",
+      "name": "Angle Protocol Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "89c5d397-aea7-426d-9c86-cd05187a640a",
+          "name": "Get active chains for the protocol",
+          "request": {
+            "name": "Get active chains for the protocol",
+            "description": {
+              "content": "Return the list of chains supported by the Borrow module.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "activeChains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f9b4874-1123-4aa2-a7d9-f43f73f8f142",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "activeChains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"borrowModule\": [\n    \"string\",\n    \"string\"\n  ],\n  \"coreModule\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0923424b-5c55-4630-bf8d-6c1e0121d32e",
+          "name": "Get TVL on a given chain",
+          "request": {
+            "name": "Get TVL on a given chain",
+            "description": {
+              "content": "Return the TVL of the Angle Protocol on the requested chain. If no chainId is specified, will return the TVL accross all blockchains.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "tvl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain requested"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4b47412-45fa-4a42-bd19-dbe1ba766ce9",
+              "name": "TVL on the requested chain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "tvl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06831f1c-d228-4dac-9d51-f5e9b3421f52",
+          "name": "Get EURA volume on a given chain",
+          "request": {
+            "name": "Get EURA volume on a given chain",
+            "description": {
+              "content": "Return data related to the EURA volume on a given chain. If no chainId is specified, will return the volume accross all blockchains.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "volume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain requested"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a318a24-a91e-442f-81af-fd00299da2a2",
+              "name": "EURA volume and circulating supply data on the requested chain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "volume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"circulatingSupply\": 3469.692720336133,\n  \"holder\": 1235.7647731330567,\n  \"rate\": 467.0020948807463,\n  \"volume\": 8559.17630481823\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2eef7262-0bd0-4527-8493-5f1c0476fc0d",
+    "name": "Angle Allowances Angle Protocol Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

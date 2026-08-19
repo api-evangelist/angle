@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "933b1f79-c564-4509-a7ee-3b655ea5a4d1",
+      "name": "Dao",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6d3e96ec-18a4-4b38-b8c4-c43c67a7ece1",
+          "name": "Return data related to gauges as well as to the ANGLE and veANGLE tokens for a given user including vote and rewards data",
+          "request": {
+            "name": "Return data related to gauges as well as to the ANGLE and veANGLE tokens for a given user including vote and rewards data",
+            "description": {
+              "content": "Return data related to gauges as well as to the ANGLE and veANGLE tokens for a given user including vote and rewards data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "dao"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "User blockchain `address`. This address is optional and the query could work without."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6bc7036a-407b-48e5-bdf8-8091f31fac5b",
+              "name": "Different elements are returned by this call. Under the gauges entry, is returned a mapping between a gauge address and all its related data (with some specific user information). This call also returns veANGLE and ANGLE related data, as well as data related to the weekly rewards which are given to veANGLE holders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dao"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"veANGLE\": {\n    \"totalSupply\": 1200.764510426956,\n    \"totalLocked\": 1558.1518563164755,\n    \"rate\": 1790.4959968444145,\n    \"nextRate\": 7583.05116204967,\n    \"locked\": 9332.61901398063,\n    \"endLock\": 8754.32169472887,\n    \"balance\": \"string\",\n    \"allowance\": \"string\"\n  },\n  \"ANGLE\": {\n    \"totalSupply\": 2068.2293783242812,\n    \"circulatingSupply\": 5946.843883547913,\n    \"balance\": \"string\"\n  },\n  \"rewardsData\": {\n    \"times\": [\n      2294.0444935294245,\n      8294.251971028405\n    ],\n    \"tokenPerWeek\": [\n      4642.27890411716,\n      3702.739499078128\n    ],\n    \"claimable\": [\n      6681.979076059392,\n      7035.537282024698\n    ],\n    \"totalClaimable\": \"string\"\n  },\n  \"gauges\": {\n    \"totalWeight\": 9233.732150776603,\n    \"voteUserPower\": 8327.002014137608,\n    \"list\": {\n      \"key_0\": {\n        \"address\": \"string\",\n        \"name\": \"string\",\n        \"icon\": \"string\",\n        \"type\": 3908.850328615814,\n        \"currentWeight\": 680.750423234474,\n        \"absoluteWeight\": 7804.514605840072,\n        \"futureWeight\": 7957.233447927358,\n        \"userWeight\": 847.3271610115673,\n        \"lastUserVote\": 2409.6602752520944,\n        \"tvl\": 7124.680096349193,\n        \"apr\": 3638.7873117137915,\n        \"workingSupply\": 9672.811400571845,\n        \"totalSupply\": 9778.205025890138,\n        \"workingBalance\": 4853.648909532318,\n        \"balance\": 5606.221467885568\n      },\n      \"key_1\": {\n        \"address\": \"string\",\n        \"name\": \"string\",\n        \"icon\": \"string\",\n        \"type\": 3473.426125674267,\n        \"currentWeight\": 5368.670874421733,\n        \"absoluteWeight\": 6984.933807096429,\n        \"futureWeight\": 1689.1982015150375,\n        \"userWeight\": 7047.416401063506,\n        \"lastUserVote\": 8922.12284473682,\n        \"tvl\": 6853.479647988614,\n        \"apr\": 2567.4543383293744,\n        \"workingSupply\": 1324.9822423554513,\n        \"totalSupply\": 1837.822017887144,\n        \"workingBalance\": 8249.56890524138,\n        \"balance\": 8389.291631666169\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e4b34ae9-afe0-4207-b0a8-9fe9ba3ea96a",
+    "name": "Angle Allowances Dao API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

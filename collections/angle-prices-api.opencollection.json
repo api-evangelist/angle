@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances Prices API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Prices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/prices",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+              }
+            ]
+          },
+          "docs": "Return prices for tokens used by the Angle Protocol."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

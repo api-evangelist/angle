@@ -1,0 +1,490 @@
+{
+  "item": [
+    {
+      "id": "9c496fe9-abc4-49ba-8828-0cadaba95735",
+      "name": "Helpers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf57df1b-7f85-4ac3-9134-21e0680ca39f",
+          "name": "Get earning opportunities",
+          "request": {
+            "name": "Get earning opportunities",
+            "description": {
+              "content": "Return data related to earning opportunities for a given user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "incentives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "User blockchain `address` (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "isTest",
+                  "value": "<boolean>",
+                  "description": "Optional flag to get Rinkeby data"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bbbc2e1b-ae90-4fc9-b9d6-5f76ab86a79e",
+              "name": "Mapping between a staking contract address (used as a key) and its data (like description, APR, links, ...)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "incentives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user",
+                      "value": "0xa116f421ff82A9704428259fd8CC63347127B777"
+                    },
+                    {
+                      "key": "isTest",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"address\": \"string\",\n    \"name\": \"string\",\n    \"deprecated\": false,\n    \"underlyingToken\": {\n      \"balances\": \"string\",\n      \"allowance\": \"string\",\n      \"address\": \"string\",\n      \"base\": 4559.037601759874\n    },\n    \"rewardTokens\": [\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 7977.73357542874\n      },\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 2886.4597867050247\n      }\n    ],\n    \"network\": 7167.830051636104,\n    \"platform\": \"string\",\n    \"icon\": \"string\",\n    \"tvl\": 4402.057998410891,\n    \"deposit\": {\n      \"amount\": \"string\",\n      \"usdValue\": 6424.736943804948\n    },\n    \"apr\": {\n      \"details\": {},\n      \"value\": 6128.276763316691\n    }\n  },\n  \"key_1\": {\n    \"address\": \"string\",\n    \"name\": \"string\",\n    \"deprecated\": false,\n    \"underlyingToken\": {\n      \"balances\": \"string\",\n      \"allowance\": \"string\",\n      \"address\": \"string\",\n      \"base\": 5371.223307713294\n    },\n    \"rewardTokens\": [\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 1403.773231344635\n      },\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 6064.4489941136435\n      }\n    ],\n    \"network\": 5650.387399932648,\n    \"platform\": \"string\",\n    \"icon\": \"string\",\n    \"tvl\": 2094.5349650715207,\n    \"deposit\": {\n      \"amount\": \"string\",\n      \"usdValue\": 78.88478362494067\n    },\n    \"apr\": {\n      \"details\": {},\n      \"value\": 3704.8826888083963\n    }\n  },\n  \"key_2\": {\n    \"address\": \"string\",\n    \"name\": \"string\",\n    \"deprecated\": false,\n    \"underlyingToken\": {\n      \"balances\": \"string\",\n      \"allowance\": \"string\",\n      \"address\": \"string\",\n      \"base\": 4548.43719077617\n    },\n    \"rewardTokens\": [\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 3764.638341342216\n      },\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 8706.225427642694\n      }\n    ],\n    \"network\": 3925.5888415658424,\n    \"platform\": \"string\",\n    \"icon\": \"string\",\n    \"tvl\": 3510.5033780224317,\n    \"deposit\": {\n      \"amount\": \"string\",\n      \"usdValue\": 3010.487175671518\n    },\n    \"apr\": {\n      \"details\": {},\n      \"value\": 2287.55196131886\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89430e0c-137e-4ac1-be8b-1ac49b2672b1",
+          "name": "Get tokens and prices",
+          "request": {
+            "name": "Get tokens and prices",
+            "description": {
+              "content": "Return data about tokens at stake in the Angle Protocol (price, icon, decimals etc)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "app"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "255d641a-650c-4a1f-9bd4-02fcbad81e44",
+              "name": "Maps token addresses on the requested chain to their associated data and returns a list of pairs of tokens identified by their name with their price (in USD).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "app"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tokens\": {\n    \"key_0\": {\n      \"name\": \"string\",\n      \"address\": \"string\",\n      \"decimals\": 2137.8070792932012,\n      \"symbol\": \"string\",\n      \"useInSwap\": true,\n      \"hasPermit\": true,\n      \"permitVersion\": \"string\",\n      \"logoURI\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"prices\": [\n    {\n      \"token\": \"string\",\n      \"rate\": 1316.4258255085438\n    },\n    {\n      \"token\": \"string\",\n      \"rate\": 72.4183833567782\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3acb1a4-8735-4737-b3a5-7f8f13a28aa7",
+          "name": "Get prices",
+          "request": {
+            "name": "Get prices",
+            "description": {
+              "content": "Return prices for tokens used by the Angle Protocol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "prices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "568f379c-83b2-41e4-a868-7a3dc6c6cf34",
+              "name": "List of pairs of tokens identified by their name with their price (in USD).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"token\": \"string\",\n    \"rate\": 3223.8127241324487\n  },\n  {\n    \"token\": \"string\",\n    \"rate\": 7845.344512099577\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ffb5389-4579-4da1-ba77-fba6beb74065",
+          "name": "Simulate Transaction",
+          "request": {
+            "name": "Simulate Transaction",
+            "description": {
+              "content": "Simulate a transaction based on provided parameters and return the Tenderly url.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "simulate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "(Required) Chain requested"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "(Required) The address of the sender."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "(Required) The address of the recipient."
+                },
+                {
+                  "disabled": false,
+                  "key": "data",
+                  "value": "<string>",
+                  "description": "(Required) The transaction data."
+                },
+                {
+                  "disabled": false,
+                  "key": "value",
+                  "value": "<string>",
+                  "description": "(Required) The transaction value."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1803b6e-7361-42ea-ae0d-008bf7a7edf8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "simulate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "data",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9547cef4-9113-47e5-89fd-c1f56c5de4c4",
+          "name": "Multicall simulation",
+          "request": {
+            "name": "Multicall simulation",
+            "description": {
+              "content": "Execute multiple transactions in a single request and return the Tenderly url.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "simulate",
+                "multicall"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "calls",
+                  "value": "{\"chainId\":\"<number>\",\"data\":\"<string>\",\"from\":\"<string>\",\"to\":\"<string>\",\"value\":\"<string>\"}",
+                  "description": "(Required) Array of call objects containing details of each call."
+                },
+                {
+                  "disabled": false,
+                  "key": "calls",
+                  "value": "{\"chainId\":\"<number>\",\"data\":\"<string>\",\"from\":\"<string>\",\"to\":\"<string>\",\"value\":\"<string>\"}",
+                  "description": "(Required) Array of call objects containing details of each call."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02004b0e-5591-4a48-ae6c-2edbabcf8f5b",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "simulate",
+                    "multicall"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "calls",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "calls",
+                      "value": "[object Object]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3e5edac2-f6c7-4b20-b36f-e8c68bae0a90",
+    "name": "Angle Allowances Helpers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

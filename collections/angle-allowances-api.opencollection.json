@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Allowances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/allowances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/allowances",
+            "params": [
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "User blockchain `address`"
+              },
+              {
+                "name": "spender",
+                "value": "",
+                "type": "query",
+                "description": "Spender blockchain `address`"
+              },
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+              }
+            ]
+          },
+          "docs": "Return the allowances for tokens in the for Angle token list for a given user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

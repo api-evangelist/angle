@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "f442a347-6b33-4a0a-b98e-5eaa90a92b4f",
+      "name": "Vaults",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "55eca8bd-db2a-4eb6-9081-03a5733941ec",
+          "name": "Return all vaults for a user on a chain",
+          "request": {
+            "name": "Return all vaults for a user on a chain",
+            "description": {
+              "content": "Return all vaults for a user on a chain",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vaults"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "User blockchain `address`"
+                },
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c82af5a4-ed8d-44df-a965-392e777447ee",
+              "name": "List of all the vaults for a given user on-chain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vaults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chainId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"id\": 1805.9858885406543,\n      \"collateral\": 1880.1473541807745,\n      \"stablecoin\": \"string\",\n      \"rate\": 7526.206258750924,\n      \"collateralAmount\": 1162.4071591164354,\n      \"debt\": 6860.244669296341,\n      \"debtString\": \"string\",\n      \"collateralRatio\": 9295.243257023087,\n      \"liquidationPrice\": 7831.431694513428\n    }\n  },\n  {\n    \"key_0\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"id\": 926.7588416824468,\n      \"collateral\": 1639.337316702687,\n      \"stablecoin\": \"string\",\n      \"rate\": 7540.376098565751,\n      \"collateralAmount\": 8296.085935273108,\n      \"debt\": 1712.702566558335,\n      \"debtString\": \"string\",\n      \"collateralRatio\": 2363.3529363168836,\n      \"liquidationPrice\": 1284.5060924999252\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bc8220a2-ec12-47fa-81fc-c862230b6ef8",
+    "name": "Angle Allowances Vaults API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

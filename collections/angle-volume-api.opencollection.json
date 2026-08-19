@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances Volume API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Volume",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/volume",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested"
+              }
+            ]
+          },
+          "docs": "Return data related to the agEUR volume on a given chain"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

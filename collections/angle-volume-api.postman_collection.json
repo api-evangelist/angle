@@ -1,0 +1,116 @@
+{
+  "item": [
+    {
+      "id": "d85c0ccd-3f5f-41b4-879f-f50f67edfaba",
+      "name": "Volume",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "25702738-fbd6-460f-a1fb-77ef6c96fe0d",
+          "name": "Return data related to the agEUR volume on a given chain",
+          "request": {
+            "name": "Return data related to the agEUR volume on a given chain",
+            "description": {
+              "content": "Return data related to the agEUR volume on a given chain",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "volume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain requested"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84183b7f-6cea-4cdf-a958-f0813068aba2",
+              "name": "agEUR volume and circulating supply data on the requested chain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "volume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"circulatingSupply\": 9234.604170627395,\n  \"holder\": 8816.763954315327,\n  \"rate\": 7038.713238786474,\n  \"volume\": 2302.7651183052653\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f1332d96-58b1-44a8-a2f3-000d1ef3af11",
+    "name": "Angle Allowances Volume API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

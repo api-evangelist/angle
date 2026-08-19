@@ -1,0 +1,136 @@
+{
+  "item": [
+    {
+      "id": "db1520d1-a886-498b-8581-391b9b79c601",
+      "name": "Allowances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3bbf0a2-fb37-4a6a-83e2-9cb5284d3ffb",
+          "name": "Return the allowances for tokens in the for Angle token list for a given user",
+          "request": {
+            "name": "Return the allowances for tokens in the for Angle token list for a given user",
+            "description": {
+              "content": "Return the allowances for tokens in the for Angle token list for a given user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "allowances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "User blockchain `address`"
+                },
+                {
+                  "disabled": false,
+                  "key": "spender",
+                  "value": "<string>",
+                  "description": "Spender blockchain `address`"
+                },
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d799b1e6-92b8-480e-b48e-4451c6051d03",
+              "name": "Mapping between a token address and for each token the allowance of the user with respect to the spender, the decimals of the token as well as the token symbol",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "allowances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "spender",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chainId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "332f22a4-8d49-4f2a-9020-ee4cb1a65ea6",
+    "name": "Angle Allowances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

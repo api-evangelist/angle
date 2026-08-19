@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "e3514740-ebcc-49c8-b60f-db67c37b0cab",
+      "name": "Perpetuals",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1fd932f4-a7f4-4cd0-bf61-b784ca5394fb",
+          "name": "Return data related to the perpetuals of a given user",
+          "request": {
+            "name": "Return data related to the perpetuals of a given user",
+            "description": {
+              "content": "Return data related to the perpetuals of a given user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "perpetuals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "User blockchain `address`"
+                },
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52133bd3-b7f4-4e2c-99a9-6242bfd6bec4",
+              "name": "List of all the perpetuals controlled by the user on that chain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "perpetuals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chainId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"id\": \"string\",\n    \"perpetualID\": \"string\",\n    \"owner\": \"string\",\n    \"margin\": \"string\",\n    \"committedAmount\": \"string\",\n    \"entryRate\": \"string\",\n    \"perpetualManager\": \"string\",\n    \"stableAddress\": \"string\",\n    \"collatAddress\": \"string\",\n    \"decimals\": \"string\",\n    \"stableName\": \"string\",\n    \"collatName\": \"string\",\n    \"liquidationPrice\": \"string\",\n    \"openingBlockNumber\": \"string\",\n    \"openingTimestamp\": \"string\",\n    \"lastUpdateBlockNumber\": \"string\",\n    \"lastUpdateTimestamp\": \"string\",\n    \"status\": \"string\",\n    \"claimable\": 4525.6329271744935\n  },\n  \"key_1\": {\n    \"id\": \"string\",\n    \"perpetualID\": \"string\",\n    \"owner\": \"string\",\n    \"margin\": \"string\",\n    \"committedAmount\": \"string\",\n    \"entryRate\": \"string\",\n    \"perpetualManager\": \"string\",\n    \"stableAddress\": \"string\",\n    \"collatAddress\": \"string\",\n    \"decimals\": \"string\",\n    \"stableName\": \"string\",\n    \"collatName\": \"string\",\n    \"liquidationPrice\": \"string\",\n    \"openingBlockNumber\": \"string\",\n    \"openingTimestamp\": \"string\",\n    \"lastUpdateBlockNumber\": \"string\",\n    \"lastUpdateTimestamp\": \"string\",\n    \"status\": \"string\",\n    \"claimable\": 7575.150783271714\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d03e5388-59a7-4671-8359-4edf920a74fd",
+    "name": "Angle Allowances Perpetuals API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

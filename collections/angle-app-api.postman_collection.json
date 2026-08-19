@@ -1,0 +1,116 @@
+{
+  "item": [
+    {
+      "id": "1c4e5298-09ea-4ca5-a059-f7283e11b4c9",
+      "name": "App",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8139821d-bce3-4ddd-9d0b-1e2e0f8ec7a4",
+          "name": "Return data about tokens at stake in the Angle Protocol along with their price.",
+          "request": {
+            "name": "Return data about tokens at stake in the Angle Protocol along with their price.",
+            "description": {
+              "content": "Return data about tokens at stake in the Angle Protocol along with their price.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "app"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4cc9905-d442-44bc-bb0b-aa8d81a1054a",
+              "name": "Maps token addresses on the requested chain to their associated data and returns a list of pairs of tokens identified by their name with their price (in USD).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "app"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tokens\": {\n    \"key_0\": {\n      \"name\": \"string\",\n      \"address\": \"string\",\n      \"decimals\": 4540.091342815873,\n      \"symbol\": \"string\",\n      \"useInSwap\": false,\n      \"hasPermit\": true,\n      \"permitVersion\": \"string\",\n      \"logoURI\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_1\": {\n      \"name\": \"string\",\n      \"address\": \"string\",\n      \"decimals\": 7122.505771922458,\n      \"symbol\": \"string\",\n      \"useInSwap\": true,\n      \"hasPermit\": false,\n      \"permitVersion\": \"string\",\n      \"logoURI\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"prices\": [\n    {\n      \"token\": \"string\",\n      \"rate\": 1196.8350945882567\n    },\n    {\n      \"token\": \"string\",\n      \"rate\": 428.39130570545115\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0c1fbc9a-9bd2-4dc6-bdb0-39e3afabf9a7",
+    "name": "Angle Allowances App API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

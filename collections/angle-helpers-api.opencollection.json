@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances Helpers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Helpers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get earning opportunities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/incentives",
+            "params": [
+              {
+                "name": "user",
+                "value": "0xa116f421ff82A9704428259fd8CC63347127B777",
+                "type": "query",
+                "description": "User blockchain `address` (optional)"
+              },
+              {
+                "name": "isTest",
+                "value": "",
+                "type": "query",
+                "description": "Optional flag to get Rinkeby data"
+              }
+            ]
+          },
+          "docs": "Return data related to earning opportunities for a given user."
+        },
+        {
+          "info": {
+            "name": "Get tokens and prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/app"
+          },
+          "docs": "Return data about tokens at stake in the Angle Protocol (price, icon, decimals etc)"
+        },
+        {
+          "info": {
+            "name": "Get prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/prices"
+          },
+          "docs": "Return prices for tokens used by the Angle Protocol."
+        },
+        {
+          "info": {
+            "name": "Simulate Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/simulate",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The address of the sender."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The address of the recipient."
+              },
+              {
+                "name": "data",
+                "value": "",
+                "type": "query",
+                "description": "The transaction data."
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query",
+                "description": "The transaction value."
+              }
+            ]
+          },
+          "docs": "Simulate a transaction based on provided parameters and return the Tenderly url."
+        },
+        {
+          "info": {
+            "name": "Multicall simulation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/simulate/multicall",
+            "params": [
+              {
+                "name": "calls",
+                "value": "",
+                "type": "query",
+                "description": "Array of call objects containing details of each call."
+              }
+            ]
+          },
+          "docs": "Execute multiple transactions in a single request and return the Tenderly url."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

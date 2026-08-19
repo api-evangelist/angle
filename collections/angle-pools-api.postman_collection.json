@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "f6749859-4e8c-4cc0-8e82-634e56cd62fa",
+      "name": "Pools",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "471e273f-5d19-4fe9-b1d6-3e74cf741b71",
+          "name": "Return data related to the pools (collateral / agToken) of the Core Module of the protocol",
+          "request": {
+            "name": "Return data related to the pools (collateral / agToken) of the Core Module of the protocol",
+            "description": {
+              "content": "Return data related to the pools (collateral / agToken) of the Core Module of the protocol",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "User blockchain `address` (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f61ef4c1-aef8-4d99-aeb2-3818dfe2ca52",
+              "name": "Mapping between `PoolManager` addresses of the Core Module and all the data related to it",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chainId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"collateralSymbol\": \"string\",\n    \"stablecoinSymbol\": \"string\",\n    \"decimals\": 2866.730370363175,\n    \"liquidityGaugeAddress\": \"string\",\n    \"perpetualManagerAddress\": \"string\",\n    \"poolManagerAddress\": \"string\",\n    \"collateralAddress\": \"string\",\n    \"stablecoinAddress\": \"string\",\n    \"lower\": \"string\",\n    \"upper\": \"string\",\n    \"stocksUsers\": \"string\",\n    \"collatRatio\": \"string\",\n    \"sanRate\": \"string\",\n    \"slpData\": {\n      \"slippage\": \"string\"\n    },\n    \"poolManagerBalance\": \"string\",\n    \"totalHedgeAmount\": \"string\",\n    \"targetHAHedge\": \"string\",\n    \"limitHAHedge\": \"string\",\n    \"maintenanceMargin\": \"string\",\n    \"maxLeverage\": \"string\",\n    \"lockTime\": \"string\",\n    \"perpRewardRate\": \"string\",\n    \"periodFinish\": \"string\",\n    \"aprFromFees\": 3806.046389728345,\n    \"aprFromInterests\": 8355.871027829106,\n    \"aprFromAngle\": 4397.2175651524785,\n    \"stablecoinBalance\": \"string\",\n    \"collateralBalance\": \"string\",\n    \"sanTokenBalance\": \"string\",\n    \"gaugeBalance\": \"string\",\n    \"gaugeWorkingBalance\": \"string\",\n    \"boost\": 6072.773544861436,\n    \"theoricBoost\": 2305.6752346296507,\n    \"collateralAllowance\": \"string\",\n    \"collateralRouterAllowance\": \"string\"\n  },\n  \"key_1\": {\n    \"collateralSymbol\": \"string\",\n    \"stablecoinSymbol\": \"string\",\n    \"decimals\": 5084.503645370303,\n    \"liquidityGaugeAddress\": \"string\",\n    \"perpetualManagerAddress\": \"string\",\n    \"poolManagerAddress\": \"string\",\n    \"collateralAddress\": \"string\",\n    \"stablecoinAddress\": \"string\",\n    \"lower\": \"string\",\n    \"upper\": \"string\",\n    \"stocksUsers\": \"string\",\n    \"collatRatio\": \"string\",\n    \"sanRate\": \"string\",\n    \"slpData\": {\n      \"slippage\": \"string\"\n    },\n    \"poolManagerBalance\": \"string\",\n    \"totalHedgeAmount\": \"string\",\n    \"targetHAHedge\": \"string\",\n    \"limitHAHedge\": \"string\",\n    \"maintenanceMargin\": \"string\",\n    \"maxLeverage\": \"string\",\n    \"lockTime\": \"string\",\n    \"perpRewardRate\": \"string\",\n    \"periodFinish\": \"string\",\n    \"aprFromFees\": 6286.457486675069,\n    \"aprFromInterests\": 4388.84959281676,\n    \"aprFromAngle\": 7046.5498221972575,\n    \"stablecoinBalance\": \"string\",\n    \"collateralBalance\": \"string\",\n    \"sanTokenBalance\": \"string\",\n    \"gaugeBalance\": \"string\",\n    \"gaugeWorkingBalance\": \"string\",\n    \"boost\": 6288.2322805921285,\n    \"theoricBoost\": 8714.867936122988,\n    \"collateralAllowance\": \"string\",\n    \"collateralRouterAllowance\": \"string\"\n  },\n  \"key_2\": {\n    \"collateralSymbol\": \"string\",\n    \"stablecoinSymbol\": \"string\",\n    \"decimals\": 6046.14790706132,\n    \"liquidityGaugeAddress\": \"string\",\n    \"perpetualManagerAddress\": \"string\",\n    \"poolManagerAddress\": \"string\",\n    \"collateralAddress\": \"string\",\n    \"stablecoinAddress\": \"string\",\n    \"lower\": \"string\",\n    \"upper\": \"string\",\n    \"stocksUsers\": \"string\",\n    \"collatRatio\": \"string\",\n    \"sanRate\": \"string\",\n    \"slpData\": {\n      \"slippage\": \"string\"\n    },\n    \"poolManagerBalance\": \"string\",\n    \"totalHedgeAmount\": \"string\",\n    \"targetHAHedge\": \"string\",\n    \"limitHAHedge\": \"string\",\n    \"maintenanceMargin\": \"string\",\n    \"maxLeverage\": \"string\",\n    \"lockTime\": \"string\",\n    \"perpRewardRate\": \"string\",\n    \"periodFinish\": \"string\",\n    \"aprFromFees\": 6508.210438656162,\n    \"aprFromInterests\": 222.4894479858841,\n    \"aprFromAngle\": 3357.713149218363,\n    \"stablecoinBalance\": \"string\",\n    \"collateralBalance\": \"string\",\n    \"sanTokenBalance\": \"string\",\n    \"gaugeBalance\": \"string\",\n    \"gaugeWorkingBalance\": \"string\",\n    \"boost\": 4811.490969299805,\n    \"theoricBoost\": 9652.757462289645,\n    \"collateralAllowance\": \"string\",\n    \"collateralRouterAllowance\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b1fde636-075f-44bf-be0c-679b3e297ae0",
+    "name": "Angle Allowances Pools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

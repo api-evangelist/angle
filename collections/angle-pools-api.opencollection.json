@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances Pools API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/pools",
+            "params": [
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "User blockchain `address` (optional)"
+              },
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+              }
+            ]
+          },
+          "docs": "Return data related to the pools (collateral / agToken) of the Core Module of the protocol"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

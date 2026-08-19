@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances App API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "App",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/app",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+              }
+            ]
+          },
+          "docs": "Return data about tokens at stake in the Angle Protocol along with their price."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

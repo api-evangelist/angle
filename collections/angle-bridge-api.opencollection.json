@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances Bridge API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bridge",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch bridge data for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/layerZero",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested"
+              },
+              {
+                "name": "user",
+                "value": "0xa116f421ff82A9704428259fd8CC63347127B777",
+                "type": "query",
+                "description": "User blockchain `address` (optional)"
+              },
+              {
+                "name": "toChainId",
+                "value": "",
+                "type": "query",
+                "description": "destination of the bridge transaction"
+              }
+            ]
+          },
+          "docs": "This route fetches bridge data for a user from multiple chains."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

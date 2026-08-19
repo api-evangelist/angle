@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "1ded4afc-beea-452e-9562-cbc37286524f",
+      "name": "Incentives",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "85660a2b-8bf6-4bc4-9f4a-47b2893c542f",
+          "name": "Return data related to incentivized pools, by Angle or other partners",
+          "request": {
+            "name": "Return data related to incentivized pools, by Angle or other partners",
+            "description": {
+              "content": "Return data related to incentivized pools, by Angle or other partners",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "incentives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "User blockchain `address`"
+                },
+                {
+                  "disabled": false,
+                  "key": "isTest",
+                  "value": "<integer>",
+                  "description": "Optional flag to get Rinkeby data"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ca2c5c0-61e5-4842-a9d4-af616a2792bc",
+              "name": "Mapping between a staking contract address (used as a key) and its data (like description, APR, links, ...)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "incentives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isTest",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"address\": \"string\",\n    \"name\": \"string\",\n    \"deprecated\": false,\n    \"underlyingToken\": {\n      \"balances\": \"string\",\n      \"allowance\": \"string\",\n      \"address\": \"string\",\n      \"base\": 6647.691774497095\n    },\n    \"rewardTokens\": [\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 1066.6322146953366\n      },\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 7660.942766978639\n      }\n    ],\n    \"network\": 9612.30721120121,\n    \"platform\": \"string\",\n    \"icon\": \"string\",\n    \"tvl\": 4447.641098269723,\n    \"deposit\": {\n      \"amount\": \"string\",\n      \"usdValue\": 5070.919518989842\n    },\n    \"apr\": {\n      \"details\": {},\n      \"value\": 4821.984167137369\n    }\n  },\n  \"key_1\": {\n    \"address\": \"string\",\n    \"name\": \"string\",\n    \"deprecated\": true,\n    \"underlyingToken\": {\n      \"balances\": \"string\",\n      \"allowance\": \"string\",\n      \"address\": \"string\",\n      \"base\": 5077.9419675006\n    },\n    \"rewardTokens\": [\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 5789.81832641363\n      },\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 6762.5933952398245\n      }\n    ],\n    \"network\": 6693.936057362776,\n    \"platform\": \"string\",\n    \"icon\": \"string\",\n    \"tvl\": 6355.108133271614,\n    \"deposit\": {\n      \"amount\": \"string\",\n      \"usdValue\": 3096.587786855599\n    },\n    \"apr\": {\n      \"details\": {},\n      \"value\": 3604.411086563152\n    }\n  },\n  \"key_2\": {\n    \"address\": \"string\",\n    \"name\": \"string\",\n    \"deprecated\": true,\n    \"underlyingToken\": {\n      \"balances\": \"string\",\n      \"allowance\": \"string\",\n      \"address\": \"string\",\n      \"base\": 8696.699359951725\n    },\n    \"rewardTokens\": [\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 8819.941805147411\n      },\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 4417.909075688673\n      }\n    ],\n    \"network\": 1333.7788979904497,\n    \"platform\": \"string\",\n    \"icon\": \"string\",\n    \"tvl\": 8380.285921552131,\n    \"deposit\": {\n      \"amount\": \"string\",\n      \"usdValue\": 238.34386644313255\n    },\n    \"apr\": {\n      \"details\": {},\n      \"value\": 3441.484911104319\n    }\n  },\n  \"key_3\": {\n    \"address\": \"string\",\n    \"name\": \"string\",\n    \"deprecated\": true,\n    \"underlyingToken\": {\n      \"balances\": \"string\",\n      \"allowance\": \"string\",\n      \"address\": \"string\",\n      \"base\": 5772.944271317315\n    },\n    \"rewardTokens\": [\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 2061.773816065983\n      },\n      {\n        \"symbol\": \"string\",\n        \"address\": \"string\",\n        \"amount\": 2654.502687766439\n      }\n    ],\n    \"network\": 7138.712403771621,\n    \"platform\": \"string\",\n    \"icon\": \"string\",\n    \"tvl\": 5310.941092141696,\n    \"deposit\": {\n      \"amount\": \"string\",\n      \"usdValue\": 5535.182511595971\n    },\n    \"apr\": {\n      \"details\": {},\n      \"value\": 3352.9438925895392\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f7056240-b772-4bb2-9370-a0f01fb6c9d3",
+    "name": "Angle Allowances Incentives API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

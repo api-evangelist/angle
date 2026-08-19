@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances Savings API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Savings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch data relative to the stEUR contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/savings",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested"
+              }
+            ]
+          },
+          "docs": "This route fetches general stEUR contract data."
+        },
+        {
+          "info": {
+            "name": "Get stablecoin savings data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v2/savings",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested"
+              }
+            ]
+          },
+          "docs": "Get stablecoin savings data"
+        },
+        {
+          "info": {
+            "name": "Fetch historical savings data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v2/historical/savings",
+            "params": [
+              {
+                "name": "agToken",
+                "value": "",
+                "type": "query",
+                "description": "The agToken to fetch data for (EURA or USDA)"
+              },
+              {
+                "name": "chainIds",
+                "value": "",
+                "type": "query",
+                "description": "JSON array of chain IDs to fetch data for"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date for historical data (omit for realtime data)"
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to fetch"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start date for historical data"
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "User address to fetch data for"
+              }
+            ]
+          },
+          "docs": "This route fetches historical savings data for specified chains, users, and agTokens."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

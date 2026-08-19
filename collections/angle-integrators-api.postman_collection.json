@@ -1,0 +1,856 @@
+{
+  "item": [
+    {
+      "id": "b5f05368-bb44-487f-8fdd-1e93806c51e9",
+      "name": "Integrators",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9325c82b-21cb-4f1f-b525-9f68fe1514ec",
+          "name": "Get deposit payload",
+          "request": {
+            "name": "Get deposit payload",
+            "description": {
+              "content": "Generate a payload for depositing tokens into Angle protocol strategies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "integrators",
+                "payload",
+                "deposit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "(Required) Chain requested"
+                },
+                {
+                  "disabled": false,
+                  "key": "inputTokenAddress",
+                  "value": "<string>",
+                  "description": "(Required) The address of the input token."
+                },
+                {
+                  "disabled": false,
+                  "key": "inputTokenAmount",
+                  "value": "<number>",
+                  "description": "(Required) The amount of the input token to deposit using token decimals. For example, 1 USDC would be 1000000 (6 decimals)."
+                },
+                {
+                  "disabled": false,
+                  "key": "strategyAddress",
+                  "value": "<string>",
+                  "description": "(Required) The address of the strategy contract."
+                },
+                {
+                  "disabled": false,
+                  "key": "userAddress",
+                  "value": "<string>",
+                  "description": "(Required) The address of the user performing the transaction."
+                },
+                {
+                  "disabled": false,
+                  "key": "slippage",
+                  "value": "<number>",
+                  "description": "(Required) The maximum allowed slippage as a percentage value (i.e. 0.1 means 0.1%)."
+                },
+                {
+                  "disabled": false,
+                  "key": "ipAddress",
+                  "value": "<string>",
+                  "description": "The IP address of the user."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89ec2c47-4d0a-4498-90e9-ceb71a5a05b7",
+              "name": "The deposit payload information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "integrators",
+                    "payload",
+                    "deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "inputTokenAddress",
+                      "value": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
+                    },
+                    {
+                      "key": "inputTokenAmount",
+                      "value": "1000000"
+                    },
+                    {
+                      "key": "strategyAddress",
+                      "value": "0xC0077E921C30c39cDD8b693E25Af572C10E82a05"
+                    },
+                    {
+                      "key": "userAddress",
+                      "value": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+                    },
+                    {
+                      "key": "slippage",
+                      "value": "0.1"
+                    },
+                    {
+                      "key": "ipAddress",
+                      "value": "192.168.1.100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "641f2ae5-bcef-488e-b66e-ae1534555c3d",
+          "name": "Get withdraw payload",
+          "request": {
+            "name": "Get withdraw payload",
+            "description": {
+              "content": "Generate a payload for withdrawing tokens from Angle protocol strategies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "integrators",
+                "payload",
+                "withdraw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "(Required) Chain requested"
+                },
+                {
+                  "disabled": false,
+                  "key": "outputTokenAddress",
+                  "value": "<string>",
+                  "description": "(Required) The address of the output token (the token that the user wants to receive after the withdraw from strategy)."
+                },
+                {
+                  "disabled": false,
+                  "key": "inputTokenAmount",
+                  "value": "<number>",
+                  "description": "(Required) The amount of the input token to withdraw. This is the amount of the strategy token that the user wants to withdraw (with 18 decimals). For example, 1 stUSDStrat would be 1000000000000000000 (18 decimals)."
+                },
+                {
+                  "disabled": false,
+                  "key": "strategyAddress",
+                  "value": "<string>",
+                  "description": "(Required) The address of the strategy contract."
+                },
+                {
+                  "disabled": false,
+                  "key": "userAddress",
+                  "value": "<string>",
+                  "description": "(Required) The address of the user performing the transaction."
+                },
+                {
+                  "disabled": false,
+                  "key": "slippage",
+                  "value": "<number>",
+                  "description": "(Required) The maximum allowed slippage as a percentage value (i.e. 0.1 means 0.1%)."
+                },
+                {
+                  "disabled": false,
+                  "key": "ipAddress",
+                  "value": "<string>",
+                  "description": "The IP address of the user."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e9ca50c-67d4-4e9e-9dfc-53c4c707b237",
+              "name": "The withdraw payload information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "integrators",
+                    "payload",
+                    "withdraw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "outputTokenAddress",
+                      "value": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
+                    },
+                    {
+                      "key": "inputTokenAmount",
+                      "value": "1000000000000000000"
+                    },
+                    {
+                      "key": "strategyAddress",
+                      "value": "0xC0077E921C30c39cDD8b693E25Af572C10E82a05"
+                    },
+                    {
+                      "key": "userAddress",
+                      "value": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+                    },
+                    {
+                      "key": "slippage",
+                      "value": "0.1"
+                    },
+                    {
+                      "key": "ipAddress",
+                      "value": "192.168.1.100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5911948-c519-4484-b00a-4a09ae62fc28",
+          "name": "Get vault positions",
+          "request": {
+            "name": "Get vault positions",
+            "description": {
+              "content": "Retrieve positions data for a specific vault strategy. Position are ordered by the most recent first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "integrators",
+                "vaults",
+                "positions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<number>",
+                  "description": "(Required) The chain ID (only Arbitrum is supported)"
+                },
+                {
+                  "disabled": false,
+                  "key": "strategyAddress",
+                  "value": "<string>",
+                  "description": "(Required) The address of the strategy contract."
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "<number>",
+                  "description": "Number of items to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<number>",
+                  "description": "Number of items to skip"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8901d25d-b2dc-4d7c-a1f4-2dd6eb8dac0b",
+              "name": "Successful response with vault positions data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "integrators",
+                    "vaults",
+                    "positions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "strategyAddress",
+                      "value": "0xC0077E921C30c39cDD8b693E25Af572C10E82a05"
+                    },
+                    {
+                      "key": "first",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f65888b0-6201-42e9-a2a5-c2677f9a0df7",
+          "name": "Get user's vault positions",
+          "request": {
+            "name": "Get user's vault positions",
+            "description": {
+              "content": "Retrieve position data for a specific user in a vault strategy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "integrators",
+                "vaults",
+                "user",
+                "positions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain ID (optional, currently only Arbitrum is supported)"
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "5",
+                  "description": "Number of results to return (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeOperations",
+                  "value": "false",
+                  "description": "Whether to include operations (deposits, withdrawals) in the response (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of results to skip (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "strategyAddress",
+                  "value": "<string>",
+                  "description": "Address of the strategy (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "userAddress",
+                  "value": "<string>",
+                  "description": "(Required) Address of the user"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d711111e-6c9c-41d0-98d3-e15cab627ead",
+              "name": "Successful response with user's vault positions data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "integrators",
+                    "vaults",
+                    "user",
+                    "positions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "5"
+                    },
+                    {
+                      "key": "includeOperations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "strategyAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userAddress",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2cf5e5d-5fb0-424a-8a32-d2ccc89df7c6",
+          "name": "Get historical vault positions",
+          "request": {
+            "name": "Get historical vault positions",
+            "description": {
+              "content": "Retrieve historical position data for a specific vault strategy. Position are ordered by the most recent first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "integrators",
+                "vaults",
+                "positions",
+                "historical"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<number>",
+                  "description": "(Required) The chain ID (only Arbitrum is supported)"
+                },
+                {
+                  "disabled": false,
+                  "key": "strategyAddress",
+                  "value": "<string>",
+                  "description": "(Required) The address of the strategy contract."
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "<number>",
+                  "description": "Number of items to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<number>",
+                  "description": "Number of items to skip"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "412e0bee-fb0a-4b1c-8a40-8188d8dfd473",
+              "name": "Successful response with historical vault positions data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "integrators",
+                    "vaults",
+                    "positions",
+                    "historical"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "strategyAddress",
+                      "value": "0xC0077E921C30c39cDD8b693E25Af572C10E82a05"
+                    },
+                    {
+                      "key": "first",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6958576a-68a1-4dad-9b0e-301bef96f555",
+          "name": "Get historical vault operations",
+          "request": {
+            "name": "Get historical vault operations",
+            "description": {
+              "content": "Retrieve historical operation data for a specific vault strategy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "integrators",
+                "vaults",
+                "operations",
+                "historical"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<number>",
+                  "description": "(Required) The chain ID (only Arbitrum is supported)"
+                },
+                {
+                  "disabled": false,
+                  "key": "strategyAddress",
+                  "value": "<string>",
+                  "description": "(Required) The address of the strategy contract."
+                },
+                {
+                  "disabled": false,
+                  "key": "userAddresses",
+                  "value": "<string>",
+                  "description": "User address or array of user addresses"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstDeposits",
+                  "value": "<number>",
+                  "description": "Number of deposit items to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "skipDeposits",
+                  "value": "<number>",
+                  "description": "Number of deposit items to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstWithdrawals",
+                  "value": "<number>",
+                  "description": "Number of withdrawal items to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "skipWithdrawals",
+                  "value": "<number>",
+                  "description": "Number of withdrawal items to skip"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6789e2a2-0dfd-4112-a5ea-6d0e2fe61603",
+              "name": "Successful response with historical vault operations data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "integrators",
+                    "vaults",
+                    "operations",
+                    "historical"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "strategyAddress",
+                      "value": "0xC0077E921C30c39cDD8b693E25Af572C10E82a05"
+                    },
+                    {
+                      "key": "userAddresses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstDeposits",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "skipDeposits",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "firstWithdrawals",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "skipWithdrawals",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4c7e8568-66ac-4701-86e4-e2b0f1396c15",
+    "name": "Angle Allowances Integrators API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

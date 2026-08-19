@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances Apr API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Apr",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/apr",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/apr"
+          },
+          "docs": "Return APRs for tokens used by the Angle Protocol. Data is based on approximations, it should be cautiously taken."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

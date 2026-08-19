@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances Dao API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dao",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/dao",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/dao",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "User blockchain `address`. This address is optional and the query could work without."
+              }
+            ]
+          },
+          "docs": "Return data related to gauges as well as to the ANGLE and veANGLE tokens for a given user including vote and rewards data"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances User related information API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User related information",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get allowances for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/allowances",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested"
+              },
+              {
+                "name": "user",
+                "value": "0xa116f421ff82A9704428259fd8CC63347127B777",
+                "type": "query",
+                "description": "User blockchain `address`"
+              },
+              {
+                "name": "spenders",
+                "value": "A,B,C",
+                "type": "query",
+                "description": "Array of spenders"
+              },
+              {
+                "name": "additionalTokenAddresses",
+                "value": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,0x6B175474E89094C44Da98b954EedeAC495271d0F",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return the allowances for a given user on a given chain for specific spenders. Can include additional token addresses."
+        },
+        {
+          "info": {
+            "name": "Get token information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/collect",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested"
+              },
+              {
+                "name": "user",
+                "value": "0xa116f421ff82A9704428259fd8CC63347127B777",
+                "type": "query",
+                "description": "User blockchain `address` (optional)"
+              },
+              {
+                "name": "spender",
+                "value": "REPLACE_ME",
+                "type": "query",
+                "description": "Spender address"
+              },
+              {
+                "name": "tokenAddress",
+                "value": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+                "type": "query",
+                "description": "Token address"
+              }
+            ]
+          },
+          "docs": "Retrieve data regarding a token used by a given user."
+        },
+        {
+          "info": {
+            "name": "Get balances of Angle tokens for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/balances",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested"
+              },
+              {
+                "name": "user",
+                "value": "0xa116f421ff82A9704428259fd8CC63347127B777",
+                "type": "query",
+                "description": "User blockchain `address`"
+              },
+              {
+                "name": "additionalTokenAddresses",
+                "value": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,0x6B175474E89094C44Da98b954EedeAC495271d0F",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return the balances for tokens in the for Angle token list for a given user. Can include additional token addresses."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "55ad3022-47c0-49d7-bb43-ccc8a4b92a32",
+      "name": "Balances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "14c64597-e0c8-4f2a-a09c-12d9e4c3e821",
+          "name": "Return the balances for tokens in the for Angle token list for a given user.",
+          "request": {
+            "name": "Return the balances for tokens in the for Angle token list for a given user.",
+            "description": {
+              "content": "Return the balances for tokens in the for Angle token list for a given user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "balances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "User blockchain `address`"
+                },
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb7a084e-7ddd-4864-8db2-7e1a5f0fb101",
+              "name": "Mapping between a token address and for each token the user balance, the decimals of the token as well as the token name",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chainId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": {\n      \"symbol\": \"string\",\n      \"balance\": \"string\",\n      \"decimals\": 1426.5200163743552\n    }\n  },\n  {\n    \"key_0\": {\n      \"symbol\": \"string\",\n      \"balance\": \"string\",\n      \"decimals\": 5288.487933309454\n    },\n    \"key_1\": {\n      \"symbol\": \"string\",\n      \"balance\": \"string\",\n      \"decimals\": 4189.339092509381\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7ab58a8a-a762-45a0-afc4-2a1a8cad20d2",
+    "name": "Angle Allowances Balances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "item": [
+    {
+      "id": "6c32bc70-5168-4388-830d-cbaae04bd954",
+      "name": "VaultManagers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b8796cc7-c6ab-445f-a048-64a82733bc20",
+          "name": "Return the global state of `VaultManagers` listed by the treasuries associated to a stablecoin",
+          "request": {
+            "name": "Return the global state of `VaultManagers` listed by the treasuries associated to a stablecoin",
+            "description": {
+              "content": "Return the global state of `VaultManagers` listed by the treasuries associated to a stablecoin",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vaultManagers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8421868c-167c-449a-92c3-4abac30df259",
+              "name": "List of all `VaultManager` with their details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vaultManagers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"collateral\": 3416.0669722699176,\n      \"collateralHasPermit\": true,\n      \"collateralPermitVersion\": 6035.895336965345,\n      \"stablecoin\": \"string\",\n      \"swapper\": \"string\",\n      \"decimals\": \"string\",\n      \"treasury\": \"string\",\n      \"borrowFee\": 4529.41276318922,\n      \"stabilityFee\": 7961.581511571656,\n      \"liquidationPenalty\": 2049.9672747114782,\n      \"maxLTV\": 9117.722065026794,\n      \"minCollateralRatio\": 7336.067542934141,\n      \"dust\": 9521.963927855184,\n      \"totalCollateral\": 3154.3462404157863,\n      \"totalDebt\": 665.4577933548378,\n      \"rate\": 9109.393351422379\n    },\n    \"key_1\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"collateral\": 8528.600075638196,\n      \"collateralHasPermit\": true,\n      \"collateralPermitVersion\": 9780.2226766143,\n      \"stablecoin\": \"string\",\n      \"swapper\": \"string\",\n      \"decimals\": \"string\",\n      \"treasury\": \"string\",\n      \"borrowFee\": 80.76109419634325,\n      \"stabilityFee\": 5417.4837513842085,\n      \"liquidationPenalty\": 6697.507573553878,\n      \"maxLTV\": 4725.886994187856,\n      \"minCollateralRatio\": 5778.167119084496,\n      \"dust\": 7790.923038131336,\n      \"totalCollateral\": 9759.296133873979,\n      \"totalDebt\": 4392.118712467534,\n      \"rate\": 365.97590353188434\n    }\n  },\n  {\n    \"key_0\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"collateral\": 6463.689148289293,\n      \"collateralHasPermit\": false,\n      \"collateralPermitVersion\": 4575.4181067569025,\n      \"stablecoin\": \"string\",\n      \"swapper\": \"string\",\n      \"decimals\": \"string\",\n      \"treasury\": \"string\",\n      \"borrowFee\": 2387.1843875406175,\n      \"stabilityFee\": 944.8216907666518,\n      \"liquidationPenalty\": 8904.125470049292,\n      \"maxLTV\": 5785.4000769590475,\n      \"minCollateralRatio\": 9423.42843208727,\n      \"dust\": 4338.147126013137,\n      \"totalCollateral\": 977.9515246734416,\n      \"totalDebt\": 4056.6324063889415,\n      \"rate\": 4288.074011349731\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "40bb0311-81f9-4daf-9562-eb3dec86dc2f",
+    "name": "Angle Allowances VaultManagers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

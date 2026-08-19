@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "3a4f6ced-61bd-4090-a7ff-07ade94c9f35",
+      "name": "Tvl",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7d6c7aa2-b64b-4bee-b335-5bb0f4b60453",
+          "name": "Return the TVL of the Angle Protocol on the requested chain",
+          "request": {
+            "name": "Return the TVL of the Angle Protocol on the requested chain",
+            "description": {
+              "content": "Return the TVL of the Angle Protocol on the requested chain",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "tvl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "Chain requested - Default is 1 (Ethereum mainnet)"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d23fbcb-8533-472e-b05d-1b385058f285",
+              "name": "Angle TVL on the requested chain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "tvl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b5fad1e0-010b-44f2-9bfe-bc7a71940ece",
+    "name": "Angle Allowances Tvl API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

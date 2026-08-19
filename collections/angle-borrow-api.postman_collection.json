@@ -1,0 +1,653 @@
+{
+  "item": [
+    {
+      "id": "7cbe3067-dd9b-4b27-8f6c-b9a31057b281",
+      "name": "Borrow",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "26fec308-928b-4ffe-8dd9-1334408f3241",
+          "name": "Get VaultManagers",
+          "request": {
+            "name": "Get VaultManagers",
+            "description": {
+              "content": "Return the global state of `VaultManagers` listed by the treasuries associated to a stablecoin",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vaultManagers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "(Required) Chain requested"
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "User blockchain `address` (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "agToken",
+                  "value": "<string>",
+                  "description": "(Required) agToken address"
+                },
+                {
+                  "disabled": false,
+                  "key": "blockNumber",
+                  "value": "<integer>",
+                  "description": "Block number"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62dcb86c-bb4c-4d4d-b7be-41251a04a3dd",
+              "name": "List of all `VaultManager` with their details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vaultManagers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "user",
+                      "value": "0xa116f421ff82A9704428259fd8CC63347127B777"
+                    },
+                    {
+                      "key": "agToken",
+                      "value": "0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8"
+                    },
+                    {
+                      "key": "blockNumber",
+                      "value": "12345678"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"collateral\": 9098.310910182916,\n      \"collateralHasPermit\": false,\n      \"collateralPermitVersion\": 6343.952373386969,\n      \"stablecoin\": \"string\",\n      \"swapper\": \"string\",\n      \"decimals\": \"string\",\n      \"treasury\": \"string\",\n      \"borrowFee\": 1830.7710547807421,\n      \"stabilityFee\": 5142.212691415971,\n      \"liquidationPenalty\": 1518.7461363819032,\n      \"maxLTV\": 6020.965716133748,\n      \"minCollateralRatio\": 3601.236146929041,\n      \"dust\": 3390.0476863262597,\n      \"totalCollateral\": 3101.884675988477,\n      \"totalDebt\": 7305.32660357012,\n      \"rate\": 2365.533411934132,\n      \"maxLiquidationDiscount\": 5307.249910771365,\n      \"targetHealthFactor\": 9461.678181152101\n    }\n  },\n  {\n    \"key_0\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"collateral\": 3061.955670038412,\n      \"collateralHasPermit\": false,\n      \"collateralPermitVersion\": 8588.106045438668,\n      \"stablecoin\": \"string\",\n      \"swapper\": \"string\",\n      \"decimals\": \"string\",\n      \"treasury\": \"string\",\n      \"borrowFee\": 341.831406149502,\n      \"stabilityFee\": 1492.4389788274716,\n      \"liquidationPenalty\": 4704.657975946358,\n      \"maxLTV\": 6929.3378672695,\n      \"minCollateralRatio\": 3040.488736764492,\n      \"dust\": 1616.8766191211225,\n      \"totalCollateral\": 353.2416958671702,\n      \"totalDebt\": 5175.782225124952,\n      \"rate\": 3999.4851879827465,\n      \"maxLiquidationDiscount\": 8986.568036885621,\n      \"targetHealthFactor\": 3322.0039002284952\n    },\n    \"key_1\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"collateral\": 2905.085793942811,\n      \"collateralHasPermit\": false,\n      \"collateralPermitVersion\": 6307.6129112275585,\n      \"stablecoin\": \"string\",\n      \"swapper\": \"string\",\n      \"decimals\": \"string\",\n      \"treasury\": \"string\",\n      \"borrowFee\": 8925.188667331451,\n      \"stabilityFee\": 4256.3390439286995,\n      \"liquidationPenalty\": 4024.4202030428255,\n      \"maxLTV\": 9404.814441684617,\n      \"minCollateralRatio\": 2177.748078906915,\n      \"dust\": 4721.840697359122,\n      \"totalCollateral\": 9246.601286441515,\n      \"totalDebt\": 9153.382904698547,\n      \"rate\": 7301.843257262835,\n      \"maxLiquidationDiscount\": 6326.117182727091,\n      \"targetHealthFactor\": 6706.277419632467\n    },\n    \"key_2\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"collateral\": 6009.06521163551,\n      \"collateralHasPermit\": true,\n      \"collateralPermitVersion\": 7082.46871991192,\n      \"stablecoin\": \"string\",\n      \"swapper\": \"string\",\n      \"decimals\": \"string\",\n      \"treasury\": \"string\",\n      \"borrowFee\": 2083.1309378363017,\n      \"stabilityFee\": 9597.220801170597,\n      \"liquidationPenalty\": 6419.662255982738,\n      \"maxLTV\": 7344.511089285289,\n      \"minCollateralRatio\": 9528.343220979565,\n      \"dust\": 2602.6199530710223,\n      \"totalCollateral\": 8040.832534496122,\n      \"totalDebt\": 777.5203740674364,\n      \"rate\": 3440.1996313227924,\n      \"maxLiquidationDiscount\": 2702.863217234649,\n      \"targetHealthFactor\": 9692.388910156871\n    },\n    \"key_3\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"collateral\": 117.17073963022462,\n      \"collateralHasPermit\": true,\n      \"collateralPermitVersion\": 2615.0404295205567,\n      \"stablecoin\": \"string\",\n      \"swapper\": \"string\",\n      \"decimals\": \"string\",\n      \"treasury\": \"string\",\n      \"borrowFee\": 8581.940937766805,\n      \"stabilityFee\": 8341.975118675233,\n      \"liquidationPenalty\": 7777.001059794927,\n      \"maxLTV\": 9148.254742807438,\n      \"minCollateralRatio\": 6997.941718280812,\n      \"dust\": 8100.414468855784,\n      \"totalCollateral\": 1324.3317826537339,\n      \"totalDebt\": 8983.176848000023,\n      \"rate\": 6528.813933869588,\n      \"maxLiquidationDiscount\": 8946.79627527771,\n      \"targetHealthFactor\": 3501.953652623415\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a311a55-4ff1-438d-960c-ff04944b33ec",
+          "name": "Get Vaults",
+          "request": {
+            "name": "Get Vaults",
+            "description": {
+              "content": "Return all vaults for a user on a chain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vaults"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "(Required) Chain requested"
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "(Required) User blockchain `address`"
+                },
+                {
+                  "disabled": false,
+                  "key": "agToken",
+                  "value": "<string>",
+                  "description": "(Required) agToken address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6714a6b1-e02e-4d3f-bba2-59362c890205",
+              "name": "List of all the vaults for a given user on-chain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vaults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "user",
+                      "value": "0xa116f421ff82A9704428259fd8CC63347127B777"
+                    },
+                    {
+                      "key": "agToken",
+                      "value": "0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"id\": 416.21476535509515,\n      \"collateral\": 4262.205127047014,\n      \"stablecoin\": \"string\",\n      \"rate\": 1295.652761902445,\n      \"collateralAmount\": 4741.330029787712,\n      \"debt\": 8853.494299949018,\n      \"debtString\": \"string\",\n      \"collateralRatio\": 5467.3754316112545,\n      \"liquidationPrice\": 503.50650519827457\n    },\n    \"key_1\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"id\": 6373.758606053885,\n      \"collateral\": 26.41791656691206,\n      \"stablecoin\": \"string\",\n      \"rate\": 2323.203258898502,\n      \"collateralAmount\": 8383.517379529385,\n      \"debt\": 2163.8213349262046,\n      \"debtString\": \"string\",\n      \"collateralRatio\": 2127.03978453737,\n      \"liquidationPrice\": 8902.529707926407\n    },\n    \"key_2\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"id\": 8988.606457466205,\n      \"collateral\": 8239.904457700908,\n      \"stablecoin\": \"string\",\n      \"rate\": 1437.7273644264078,\n      \"collateralAmount\": 3738.6937032590417,\n      \"debt\": 4993.304865372083,\n      \"debtString\": \"string\",\n      \"collateralRatio\": 2480.9875607458607,\n      \"liquidationPrice\": 2609.185951098307\n    },\n    \"key_3\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"id\": 6012.232922962154,\n      \"collateral\": 1771.0619808166139,\n      \"stablecoin\": \"string\",\n      \"rate\": 8015.155645656504,\n      \"collateralAmount\": 2363.4809405376986,\n      \"debt\": 2672.5909075546615,\n      \"debtString\": \"string\",\n      \"collateralRatio\": 3265.5119745593875,\n      \"liquidationPrice\": 5641.923847451633\n    }\n  },\n  {\n    \"key_0\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"id\": 270.31843986086267,\n      \"collateral\": 2823.429305536852,\n      \"stablecoin\": \"string\",\n      \"rate\": 4263.082119253088,\n      \"collateralAmount\": 2924.805689141533,\n      \"debt\": 9664.075025934168,\n      \"debtString\": \"string\",\n      \"collateralRatio\": 2605.954629594215,\n      \"liquidationPrice\": 9413.140696020735\n    },\n    \"key_1\": {\n      \"address\": \"string\",\n      \"symbol\": \"string\",\n      \"id\": 9042.669754788361,\n      \"collateral\": 4464.2947230878435,\n      \"stablecoin\": \"string\",\n      \"rate\": 6273.439819043622,\n      \"collateralAmount\": 7807.872740650427,\n      \"debt\": 72.9830138761589,\n      \"debtString\": \"string\",\n      \"collateralRatio\": 724.967724650658,\n      \"liquidationPrice\": 143.94502465454707\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd6148fe-53fd-4616-afd8-cd57835fad17",
+          "name": "Build payloads for Angle's borrow module",
+          "request": {
+            "name": "Build payloads for Angle's borrow module",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "leverage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "agTokenAddress",
+                  "value": "<string>",
+                  "description": "(Required) The address of the stablecoin to borrow"
+                },
+                {
+                  "disabled": false,
+                  "key": "agTokenToBorrow",
+                  "value": "<string>",
+                  "description": "(Required) The amount of agTokens to borrow"
+                },
+                {
+                  "disabled": false,
+                  "key": "agTokenToSwap",
+                  "value": "<string>",
+                  "description": "The amount of agTokens to swap for the collateral"
+                },
+                {
+                  "disabled": false,
+                  "key": "amountsBrought",
+                  "value": "{\"address\":\"<string>\",\"amount\":\"<string>\",\"decimals\":\"<number>\",\"symbol\":\"<string>\"}",
+                  "description": "An array of objects representing the amounts and addresses of assets brought"
+                },
+                {
+                  "disabled": false,
+                  "key": "amountsBrought",
+                  "value": "{\"address\":\"<string>\",\"amount\":\"<string>\",\"decimals\":\"<number>\",\"symbol\":\"<string>\"}",
+                  "description": "An array of objects representing the amounts and addresses of assets brought"
+                },
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<number>",
+                  "description": "(Required) The ID of the Ethereum chain on which to perform the operation"
+                },
+                {
+                  "disabled": false,
+                  "key": "collateralAddress",
+                  "value": "<string>",
+                  "description": "(Required) The address of the collateral contract"
+                },
+                {
+                  "disabled": false,
+                  "key": "collateralToAdd",
+                  "value": "<string>",
+                  "description": "(Required) The amount of collateral to deposit"
+                },
+                {
+                  "disabled": false,
+                  "key": "userAddress",
+                  "value": "<string>",
+                  "description": "(Required) The address of the user requesting the payload"
+                },
+                {
+                  "disabled": false,
+                  "key": "vaultId",
+                  "value": "<number>",
+                  "description": "(Required) The vault to act on"
+                },
+                {
+                  "disabled": false,
+                  "key": "vaultPermit",
+                  "value": "<string>",
+                  "description": "Vault permit"
+                },
+                {
+                  "disabled": false,
+                  "key": "permits",
+                  "value": "<string>",
+                  "description": "Array of permits"
+                },
+                {
+                  "disabled": false,
+                  "key": "permits",
+                  "value": "<string>",
+                  "description": "Array of permits"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippage",
+                  "value": "<number>",
+                  "description": "(Required) Slippage"
+                },
+                {
+                  "disabled": false,
+                  "key": "oneInchSlippage",
+                  "value": "<number>",
+                  "description": "One-inch slippage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca424923-de10-4d34-9e46-934f8e43463a",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leverage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agTokenAddress",
+                      "value": "0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8"
+                    },
+                    {
+                      "key": "agTokenToBorrow",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agTokenToSwap",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amountsBrought",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "amountsBrought",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "chainId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "collateralAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "collateralToAdd",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vaultId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "vaultPermit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permits",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permits",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slippage",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "oneInchSlippage",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d3d951c-115c-4014-9d30-1175007a2f18",
+          "name": "Build payloads for Angle's borrow module",
+          "request": {
+            "name": "Build payloads for Angle's borrow module",
+            "description": {
+              "content": "This route handles requests to build payloads for Angle's borrow module.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "deleverage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "agTokenToRepay",
+                  "value": "<string>",
+                  "description": "(Required) The amount of agTokens to repay."
+                },
+                {
+                  "disabled": false,
+                  "key": "repayAll",
+                  "value": "<boolean>",
+                  "description": "(Required) If all the vault's debt is repaid."
+                },
+                {
+                  "disabled": false,
+                  "key": "amountsBrought",
+                  "value": "<object>",
+                  "description": "An array of objects representing the amounts and addresses of assets brought."
+                },
+                {
+                  "disabled": false,
+                  "key": "amountsBrought",
+                  "value": "<object>",
+                  "description": "An array of objects representing the amounts and addresses of assets brought."
+                },
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<number>",
+                  "description": "(Required) The ID of the Ethereum chain on which to perform the operation."
+                },
+                {
+                  "disabled": false,
+                  "key": "collateralAddress",
+                  "value": "<address>",
+                  "description": "(Required) The address of the collateral contract."
+                },
+                {
+                  "disabled": false,
+                  "key": "collateralToWithdrawToWallet",
+                  "value": "<string>",
+                  "description": "(Required) The amount of collateral to withdraw."
+                },
+                {
+                  "disabled": false,
+                  "key": "collateralToSwap",
+                  "value": "<string>",
+                  "description": "(Required) The amount of collateral to swap to EURA."
+                },
+                {
+                  "disabled": false,
+                  "key": "userAddress",
+                  "value": "<address>",
+                  "description": "(Required) The address of the user requesting the payload."
+                },
+                {
+                  "disabled": false,
+                  "key": "vaultId",
+                  "value": "<number>",
+                  "description": "(Required) The vault to act on."
+                },
+                {
+                  "disabled": false,
+                  "key": "agTokenAddress",
+                  "value": "<address>",
+                  "description": "(Required) The address of the agToken."
+                },
+                {
+                  "disabled": false,
+                  "key": "outputTokenAddress",
+                  "value": "<address>",
+                  "description": "(Required) The address of the token wanted by the user."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9124ce47-a89e-44a6-8134-9eefd4b4a111",
+              "name": "JSON object containing the calldata bytes needed to build the Ethereum transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "deleverage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agTokenToRepay",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repayAll",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "amountsBrought",
+                      "value": "<object>"
+                    },
+                    {
+                      "key": "amountsBrought",
+                      "value": "<object>"
+                    },
+                    {
+                      "key": "chainId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "collateralAddress",
+                      "value": "<address>"
+                    },
+                    {
+                      "key": "collateralToWithdrawToWallet",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "collateralToSwap",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userAddress",
+                      "value": "<address>"
+                    },
+                    {
+                      "key": "vaultId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "agTokenAddress",
+                      "value": "<address>"
+                    },
+                    {
+                      "key": "outputTokenAddress",
+                      "value": "<address>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ee0b7315-c669-4a43-a04f-4447f8704e51",
+    "name": "Angle Allowances Borrow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

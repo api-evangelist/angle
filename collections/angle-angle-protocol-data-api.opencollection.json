@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances Angle Protocol Data API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Angle Protocol Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get active chains for the protocol",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/activeChains"
+          },
+          "docs": "Return the list of chains supported by the Borrow module."
+        },
+        {
+          "info": {
+            "name": "Get TVL on a given chain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/tvl",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested"
+              }
+            ]
+          },
+          "docs": "Return the TVL of the Angle Protocol on the requested chain. If no chainId is specified, will return the TVL accross all blockchains."
+        },
+        {
+          "info": {
+            "name": "Get EURA volume on a given chain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/volume",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested"
+              }
+            ]
+          },
+          "docs": "Return data related to the EURA volume on a given chain. If no chainId is specified, will return the volume accross all blockchains."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

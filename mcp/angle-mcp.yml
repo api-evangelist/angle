@@ -566,3 +566,9 @@ tools:
 pointer_policy: No `MCPServer` pointer is wired in apis.yml. Angle publishes no MCP server — this file
   is a derived candidate tool surface only, and emitting MCPServer for it would claim a capability the
   provider does not have.
+deployment:
+  mode: none
+  verified: derived
+  tools: 26
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,394 @@
+{
+  "item": [
+    {
+      "id": "3210eecc-b6bd-49b5-b8b3-d5b82fbcccb7",
+      "name": "User related information",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "88e91475-753d-48b8-a3c8-c58ea68b8811",
+          "name": "Get allowances for a user",
+          "request": {
+            "name": "Get allowances for a user",
+            "description": {
+              "content": "Return the allowances for a given user on a given chain for specific spenders. Can include additional token addresses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "allowances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "(Required) Chain requested"
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "(Required) User blockchain `address`"
+                },
+                {
+                  "disabled": false,
+                  "key": "spenders",
+                  "value": "<string>",
+                  "description": "(Required) Array of spenders"
+                },
+                {
+                  "disabled": false,
+                  "key": "spenders",
+                  "value": "<string>",
+                  "description": "(Required) Array of spenders"
+                },
+                {
+                  "disabled": false,
+                  "key": "additionalTokenAddresses",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "additionalTokenAddresses",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a438537-4d4f-4fcd-baa5-1fff6f661838",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "allowances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "user",
+                      "value": "0xa116f421ff82A9704428259fd8CC63347127B777"
+                    },
+                    {
+                      "key": "spenders",
+                      "value": "A"
+                    },
+                    {
+                      "key": "spenders",
+                      "value": "B"
+                    },
+                    {
+                      "key": "spenders",
+                      "value": "C"
+                    },
+                    {
+                      "key": "additionalTokenAddresses",
+                      "value": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+                    },
+                    {
+                      "key": "additionalTokenAddresses",
+                      "value": "0x6B175474E89094C44Da98b954EedeAC495271d0F"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"allowances\": {\n    \"key_0\": {\n      \"key_0\": {\n        \"symbol\": \"string\",\n        \"allowance\": \"string\",\n        \"decimals\": 7329.587391487677\n      },\n      \"key_1\": {\n        \"symbol\": \"string\",\n        \"allowance\": \"string\",\n        \"decimals\": 7992.673336843222\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbc349a8-037c-4a65-8086-b6472e1854d1",
+          "name": "Get token information",
+          "request": {
+            "name": "Get token information",
+            "description": {
+              "content": "Retrieve data regarding a token used by a given user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "collect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "(Required) Chain requested"
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "User blockchain `address` (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "spender",
+                  "value": "<string>",
+                  "description": "Spender address"
+                },
+                {
+                  "disabled": false,
+                  "key": "tokenAddress",
+                  "value": "<string>",
+                  "description": "(Required) Token address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0eaf5f8d-dc29-4443-892f-fc4ecd58ccf7",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "collect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "user",
+                      "value": "0xa116f421ff82A9704428259fd8CC63347127B777"
+                    },
+                    {
+                      "key": "spender",
+                      "value": "REPLACE_ME"
+                    },
+                    {
+                      "key": "tokenAddress",
+                      "value": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"symbol\": \"string\",\n  \"address\": \"string\",\n  \"decimals\": 9845.574686058008,\n  \"balance\": \"string\",\n  \"allowance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acc3821d-bbd2-4f2e-ad7f-e78e1c79100d",
+          "name": "Get balances of Angle tokens for a user",
+          "request": {
+            "name": "Get balances of Angle tokens for a user",
+            "description": {
+              "content": "Return the balances for tokens in the for Angle token list for a given user. Can include additional token addresses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "balances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>",
+                  "description": "(Required) Chain requested"
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "(Required) User blockchain `address`"
+                },
+                {
+                  "disabled": false,
+                  "key": "additionalTokenAddresses",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "additionalTokenAddresses",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "42f9e39f-c325-41bc-80ff-e38f77e87440",
+              "name": "Mapping between a token address and for each token the user balance, the decimals of the token as well as the token name",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "user",
+                      "value": "0xa116f421ff82A9704428259fd8CC63347127B777"
+                    },
+                    {
+                      "key": "additionalTokenAddresses",
+                      "value": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+                    },
+                    {
+                      "key": "additionalTokenAddresses",
+                      "value": "0x6B175474E89094C44Da98b954EedeAC495271d0F"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": {\n      \"symbol\": \"string\",\n      \"balance\": \"string\",\n      \"decimals\": 8295.194053382731\n    }\n  },\n  {\n    \"key_0\": {\n      \"symbol\": \"string\",\n      \"balance\": \"string\",\n      \"decimals\": 2566.2807452225056\n    },\n    \"key_1\": {\n      \"symbol\": \"string\",\n      \"balance\": \"string\",\n      \"decimals\": 7864.185010156254\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.angle.money",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5c3827a7-b26a-46bf-8727-fe7c1e0294a8",
+    "name": "Angle Allowances User related information API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to track the Angle Protocol state",
+      "type": "text/plain"
+    }
+  }
+}

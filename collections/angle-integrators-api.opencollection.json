@@ -1,0 +1,306 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Angle Allowances Integrators API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Integrators",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get deposit payload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/integrators/payload/deposit",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested"
+              },
+              {
+                "name": "inputTokenAddress",
+                "value": "",
+                "type": "query",
+                "description": "The address of the input token."
+              },
+              {
+                "name": "inputTokenAmount",
+                "value": "",
+                "type": "query",
+                "description": "The amount of the input token to deposit using token decimals. For example, 1 USDC would be 1000000 (6 decimals)."
+              },
+              {
+                "name": "strategyAddress",
+                "value": "",
+                "type": "query",
+                "description": "The address of the strategy contract."
+              },
+              {
+                "name": "userAddress",
+                "value": "",
+                "type": "query",
+                "description": "The address of the user performing the transaction."
+              },
+              {
+                "name": "slippage",
+                "value": "",
+                "type": "query",
+                "description": "The maximum allowed slippage as a percentage value (i.e. 0.1 means 0.1%)."
+              },
+              {
+                "name": "ipAddress",
+                "value": "",
+                "type": "query",
+                "description": "The IP address of the user."
+              }
+            ]
+          },
+          "docs": "Generate a payload for depositing tokens into Angle protocol strategies."
+        },
+        {
+          "info": {
+            "name": "Get withdraw payload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/integrators/payload/withdraw",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain requested"
+              },
+              {
+                "name": "outputTokenAddress",
+                "value": "",
+                "type": "query",
+                "description": "The address of the output token (the token that the user wants to receive after the withdraw from strategy)."
+              },
+              {
+                "name": "inputTokenAmount",
+                "value": "",
+                "type": "query",
+                "description": "The amount of the input token to withdraw. This is the amount of the strategy token that the user wants to withdraw (with 18 decimals). For example, 1 stUSDStrat would be 1000000000000000000 (18 decimals)."
+              },
+              {
+                "name": "strategyAddress",
+                "value": "",
+                "type": "query",
+                "description": "The address of the strategy contract."
+              },
+              {
+                "name": "userAddress",
+                "value": "",
+                "type": "query",
+                "description": "The address of the user performing the transaction."
+              },
+              {
+                "name": "slippage",
+                "value": "",
+                "type": "query",
+                "description": "The maximum allowed slippage as a percentage value (i.e. 0.1 means 0.1%)."
+              },
+              {
+                "name": "ipAddress",
+                "value": "",
+                "type": "query",
+                "description": "The IP address of the user."
+              }
+            ]
+          },
+          "docs": "Generate a payload for withdrawing tokens from Angle protocol strategies."
+        },
+        {
+          "info": {
+            "name": "Get vault positions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/integrators/vaults/positions",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID (only Arbitrum is supported)"
+              },
+              {
+                "name": "strategyAddress",
+                "value": "",
+                "type": "query",
+                "description": "The address of the strategy contract."
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to retrieve"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              }
+            ]
+          },
+          "docs": "Retrieve positions data for a specific vault strategy. Position are ordered by the most recent first."
+        },
+        {
+          "info": {
+            "name": "Get user's vault positions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/integrators/vaults/user/positions",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "Chain ID (optional, currently only Arbitrum is supported)"
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return (optional)"
+              },
+              {
+                "name": "includeOperations",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include operations (deposits, withdrawals) in the response (optional)"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip (optional)"
+              },
+              {
+                "name": "strategyAddress",
+                "value": "",
+                "type": "query",
+                "description": "Address of the strategy (optional)"
+              },
+              {
+                "name": "userAddress",
+                "value": "",
+                "type": "query",
+                "description": "Address of the user"
+              }
+            ]
+          },
+          "docs": "Retrieve position data for a specific user in a vault strategy."
+        },
+        {
+          "info": {
+            "name": "Get historical vault positions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/integrators/vaults/positions/historical",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID (only Arbitrum is supported)"
+              },
+              {
+                "name": "strategyAddress",
+                "value": "",
+                "type": "query",
+                "description": "The address of the strategy contract."
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to retrieve"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              }
+            ]
+          },
+          "docs": "Retrieve historical position data for a specific vault strategy. Position are ordered by the most recent first."
+        },
+        {
+          "info": {
+            "name": "Get historical vault operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.angle.money/v1/integrators/vaults/operations/historical",
+            "params": [
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID (only Arbitrum is supported)"
+              },
+              {
+                "name": "strategyAddress",
+                "value": "",
+                "type": "query",
+                "description": "The address of the strategy contract."
+              },
+              {
+                "name": "userAddresses",
+                "value": "",
+                "type": "query",
+                "description": "User address or array of user addresses"
+              },
+              {
+                "name": "firstDeposits",
+                "value": "",
+                "type": "query",
+                "description": "Number of deposit items to retrieve"
+              },
+              {
+                "name": "skipDeposits",
+                "value": "",
+                "type": "query",
+                "description": "Number of deposit items to skip"
+              },
+              {
+                "name": "firstWithdrawals",
+                "value": "",
+                "type": "query",
+                "description": "Number of withdrawal items to retrieve"
+              },
+              {
+                "name": "skipWithdrawals",
+                "value": "",
+                "type": "query",
+                "description": "Number of withdrawal items to skip"
+              }
+            ]
+          },
+          "docs": "Retrieve historical operation data for a specific vault strategy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
