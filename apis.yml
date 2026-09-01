@@ -120,7 +120,7 @@ apis:
   humanURL: https://angle.money
   baseURL: https://api.angle.money
   tags:
-  - Apr
+  - APR
   tags_raw:
   - Apr
   properties:
@@ -202,7 +202,7 @@ apis:
   humanURL: https://angle.money
   baseURL: https://api.angle.money
   tags:
-  - Dao
+  - DAO
   tags_raw:
   - Dao
   properties:
@@ -364,7 +364,7 @@ apis:
   humanURL: https://angle.money
   baseURL: https://api.angle.money
   tags:
-  - Tvl
+  - TVL
   tags_raw:
   - Tvl
   properties:
