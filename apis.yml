@@ -15,15 +15,17 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: unknown
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Unknown
+  confidence: low
   source:
   - authentication
-  generated: '2026-07-22'
+  - security
+  - sandbox
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/angle.png
 name: Angle
@@ -464,8 +466,9 @@ apis:
   - type: DataModel
     url: data-model/angle-data-model.yml
 common:
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/angle-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: IssueTracker
   url: https://github.com/AngleProtocol/angle-core/issues
 - type: CodeOfConduct
