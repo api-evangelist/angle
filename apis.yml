@@ -29,15 +29,15 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/angle.png
 name: Angle
-description: Angle (Angle Labs, Inc.) is a decentralized, over-collateralized stablecoin protocol
-  that issued the euro-pegged EURA and dollar-pegged USDA stablecoins, along with yield-bearing staked
-  versions of each. Its on-chain modules included the Transmuter basket-and-dynamic-fee minting system,
-  a borrowing module for depositing collateral against stablecoin debt, a native savings system,
-  and cross-chain liquidity infrastructure. The protocol is open source under the AngleProtocol GitHub
-  organization and ships a TypeScript SDK for building applications on top of it. Angle has announced
-  the end of its operations — the protocol remains fully collateralized and every USDA and EURA is
-  redeemable 1:1 until 1 March 2027 — and the team's ongoing work has moved to Merkl. Angle exposes
-  smart contracts and a client SDK rather than a documented public REST API.
+description: Angle (Angle Labs, Inc.) is a decentralized, over-collateralized stablecoin protocol that
+  issued the euro-pegged EURA and dollar-pegged USDA stablecoins, along with yield-bearing staked versions
+  of each. Its on-chain modules included the Transmuter basket-and-dynamic-fee minting system, a borrowing
+  module for depositing collateral against stablecoin debt, a native savings system, and cross-chain liquidity
+  infrastructure. The protocol is open source under the AngleProtocol GitHub organization and ships a
+  TypeScript SDK for building applications on top of it. Angle has announced the end of its operations
+  — the protocol remains fully collateralized and every USDA and EURA is redeemable 1:1 until 1 March
+  2027 — and the team's ongoing work has moved to Merkl. Angle exposes smart contracts and a client SDK
+  rather than a documented public REST API.
 url: https://raw.githubusercontent.com/api-evangelist/angle/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -45,7 +45,7 @@ x-backed-by:
 - a16z
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-09-16'
 tags:
 - Company
 - Stablecoins
@@ -77,7 +77,7 @@ apis:
   - type: DataModel
     url: data-model/angle-data-model.yml
 - aid: angle:angle-angle-protocol-data-api
-  name: Angle Angle Protocol Data API
+  name: Angle Protocol Data API
   description: The Angle Protocol Data API from Angle — 3 operation(s) for angle protocol data.
   humanURL: https://angle.money
   baseURL: https://api.angle.money
@@ -384,8 +384,7 @@ apis:
     url: data-model/angle-data-model.yml
 - aid: angle:angle-user-related-information-api
   name: Angle User related information API
-  description: >-
-    The User related information API from Angle — 3 operation(s) for user related information.
+  description: The User related information API from Angle — 3 operation(s) for user related information.
   humanURL: https://angle.money
   baseURL: https://api.angle.money
   tags:
@@ -468,7 +467,10 @@ apis:
 common:
 - type: X-MCPServerCandidate
   url: mcp/angle-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: IssueTracker
   url: https://github.com/AngleProtocol/angle-core/issues
 - type: CodeOfConduct
