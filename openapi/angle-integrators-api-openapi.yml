@@ -1,10 +1,11 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Angle Allowances Integrators API
-  description: API to track the Angle Protocol state
+  title: Angle Integrators API
+  description: With Angle API, you can easily track the state of the Angle Protocol or build an application on top of the protocol.
 servers:
 - url: https://api.angle.money
+- url: https://api-staging.angle.money
 tags:
 - name: Integrators
 paths:
@@ -65,6 +66,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getV1IntegratorsPayloadDeposit
+      x-operation-id-source: derived
   /v1/integrators/payload/withdraw:
     get:
       summary: Get withdraw payload
@@ -122,6 +125,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getV1IntegratorsPayloadWithdraw
+      x-operation-id-source: derived
   /v1/integrators/vaults/positions:
     get:
       summary: Get vault positions
@@ -165,6 +170,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getV1IntegratorsVaultsPositions
+      x-operation-id-source: derived
   /v1/integrators/vaults/user/positions:
     get:
       summary: Get user's vault positions
@@ -216,6 +223,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getV1IntegratorsVaultsUserPositions
+      x-operation-id-source: derived
   /v1/integrators/vaults/positions/historical:
     get:
       summary: Get historical vault positions
@@ -259,6 +268,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getV1IntegratorsVaultsPositionsHistorical
+      x-operation-id-source: derived
   /v1/integrators/vaults/operations/historical:
     get:
       summary: Get historical vault operations
@@ -326,6 +337,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getV1IntegratorsVaultsOperationsHistorical
+      x-operation-id-source: derived
 components:
   parameters:
     requiredChainId:
@@ -346,7 +359,3 @@ components:
           value: 42161
         Avalanche:
           value: 43114
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic

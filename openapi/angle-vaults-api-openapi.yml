@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Angle Allowances Vaults API
+  title: Angle Vaults API
   description: API to track the Angle Protocol state
 servers:
 - url: https://api.angle.money
@@ -33,6 +33,10 @@ paths:
                   $ref: '#/components/schemas/vaults'
       tags:
       - Vaults
+      summary: Get vaults
+      x-summary-source: derived
+      operationId: getV1Vaults
+      x-operation-id-source: derived
 components:
   schemas:
     vaults:

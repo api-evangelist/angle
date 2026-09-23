@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Angle Allowances Volume API
+  title: Angle Volume API
   description: API to track the Angle Protocol state
 servers:
 - url: https://api.angle.money
@@ -26,6 +26,10 @@ paths:
                 $ref: '#/components/schemas/volume'
       tags:
       - Volume
+      summary: Get volume
+      x-summary-source: derived
+      operationId: getV1Volume
+      x-operation-id-source: derived
 components:
   schemas:
     volume:

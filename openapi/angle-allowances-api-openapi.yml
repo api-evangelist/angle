@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
   title: Angle Allowances API
@@ -36,6 +36,10 @@ paths:
                 $ref: '#/components/schemas/allowances'
       tags:
       - Allowances
+      summary: Get allowances
+      x-summary-source: derived
+      operationId: getV1Allowances
+      x-operation-id-source: derived
 components:
   schemas:
     allowances:

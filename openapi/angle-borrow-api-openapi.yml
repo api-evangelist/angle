@@ -1,10 +1,11 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Angle Allowances Borrow API
-  description: API to track the Angle Protocol state
+  title: Angle Borrow API
+  description: With Angle API, you can easily track the state of the Angle Protocol or build an application on top of the protocol.
 servers:
 - url: https://api.angle.money
+- url: https://api-staging.angle.money
 tags:
 - name: Borrow
 paths:
@@ -28,6 +29,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/vaultManagers'
+      operationId: getV1VaultManagers
+      x-operation-id-source: derived
   /v1/vaults:
     get:
       summary: Get Vaults
@@ -47,6 +50,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/vaults'
+      operationId: getV1Vaults
+      x-operation-id-source: derived
   /v1/leverage:
     get:
       summary: Build payloads for Angle's borrow module
@@ -163,6 +168,8 @@ paths:
                   data:
                     type: string
                     description: The calldata bytes needed to build the Ethereum transaction
+      operationId: getV1Leverage
+      x-operation-id-source: derived
   /v1/deleverage:
     get:
       summary: Build payloads for Angle's borrow module
@@ -254,7 +261,62 @@ paths:
       responses:
         '200':
           description: JSON object containing the calldata bytes needed to build the Ethereum transaction.
+      operationId: getV1Deleverage
+      x-operation-id-source: derived
 components:
+  parameters:
+    agToken:
+      name: agToken
+      in: query
+      description: agToken address
+      required: true
+      schema:
+        type: string
+      examples:
+        EURA:
+          value: '0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8'
+    requiredChainId:
+      in: query
+      name: chainId
+      description: Chain requested
+      required: true
+      schema:
+        type: integer
+      examples:
+        Ethereum:
+          value: 1
+        Polygon:
+          value: 137
+        Optimism:
+          value: 10
+        Arbitrum:
+          value: 42161
+        Avalanche:
+          value: 43114
+    requiredUser:
+      name: user
+      in: query
+      description: User blockchain `address`
+      required: true
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+    optionalUser:
+      name: user
+      in: query
+      description: User blockchain `address` (optional)
+      required: false
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+    optionalBlockNumber:
+      name: blockNumber
+      in: query
+      description: Block number
+      required: false
+      schema:
+        type: integer
+      example: 12345678
   schemas:
     vaultManagers:
       type: object
@@ -359,60 +421,3 @@ components:
           liquidationPrice:
             type: number
             description: Current liquidation price threshold, in USD
-  parameters:
-    requiredUser:
-      name: user
-      in: query
-      description: User blockchain `address`
-      required: true
-      schema:
-        type: string
-      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
-    requiredChainId:
-      in: query
-      name: chainId
-      description: Chain requested
-      required: true
-      schema:
-        type: integer
-      examples:
-        Ethereum:
-          value: 1
-        Polygon:
-          value: 137
-        Optimism:
-          value: 10
-        Arbitrum:
-          value: 42161
-        Avalanche:
-          value: 43114
-    agToken:
-      name: agToken
-      in: query
-      description: agToken address
-      required: true
-      schema:
-        type: string
-      examples:
-        EURA:
-          value: '0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8'
-    optionalBlockNumber:
-      name: blockNumber
-      in: query
-      description: Block number
-      required: false
-      schema:
-        type: integer
-      example: 12345678
-    optionalUser:
-      name: user
-      in: query
-      description: User blockchain `address` (optional)
-      required: false
-      schema:
-        type: string
-      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic

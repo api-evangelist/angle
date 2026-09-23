@@ -1,10 +1,11 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Angle Allowances Helpers API
-  description: API to track the Angle Protocol state
+  title: Angle Helpers API
+  description: With Angle API, you can easily track the state of the Angle Protocol or build an application on top of the protocol.
 servers:
 - url: https://api.angle.money
+- url: https://api-staging.angle.money
 tags:
 - name: Helpers
 paths:
@@ -28,6 +29,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/incentives'
+      operationId: getV1Incentives
+      x-operation-id-source: derived
   /v1/app:
     get:
       summary: Get tokens and prices
@@ -46,6 +49,8 @@ paths:
                     $ref: '#/components/schemas/tokens'
                   prices:
                     $ref: '#/components/schemas/prices'
+      operationId: getV1App
+      x-operation-id-source: derived
   /v1/prices:
     get:
       summary: Get prices
@@ -59,6 +64,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/prices'
+      operationId: getV1Prices
+      x-operation-id-source: derived
   /v1/simulate:
     get:
       summary: Simulate Transaction
@@ -98,6 +105,8 @@ paths:
             application/json:
               schema:
                 type: string
+      operationId: getV1Simulate
+      x-operation-id-source: derived
   /v1/simulate/multicall:
     get:
       summary: Multicall simulation
@@ -120,8 +129,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/multicallResponse'
+      operationId: getV1SimulateMulticall
+      x-operation-id-source: derived
 components:
   schemas:
+    callObject:
+      type: object
+      properties:
+        chainId:
+          type: number
+        data:
+          type: string
+        from:
+          type: string
+        to:
+          type: string
+        value:
+          type: string
+          pattern: ^[0-9A-Fa-f]+$
     tokens:
       type: object
       additionalProperties:
@@ -156,6 +181,26 @@ components:
             items:
               type: string
             description: Token tags
+    prices:
+      type: array
+      items:
+        type: object
+        properties:
+          token:
+            type: string
+            description: Token symbol
+          rate:
+            type: number
+            description: Token price (in USD)
+    multicallResponse:
+      type: object
+      properties:
+        transfers:
+          type: array
+          items:
+            type: object
+        url:
+          type: string
     incentives:
       type: object
       additionalProperties:
@@ -227,40 +272,6 @@ components:
               value:
                 type: number
                 description: Value of the APR
-    prices:
-      type: array
-      items:
-        type: object
-        properties:
-          token:
-            type: string
-            description: Token symbol
-          rate:
-            type: number
-            description: Token price (in USD)
-    callObject:
-      type: object
-      properties:
-        chainId:
-          type: number
-        data:
-          type: string
-        from:
-          type: string
-        to:
-          type: string
-        value:
-          type: string
-          pattern: ^[0-9A-Fa-f]+$
-    multicallResponse:
-      type: object
-      properties:
-        transfers:
-          type: array
-          items:
-            type: object
-        url:
-          type: string
   parameters:
     requiredChainId:
       in: query
@@ -288,7 +299,3 @@ components:
       schema:
         type: string
       example: '0xa116f421ff82A9704428259fd8CC63347127B777'
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic

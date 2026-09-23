@@ -1,12 +1,12 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Angle Allowances Tvl API
+  title: Angle Tvl API
   description: API to track the Angle Protocol state
 servers:
 - url: https://api.angle.money
 tags:
-- name: Tvl
+- name: TVL
 paths:
   /v1/tvl:
     get:
@@ -21,7 +21,11 @@ paths:
         '200':
           description: Angle TVL on the requested chain
       tags:
-      - Tvl
+      - TVL
+      summary: Get tvl
+      x-summary-source: derived
+      operationId: getV1Tvl
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BasicAuth:

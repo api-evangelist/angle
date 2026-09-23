@@ -1,10 +1,11 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Angle Allowances Angle Protocol Data API
-  description: API to track the Angle Protocol state
+  title: Angle Protocol Data API
+  description: With Angle API, you can easily track the state of the Angle Protocol or build an application on top of the protocol.
 servers:
 - url: https://api.angle.money
+- url: https://api-staging.angle.money
 tags:
 - name: Angle Protocol Data
 paths:
@@ -30,6 +31,8 @@ paths:
                     type: array
                     items:
                       type: string
+      operationId: getV1ActiveChains
+      x-operation-id-source: derived
   /v1/tvl:
     get:
       summary: Get TVL on a given chain
@@ -41,6 +44,8 @@ paths:
       responses:
         '200':
           description: TVL on the requested chain
+      operationId: getV1Tvl
+      x-operation-id-source: derived
   /v1/volume:
     get:
       summary: Get EURA volume on a given chain
@@ -56,6 +61,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/volume'
+      operationId: getV1Volume
+      x-operation-id-source: derived
 components:
   parameters:
     optionalChainId:
@@ -94,7 +101,3 @@ components:
         volume:
           type: number
           description: Per second EURA volume based on `Transfer` event
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic

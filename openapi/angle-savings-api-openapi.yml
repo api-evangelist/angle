@@ -1,10 +1,11 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Angle Allowances Savings API
-  description: API to track the Angle Protocol state
+  title: Angle Savings API
+  description: With Angle API, you can easily track the state of the Angle Protocol or build an application on top of the protocol.
 servers:
 - url: https://api.angle.money
+- url: https://api-staging.angle.money
 tags:
 - name: Savings
 paths:
@@ -23,6 +24,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/savings'
+      operationId: getV1Savings
+      x-operation-id-source: derived
   /v2/savings:
     get:
       summary: Get stablecoin savings data
@@ -36,6 +39,8 @@ paths:
           content:
             application/json:
               schema: null
+      operationId: getV2Savings
+      x-operation-id-source: derived
   /v2/historical/savings:
     get:
       summary: Fetch historical savings data
@@ -97,6 +102,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
+      operationId: getV2HistoricalSavings
+      x-operation-id-source: derived
 components:
   schemas:
     chainSavingsData:
@@ -104,6 +111,9 @@ components:
       additionalProperties:
         $ref: '#/components/schemas/savingsData'
       description: Object with chain IDs as keys and savings data as values
+    savingsData:
+      type: object
+      description: Historical savings data for a specific chain
     savings:
       type: object
       properties:
@@ -128,9 +138,6 @@ components:
         message:
           type: string
           description: Detailed error message
-    savingsData:
-      type: object
-      description: Historical savings data for a specific chain
   parameters:
     requiredChainId:
       in: query
@@ -150,7 +157,3 @@ components:
           value: 42161
         Avalanche:
           value: 43114
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
