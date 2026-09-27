@@ -109,18 +109,6 @@ components:
               balance:
                 type: number
                 description: Balance of the user in the gauge contract
-    ANGLE:
-      type: object
-      properties:
-        totalSupply:
-          type: number
-          description: Total supply of the ANGLE token
-        circulatingSupply:
-          type: number
-          description: Circulating supply of the ANGLE
-        balance:
-          type: string
-          description: ANGLE balance of the user
     rewardsData:
       type: object
       properties:
@@ -142,6 +130,18 @@ components:
         totalClaimable:
           type: string
           description: Total amount of tokens still claimable by the user in the contract
+    ANGLE:
+      type: object
+      properties:
+        totalSupply:
+          type: number
+          description: Total supply of the ANGLE token
+        circulatingSupply:
+          type: number
+          description: Circulating supply of the ANGLE
+        balance:
+          type: string
+          description: ANGLE balance of the user
     veANGLE:
       type: object
       properties:

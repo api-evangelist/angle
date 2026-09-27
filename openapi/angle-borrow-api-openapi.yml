@@ -265,16 +265,14 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    agToken:
-      name: agToken
+    requiredUser:
+      name: user
       in: query
-      description: agToken address
+      description: User blockchain `address`
       required: true
       schema:
         type: string
-      examples:
-        EURA:
-          value: '0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8'
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
     requiredChainId:
       in: query
       name: chainId
@@ -293,14 +291,6 @@ components:
           value: 42161
         Avalanche:
           value: 43114
-    requiredUser:
-      name: user
-      in: query
-      description: User blockchain `address`
-      required: true
-      schema:
-        type: string
-      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
     optionalUser:
       name: user
       in: query
@@ -309,6 +299,16 @@ components:
       schema:
         type: string
       example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+    agToken:
+      name: agToken
+      in: query
+      description: agToken address
+      required: true
+      schema:
+        type: string
+      examples:
+        EURA:
+          value: '0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8'
     optionalBlockNumber:
       name: blockNumber
       in: query

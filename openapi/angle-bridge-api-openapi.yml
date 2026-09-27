@@ -47,6 +47,33 @@ paths:
       operationId: getV1LayerZero
       x-operation-id-source: derived
 components:
+  parameters:
+    optionalUser:
+      name: user
+      in: query
+      description: User blockchain `address` (optional)
+      required: false
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+    requiredChainId:
+      in: query
+      name: chainId
+      description: Chain requested
+      required: true
+      schema:
+        type: integer
+      examples:
+        Ethereum:
+          value: 1
+        Polygon:
+          value: 137
+        Optimism:
+          value: 10
+        Arbitrum:
+          value: 42161
+        Avalanche:
+          value: 43114
   schemas:
     bridgeInfo:
       type: object
@@ -100,30 +127,3 @@ components:
                   type: string
                 totalSupply:
                   type: string
-  parameters:
-    optionalUser:
-      name: user
-      in: query
-      description: User blockchain `address` (optional)
-      required: false
-      schema:
-        type: string
-      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
-    requiredChainId:
-      in: query
-      name: chainId
-      description: Chain requested
-      required: true
-      schema:
-        type: integer
-      examples:
-        Ethereum:
-          value: 1
-        Polygon:
-          value: 137
-        Optimism:
-          value: 10
-        Arbitrum:
-          value: 42161
-        Avalanche:
-          value: 43114

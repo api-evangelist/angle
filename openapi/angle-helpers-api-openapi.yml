@@ -133,54 +133,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    callObject:
+    multicallResponse:
       type: object
       properties:
-        chainId:
-          type: number
-        data:
+        transfers:
+          type: array
+          items:
+            type: object
+        url:
           type: string
-        from:
-          type: string
-        to:
-          type: string
-        value:
-          type: string
-          pattern: ^[0-9A-Fa-f]+$
-    tokens:
-      type: object
-      additionalProperties:
-        type: object
-        properties:
-          name:
-            type: string
-            description: Token name
-          address:
-            type: string
-            description: Token address
-          decimals:
-            type: number
-            description: ERC20 decimals
-          symbol:
-            type: string
-            description: Token symbol
-          useInSwap:
-            type: boolean
-            description: Whether this token is used in Angle swaps
-          hasPermit:
-            type: boolean
-            description: Whether the token supports permit
-          permitVersion:
-            type: string
-            description: Permit version, otherwise '-1'
-          logoURI:
-            type: string
-            description: Logo URI
-          tags:
-            type: array
-            items:
-              type: string
-            description: Token tags
     prices:
       type: array
       items:
@@ -192,15 +153,6 @@ components:
           rate:
             type: number
             description: Token price (in USD)
-    multicallResponse:
-      type: object
-      properties:
-        transfers:
-          type: array
-          items:
-            type: object
-        url:
-          type: string
     incentives:
       type: object
       additionalProperties:
@@ -272,6 +224,54 @@ components:
               value:
                 type: number
                 description: Value of the APR
+    callObject:
+      type: object
+      properties:
+        chainId:
+          type: number
+        data:
+          type: string
+        from:
+          type: string
+        to:
+          type: string
+        value:
+          type: string
+          pattern: ^[0-9A-Fa-f]+$
+    tokens:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          name:
+            type: string
+            description: Token name
+          address:
+            type: string
+            description: Token address
+          decimals:
+            type: number
+            description: ERC20 decimals
+          symbol:
+            type: string
+            description: Token symbol
+          useInSwap:
+            type: boolean
+            description: Whether this token is used in Angle swaps
+          hasPermit:
+            type: boolean
+            description: Whether the token supports permit
+          permitVersion:
+            type: string
+            description: Permit version, otherwise '-1'
+          logoURI:
+            type: string
+            description: Logo URI
+          tags:
+            type: array
+            items:
+              type: string
+            description: Token tags
   parameters:
     requiredChainId:
       in: query

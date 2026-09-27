@@ -106,14 +106,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    savingsData:
+      type: object
+      description: Historical savings data for a specific chain
     chainSavingsData:
       type: object
       additionalProperties:
         $ref: '#/components/schemas/savingsData'
       description: Object with chain IDs as keys and savings data as values
-    savingsData:
+    errorResponse:
       type: object
-      description: Historical savings data for a specific chain
+      properties:
+        error:
+          type: string
+          example: Invalid or missing params
+        message:
+          type: string
+          description: Detailed error message
     savings:
       type: object
       properties:
@@ -129,15 +138,6 @@ components:
           type: integrer
         apr:
           type: float
-    errorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Invalid or missing params
-        message:
-          type: string
-          description: Detailed error message
   parameters:
     requiredChainId:
       in: query

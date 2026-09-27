@@ -64,6 +64,22 @@ paths:
       operationId: getV1Volume
       x-operation-id-source: derived
 components:
+  schemas:
+    volume:
+      type: object
+      properties:
+        circulatingSupply:
+          type: number
+          description: Total circulating supply of the token
+        holder:
+          type: number
+          description: Number of addresses holding the token
+        rate:
+          type: number
+          description: Per second increase rate of the EURA volume over the last 30 minutes based on `Transfer` event
+        volume:
+          type: number
+          description: Per second EURA volume based on `Transfer` event
   parameters:
     optionalChainId:
       in: query
@@ -85,19 +101,3 @@ components:
           value: 42161
         Avalanche:
           value: 43114
-  schemas:
-    volume:
-      type: object
-      properties:
-        circulatingSupply:
-          type: number
-          description: Total circulating supply of the token
-        holder:
-          type: number
-          description: Number of addresses holding the token
-        rate:
-          type: number
-          description: Per second increase rate of the EURA volume over the last 30 minutes based on `Transfer` event
-        volume:
-          type: number
-          description: Per second EURA volume based on `Transfer` event
