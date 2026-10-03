@@ -264,60 +264,45 @@ paths:
       operationId: getV1Deleverage
       x-operation-id-source: derived
 components:
-  parameters:
-    requiredUser:
-      name: user
-      in: query
-      description: User blockchain `address`
-      required: true
-      schema:
-        type: string
-      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
-    requiredChainId:
-      in: query
-      name: chainId
-      description: Chain requested
-      required: true
-      schema:
-        type: integer
-      examples:
-        Ethereum:
-          value: 1
-        Polygon:
-          value: 137
-        Optimism:
-          value: 10
-        Arbitrum:
-          value: 42161
-        Avalanche:
-          value: 43114
-    optionalUser:
-      name: user
-      in: query
-      description: User blockchain `address` (optional)
-      required: false
-      schema:
-        type: string
-      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
-    agToken:
-      name: agToken
-      in: query
-      description: agToken address
-      required: true
-      schema:
-        type: string
-      examples:
-        EURA:
-          value: '0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8'
-    optionalBlockNumber:
-      name: blockNumber
-      in: query
-      description: Block number
-      required: false
-      schema:
-        type: integer
-      example: 12345678
   schemas:
+    vaults:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          address:
+            type: string
+            description: Address of the corresponding `VaultManager`
+          symbol:
+            type: string
+            description: Symbol of the `VaultManager`
+          id:
+            type: number
+            description: ERC721 standard `tokenID`
+          collateral:
+            type: number
+            description: Address of the collateral token
+          stablecoin:
+            type: string
+            description: Address of the minted stablecoin
+          rate:
+            type: number
+            description: Underlying oracle price
+          collateralAmount:
+            type: number
+            description: Collateral added to the vault
+          debt:
+            type: number
+            description: Amount currently due
+          debtString:
+            type: string
+            description: Amount currently due, as a string for precision
+          collateralRatio:
+            type: number
+            description: Collateral over Debt, in %
+          liquidationPrice:
+            type: number
+            description: Current liquidation price threshold, in USD
     vaultManagers:
       type: object
       additionalProperties:
@@ -383,41 +368,56 @@ components:
           targetHealthFactor:
             type: number
             description: Target health factor
-    vaults:
-      type: object
-      additionalProperties:
-        type: object
-        properties:
-          address:
-            type: string
-            description: Address of the corresponding `VaultManager`
-          symbol:
-            type: string
-            description: Symbol of the `VaultManager`
-          id:
-            type: number
-            description: ERC721 standard `tokenID`
-          collateral:
-            type: number
-            description: Address of the collateral token
-          stablecoin:
-            type: string
-            description: Address of the minted stablecoin
-          rate:
-            type: number
-            description: Underlying oracle price
-          collateralAmount:
-            type: number
-            description: Collateral added to the vault
-          debt:
-            type: number
-            description: Amount currently due
-          debtString:
-            type: string
-            description: Amount currently due, as a string for precision
-          collateralRatio:
-            type: number
-            description: Collateral over Debt, in %
-          liquidationPrice:
-            type: number
-            description: Current liquidation price threshold, in USD
+  parameters:
+    requiredUser:
+      name: user
+      in: query
+      description: User blockchain `address`
+      required: true
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+    requiredChainId:
+      in: query
+      name: chainId
+      description: Chain requested
+      required: true
+      schema:
+        type: integer
+      examples:
+        Ethereum:
+          value: 1
+        Polygon:
+          value: 137
+        Optimism:
+          value: 10
+        Arbitrum:
+          value: 42161
+        Avalanche:
+          value: 43114
+    agToken:
+      name: agToken
+      in: query
+      description: agToken address
+      required: true
+      schema:
+        type: string
+      examples:
+        EURA:
+          value: '0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8'
+    optionalUser:
+      name: user
+      in: query
+      description: User blockchain `address` (optional)
+      required: false
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+    optionalBlockNumber:
+      name: blockNumber
+      in: query
+      description: Block number
+      required: false
+      schema:
+        type: integer
+      example: 12345678

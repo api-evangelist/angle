@@ -109,27 +109,6 @@ components:
               balance:
                 type: number
                 description: Balance of the user in the gauge contract
-    rewardsData:
-      type: object
-      properties:
-        times:
-          type: array
-          items:
-            type: number
-            description: Timestamp at which the `FeeDistributor` contract was checkpointed for the corresponding week. Each item in the array corresponds to a new week.
-        tokenPerWeek:
-          type: array
-          items:
-            type: number
-            description: Amount of sanUSDC_EUR distributed in the corresponding week. Each item in the array corresponds to a new week.
-        claimable:
-          type: array
-          items:
-            type: number
-            description: Amount claimable by the user for the week of interest. Each item in the array corresponds to a new week.
-        totalClaimable:
-          type: string
-          description: Total amount of tokens still claimable by the user in the contract
     ANGLE:
       type: object
       properties:
@@ -169,6 +148,27 @@ components:
         allowance:
           type: string
           description: Allowance for the ANGLE token to the veANGLE contract by the user
+    rewardsData:
+      type: object
+      properties:
+        times:
+          type: array
+          items:
+            type: number
+            description: Timestamp at which the `FeeDistributor` contract was checkpointed for the corresponding week. Each item in the array corresponds to a new week.
+        tokenPerWeek:
+          type: array
+          items:
+            type: number
+            description: Amount of sanUSDC_EUR distributed in the corresponding week. Each item in the array corresponds to a new week.
+        claimable:
+          type: array
+          items:
+            type: number
+            description: Amount claimable by the user for the week of interest. Each item in the array corresponds to a new week.
+        totalClaimable:
+          type: string
+          description: Total amount of tokens still claimable by the user in the contract
   securitySchemes:
     BasicAuth:
       type: http

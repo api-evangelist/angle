@@ -90,6 +90,21 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    tokenInfoResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        symbol:
+          type: string
+        address:
+          type: string
+        decimals:
+          type: number
+        balance:
+          type: string
+        allowance:
+          type: string
     balances:
       type: array
       items:
@@ -106,22 +121,26 @@ components:
             decimals:
               type: number
               description: Number of decimals of the token
-    tokenInfoResponse:
-      type: object
-      properties:
-        name:
-          type: string
-        symbol:
-          type: string
-        address:
-          type: string
-        decimals:
-          type: number
-        balance:
-          type: string
-        allowance:
-          type: string
   parameters:
+    tokenAddress:
+      name: tokenAddress
+      in: query
+      description: Token address
+      required: true
+      schema:
+        type: string
+      example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+    additionalTokenAddresses:
+      name: additionalTokenAddresses
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      example:
+      - '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+      - '0x6B175474E89094C44Da98b954EedeAC495271d0F'
     requiredChainId:
       in: query
       name: chainId
@@ -148,33 +167,6 @@ components:
       schema:
         type: string
       example: '0xa116f421ff82A9704428259fd8CC63347127B777'
-    optionalUser:
-      name: user
-      in: query
-      description: User blockchain `address` (optional)
-      required: false
-      schema:
-        type: string
-      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
-    additionalTokenAddresses:
-      name: additionalTokenAddresses
-      in: query
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      example:
-      - '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
-      - '0x6B175474E89094C44Da98b954EedeAC495271d0F'
-    tokenAddress:
-      name: tokenAddress
-      in: query
-      description: Token address
-      required: true
-      schema:
-        type: string
-      example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
     spenders:
       name: spenders
       in: query
@@ -188,3 +180,11 @@ components:
       - A
       - B
       - C
+    optionalUser:
+      name: user
+      in: query
+      description: User blockchain `address` (optional)
+      required: false
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'

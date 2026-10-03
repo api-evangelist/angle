@@ -133,6 +133,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    callObject:
+      type: object
+      properties:
+        chainId:
+          type: number
+        data:
+          type: string
+        from:
+          type: string
+        to:
+          type: string
+        value:
+          type: string
+          pattern: ^[0-9A-Fa-f]+$
     multicallResponse:
       type: object
       properties:
@@ -224,20 +238,6 @@ components:
               value:
                 type: number
                 description: Value of the APR
-    callObject:
-      type: object
-      properties:
-        chainId:
-          type: number
-        data:
-          type: string
-        from:
-          type: string
-        to:
-          type: string
-        value:
-          type: string
-          pattern: ^[0-9A-Fa-f]+$
     tokens:
       type: object
       additionalProperties:
