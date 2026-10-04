@@ -50,6 +50,33 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    veANGLE:
+      type: object
+      properties:
+        totalSupply:
+          type: number
+          description: Total supply of the token
+        totalLocked:
+          type: number
+          description: Amount of ANGLE token locked
+        rate:
+          type: number
+          description: ANGLE emission rate per second
+        nextRate:
+          type: number
+          description: ANGLE emission rate per second next week
+        locked:
+          type: number
+          description: Amount of ANGLE tokens locked by the users
+        endLock:
+          type: number
+          description: Timestamp at which the lock should end
+        balance:
+          type: string
+          description: User veANGLE balance
+        allowance:
+          type: string
+          description: Allowance for the ANGLE token to the veANGLE contract by the user
     gauges:
       type: object
       properties:
@@ -121,33 +148,6 @@ components:
         balance:
           type: string
           description: ANGLE balance of the user
-    veANGLE:
-      type: object
-      properties:
-        totalSupply:
-          type: number
-          description: Total supply of the token
-        totalLocked:
-          type: number
-          description: Amount of ANGLE token locked
-        rate:
-          type: number
-          description: ANGLE emission rate per second
-        nextRate:
-          type: number
-          description: ANGLE emission rate per second next week
-        locked:
-          type: number
-          description: Amount of ANGLE tokens locked by the users
-        endLock:
-          type: number
-          description: Timestamp at which the lock should end
-        balance:
-          type: string
-          description: User veANGLE balance
-        allowance:
-          type: string
-          description: Allowance for the ANGLE token to the veANGLE contract by the user
     rewardsData:
       type: object
       properties:

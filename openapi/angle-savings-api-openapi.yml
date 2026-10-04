@@ -106,9 +106,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    savingsData:
-      type: object
-      description: Historical savings data for a specific chain
     errorResponse:
       type: object
       properties:
@@ -118,6 +115,14 @@ components:
         message:
           type: string
           description: Detailed error message
+    chainSavingsData:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/savingsData'
+      description: Object with chain IDs as keys and savings data as values
+    savingsData:
+      type: object
+      description: Historical savings data for a specific chain
     savings:
       type: object
       properties:
@@ -133,11 +138,6 @@ components:
           type: integrer
         apr:
           type: float
-    chainSavingsData:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/savingsData'
-      description: Object with chain IDs as keys and savings data as values
   parameters:
     requiredChainId:
       in: query

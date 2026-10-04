@@ -132,7 +132,79 @@ paths:
       operationId: getV1SimulateMulticall
       x-operation-id-source: derived
 components:
+  parameters:
+    optionalUser:
+      name: user
+      in: query
+      description: User blockchain `address` (optional)
+      required: false
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+    requiredChainId:
+      in: query
+      name: chainId
+      description: Chain requested
+      required: true
+      schema:
+        type: integer
+      examples:
+        Ethereum:
+          value: 1
+        Polygon:
+          value: 137
+        Optimism:
+          value: 10
+        Arbitrum:
+          value: 42161
+        Avalanche:
+          value: 43114
   schemas:
+    tokens:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          name:
+            type: string
+            description: Token name
+          address:
+            type: string
+            description: Token address
+          decimals:
+            type: number
+            description: ERC20 decimals
+          symbol:
+            type: string
+            description: Token symbol
+          useInSwap:
+            type: boolean
+            description: Whether this token is used in Angle swaps
+          hasPermit:
+            type: boolean
+            description: Whether the token supports permit
+          permitVersion:
+            type: string
+            description: Permit version, otherwise '-1'
+          logoURI:
+            type: string
+            description: Logo URI
+          tags:
+            type: array
+            items:
+              type: string
+            description: Token tags
+    prices:
+      type: array
+      items:
+        type: object
+        properties:
+          token:
+            type: string
+            description: Token symbol
+          rate:
+            type: number
+            description: Token price (in USD)
     callObject:
       type: object
       properties:
@@ -147,26 +219,6 @@ components:
         value:
           type: string
           pattern: ^[0-9A-Fa-f]+$
-    multicallResponse:
-      type: object
-      properties:
-        transfers:
-          type: array
-          items:
-            type: object
-        url:
-          type: string
-    prices:
-      type: array
-      items:
-        type: object
-        properties:
-          token:
-            type: string
-            description: Token symbol
-          rate:
-            type: number
-            description: Token price (in USD)
     incentives:
       type: object
       additionalProperties:
@@ -238,64 +290,12 @@ components:
               value:
                 type: number
                 description: Value of the APR
-    tokens:
+    multicallResponse:
       type: object
-      additionalProperties:
-        type: object
-        properties:
-          name:
-            type: string
-            description: Token name
-          address:
-            type: string
-            description: Token address
-          decimals:
-            type: number
-            description: ERC20 decimals
-          symbol:
-            type: string
-            description: Token symbol
-          useInSwap:
-            type: boolean
-            description: Whether this token is used in Angle swaps
-          hasPermit:
-            type: boolean
-            description: Whether the token supports permit
-          permitVersion:
-            type: string
-            description: Permit version, otherwise '-1'
-          logoURI:
-            type: string
-            description: Logo URI
-          tags:
-            type: array
-            items:
-              type: string
-            description: Token tags
-  parameters:
-    requiredChainId:
-      in: query
-      name: chainId
-      description: Chain requested
-      required: true
-      schema:
-        type: integer
-      examples:
-        Ethereum:
-          value: 1
-        Polygon:
-          value: 137
-        Optimism:
-          value: 10
-        Arbitrum:
-          value: 42161
-        Avalanche:
-          value: 43114
-    optionalUser:
-      name: user
-      in: query
-      description: User blockchain `address` (optional)
-      required: false
-      schema:
-        type: string
-      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+      properties:
+        transfers:
+          type: array
+          items:
+            type: object
+        url:
+          type: string

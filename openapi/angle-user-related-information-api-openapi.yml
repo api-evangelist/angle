@@ -89,39 +89,15 @@ paths:
       operationId: getV1Balances
       x-operation-id-source: derived
 components:
-  schemas:
-    tokenInfoResponse:
-      type: object
-      properties:
-        name:
-          type: string
-        symbol:
-          type: string
-        address:
-          type: string
-        decimals:
-          type: number
-        balance:
-          type: string
-        allowance:
-          type: string
-    balances:
-      type: array
-      items:
-        type: object
-        additionalProperties:
-          type: object
-          properties:
-            symbol:
-              type: string
-              description: Token symbol
-            balance:
-              type: string
-              description: Token balance
-            decimals:
-              type: number
-              description: Number of decimals of the token
   parameters:
+    optionalUser:
+      name: user
+      in: query
+      description: User blockchain `address` (optional)
+      required: false
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
     tokenAddress:
       name: tokenAddress
       in: query
@@ -130,6 +106,27 @@ components:
       schema:
         type: string
       example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+    spenders:
+      name: spenders
+      in: query
+      description: Array of spenders
+      required: true
+      schema:
+        type: array
+        items:
+          type: string
+      example:
+      - A
+      - B
+      - C
+    requiredUser:
+      name: user
+      in: query
+      description: User blockchain `address`
+      required: true
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
     additionalTokenAddresses:
       name: additionalTokenAddresses
       in: query
@@ -159,32 +156,35 @@ components:
           value: 42161
         Avalanche:
           value: 43114
-    requiredUser:
-      name: user
-      in: query
-      description: User blockchain `address`
-      required: true
-      schema:
-        type: string
-      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
-    spenders:
-      name: spenders
-      in: query
-      description: Array of spenders
-      required: true
-      schema:
-        type: array
-        items:
+  schemas:
+    balances:
+      type: array
+      items:
+        type: object
+        additionalProperties:
+          type: object
+          properties:
+            symbol:
+              type: string
+              description: Token symbol
+            balance:
+              type: string
+              description: Token balance
+            decimals:
+              type: number
+              description: Number of decimals of the token
+    tokenInfoResponse:
+      type: object
+      properties:
+        name:
           type: string
-      example:
-      - A
-      - B
-      - C
-    optionalUser:
-      name: user
-      in: query
-      description: User blockchain `address` (optional)
-      required: false
-      schema:
-        type: string
-      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+        symbol:
+          type: string
+        address:
+          type: string
+        decimals:
+          type: number
+        balance:
+          type: string
+        allowance:
+          type: string
