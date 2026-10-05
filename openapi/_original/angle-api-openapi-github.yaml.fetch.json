@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/angleprotocol/swagger/HEAD/openapi.yaml",
+ "requested_url": "https://raw.githubusercontent.com/angleprotocol/swagger/HEAD/openapi.yaml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 29123,
+ "sha256": "b0c991cdeef7a80862535f1a48b374ad7116e99a08b5500e38e41451e677d128",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
