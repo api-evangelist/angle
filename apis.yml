@@ -45,7 +45,7 @@ x-backed-by:
 - a16z
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-09-16'
+modified: '2026-10-06'
 tags:
 - Company
 - Stablecoins
@@ -465,6 +465,8 @@ apis:
   - type: DataModel
     url: data-model/angle-data-model.yml
 common:
+- url: https://angle.money/news/
+  type: Blog
 - type: X-MCPServerCandidate
   url: mcp/angle-mcp.yml
   note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
