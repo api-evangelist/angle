@@ -89,73 +89,6 @@ paths:
       operationId: getV1Balances
       x-operation-id-source: derived
 components:
-  parameters:
-    optionalUser:
-      name: user
-      in: query
-      description: User blockchain `address` (optional)
-      required: false
-      schema:
-        type: string
-      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
-    tokenAddress:
-      name: tokenAddress
-      in: query
-      description: Token address
-      required: true
-      schema:
-        type: string
-      example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
-    spenders:
-      name: spenders
-      in: query
-      description: Array of spenders
-      required: true
-      schema:
-        type: array
-        items:
-          type: string
-      example:
-      - A
-      - B
-      - C
-    requiredUser:
-      name: user
-      in: query
-      description: User blockchain `address`
-      required: true
-      schema:
-        type: string
-      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
-    additionalTokenAddresses:
-      name: additionalTokenAddresses
-      in: query
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      example:
-      - '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
-      - '0x6B175474E89094C44Da98b954EedeAC495271d0F'
-    requiredChainId:
-      in: query
-      name: chainId
-      description: Chain requested
-      required: true
-      schema:
-        type: integer
-      examples:
-        Ethereum:
-          value: 1
-        Polygon:
-          value: 137
-        Optimism:
-          value: 10
-        Arbitrum:
-          value: 42161
-        Avalanche:
-          value: 43114
   schemas:
     balances:
       type: array
@@ -188,3 +121,70 @@ components:
           type: string
         allowance:
           type: string
+  parameters:
+    additionalTokenAddresses:
+      name: additionalTokenAddresses
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      example:
+      - '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+      - '0x6B175474E89094C44Da98b954EedeAC495271d0F'
+    requiredChainId:
+      in: query
+      name: chainId
+      description: Chain requested
+      required: true
+      schema:
+        type: integer
+      examples:
+        Ethereum:
+          value: 1
+        Polygon:
+          value: 137
+        Optimism:
+          value: 10
+        Arbitrum:
+          value: 42161
+        Avalanche:
+          value: 43114
+    optionalUser:
+      name: user
+      in: query
+      description: User blockchain `address` (optional)
+      required: false
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+    spenders:
+      name: spenders
+      in: query
+      description: Array of spenders
+      required: true
+      schema:
+        type: array
+        items:
+          type: string
+      example:
+      - A
+      - B
+      - C
+    requiredUser:
+      name: user
+      in: query
+      description: User blockchain `address`
+      required: true
+      schema:
+        type: string
+      example: '0xa116f421ff82A9704428259fd8CC63347127B777'
+    tokenAddress:
+      name: tokenAddress
+      in: query
+      description: Token address
+      required: true
+      schema:
+        type: string
+      example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
