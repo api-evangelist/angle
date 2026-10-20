@@ -29,16 +29,53 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
+- partner_name: DefiLlama
+  partner: defillama
+  partner_match: aggregator
+  type: coverage
+  channel: partner-built
+  relationship: connector-coverage
+  direction: partner-built
+  evidence: https://stablecoins.llama.fi/stablecoin/192
+  category: stablecoin data coverage
+  contract_reference:
+    register: DefiLlama stablecoins (stablecoins.llama.fi)
+    standard: null
+    spec_file: null
+    role: stablecoin-issuer
+    registered_name: Angle USDA
+    register_id: https://stablecoins.llama.fi/stablecoin/192
+    matched_domain: angle.money
+    matched_by: domain
+    stablecoins:
+    - symbol: USDA
+      name: Angle USDA
+      peg: peggedUSD
+      mechanism: crypto-backed
+      defillama: https://stablecoins.llama.fi/stablecoin/192
+    - symbol: EURA
+      name: EURA
+      peg: peggedEUR
+      mechanism: crypto-backed
+      defillama: https://stablecoins.llama.fi/stablecoin/55
+    peg_mechanisms:
+    - crypto-backed
+    signal_note: 'coverage: DefiLlama tracks the issuer''s stablecoin(s); coins, pegs and circulation are context,
+      never counted'
+    detected_by: sweep-stablecoins-tokenization.py
+    detected: '2026-10-20'
+  detected_by: sweep-stablecoins-tokenization.py
+  first_seen: '2026-10-20'
 generated: '2026-10-18'
 method: searched
 source:
-- https://api.nuget.org/v3
-- https://crates.io/api/v1
-- https://proxy.golang.org
-- https://pypi.org/pypi
 - https://registry.npmjs.org
-- https://repo1.maven.org/maven2
+- https://pypi.org/pypi
 - https://rubygems.org/api/v1
+- https://crates.io/api/v1
+- https://repo1.maven.org/maven2
+- https://api.nuget.org/v3
+- https://proxy.golang.org
 checked:
 - https://api.nuget.org/v3
 - https://crates.io/api/v1
@@ -47,3 +84,8 @@ checked:
 - https://registry.npmjs.org
 - https://repo1.maven.org/maven2
 - https://rubygems.org/api/v1
+- https://stablecoins.llama.fi/stablecoins
+- https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv
+- https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv
+- https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv
+- https://www.hkma.gov.hk/eng/regulatory-resources/registers/register-of-licensed-stablecoin-issuers/
