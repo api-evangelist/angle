@@ -64,6 +64,146 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Angle is a company surfaced as a portfolio company of a16z and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Angle (Angle Labs, Inc.) is a decentralized, over-collateralized stablecoin protocol that issued the euro-pegged EURA and dollar-pegged USDA stablecoins, along with yield-bearing staked versions of each. Its on-chain modules included the Transmuter basket-and-dynamic-fee minting system, a borrowing module for depositing collateral against stablecoin debt, a native savings system, and cross-chain liquidity infrastructure. The protocol is open source under the AngleProtocol GitHub organization and ships a TypeScript SDK for building applications on top of it. Angle has announced the end of its operations — the protocol remains fully collateralized and every USDA and EURA is redeemable 1:1 until 1 March 2027 — and the team's ongoing work has moved to Merkl. Angle exposes smart contracts and a client SDK rather than a documented public REST API.
 
-Backed by: a16z
+**Areas:** Company · Stablecoins · Decentralized Finance · Blockchain · Cryptocurrency · Smart Contracts · Ethereum · SDK
+
+## Angle on APIs.io
+
+Everything profiled for Angle is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/angle/](https://apis.io/providers/angle/)** — or go straight to one of the APIs or properties below.
+
+### APIs (20)
+
+- [Angle Allowances API](https://apis.io/apis/angle/angle-allowances-api/) — The Allowances API from Angle — 1 operation(s) for allowances.
+- [Angle Protocol Data API](https://apis.io/apis/angle/angle-angle-protocol-data-api/) — The Angle Protocol Data API from Angle — 3 operation(s) for angle protocol data.
+- [Angle App API](https://apis.io/apis/angle/angle-app-api/) — The App API from Angle — 1 operation(s) for app.
+- [Angle Apr API](https://apis.io/apis/angle/angle-apr-api/) — The Apr API from Angle — 1 operation(s) for apr.
+- [Angle Balances API](https://apis.io/apis/angle/angle-balances-api/) — The Balances API from Angle — 1 operation(s) for balances.
+- [Angle Borrow API](https://apis.io/apis/angle/angle-borrow-api/) — The Borrow API from Angle — 4 operation(s) for borrow.
+- [Angle Bridge API](https://apis.io/apis/angle/angle-bridge-api/) — The Bridge API from Angle — 1 operation(s) for bridge.
+- [Angle Dao API](https://apis.io/apis/angle/angle-dao-api/) — The Dao API from Angle — 1 operation(s) for dao.
+- [Angle Helpers API](https://apis.io/apis/angle/angle-helpers-api/) — The Helpers API from Angle — 5 operation(s) for helpers.
+- [Angle Incentives API](https://apis.io/apis/angle/angle-incentives-api/) — The Incentives API from Angle — 1 operation(s) for incentives.
+- [Angle Integrators API](https://apis.io/apis/angle/angle-integrators-api/) — The Integrators API from Angle — 6 operation(s) for integrators.
+- [Angle Perpetuals API](https://apis.io/apis/angle/angle-perpetuals-api/) — The Perpetuals API from Angle — 1 operation(s) for perpetuals.
+- [Angle Pools API](https://apis.io/apis/angle/angle-pools-api/) — The Pools API from Angle — 1 operation(s) for pools.
+- [Angle Prices API](https://apis.io/apis/angle/angle-prices-api/) — The Prices API from Angle — 1 operation(s) for prices.
+- [Angle Savings API](https://apis.io/apis/angle/angle-savings-api/) — The Savings API from Angle — 3 operation(s) for savings.
+- [Angle Tvl API](https://apis.io/apis/angle/angle-tvl-api/) — The Tvl API from Angle — 1 operation(s) for tvl.
+- [Angle User related information API](https://apis.io/apis/angle/angle-user-related-information-api/) — The User related information API from Angle — 3 operation(s) for user related information.
+- [Angle VaultManagers API](https://apis.io/apis/angle/angle-vaultmanagers-api/) — The VaultManagers API from Angle — 1 operation(s) for vaultmanagers.
+- [Angle Vaults API](https://apis.io/apis/angle/angle-vaults-api/) — The Vaults API from Angle — 1 operation(s) for vaults.
+- [Angle Volume API](https://apis.io/apis/angle/angle-volume-api/) — The Volume API from Angle — 1 operation(s) for volume.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [angle](https://apis.io/servers/angle/angle/)
+
+#### Collections (20)
+
+Postman and Open Collection request collections.
+
+- [Angle Allowances API](https://apis.io/collections/angle/open-angle-allowances-api/)
+- [Angle Allowances Angle Protocol Data API](https://apis.io/collections/angle/open-angle-angle-protocol-data-api/)
+- [Angle Allowances App API](https://apis.io/collections/angle/open-angle-app-api/)
+- [Angle Allowances Apr API](https://apis.io/collections/angle/open-angle-apr-api/)
+- [Angle Allowances Balances API](https://apis.io/collections/angle/open-angle-balances-api/)
+- [Angle Allowances Borrow API](https://apis.io/collections/angle/open-angle-borrow-api/)
+- [Angle Allowances Bridge API](https://apis.io/collections/angle/open-angle-bridge-api/)
+- [Angle Allowances Dao API](https://apis.io/collections/angle/open-angle-dao-api/)
+- [Angle Allowances Helpers API](https://apis.io/collections/angle/open-angle-helpers-api/)
+- [Angle Allowances Incentives API](https://apis.io/collections/angle/open-angle-incentives-api/)
+- [Angle Allowances Integrators API](https://apis.io/collections/angle/open-angle-integrators-api/)
+- [Angle Allowances Perpetuals API](https://apis.io/collections/angle/open-angle-perpetuals-api/)
+- [Angle Allowances Pools API](https://apis.io/collections/angle/open-angle-pools-api/)
+- [Angle Allowances Prices API](https://apis.io/collections/angle/open-angle-prices-api/)
+- [Angle Allowances Savings API](https://apis.io/collections/angle/open-angle-savings-api/)
+- [Angle Allowances Tvl API](https://apis.io/collections/angle/open-angle-tvl-api/)
+- [Angle Allowances User related information API](https://apis.io/collections/angle/open-angle-user-related-information-api/)
+- [Angle Allowances VaultManagers API](https://apis.io/collections/angle/open-angle-vaultmanagers-api/)
+- [Angle Allowances Vaults API](https://apis.io/collections/angle/open-angle-vaults-api/)
+- [Angle Allowances Volume API](https://apis.io/collections/angle/open-angle-volume-api/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Angle Api Openapi Github Overlay](https://apis.io/overlays/angle/angle-api-openapi-github-overlay/)
+- [Angle Api Openapi Overlay](https://apis.io/overlays/angle/angle-api-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Angle Authentication](https://apis.io/security/angle/angle-authentication/)
+- [Angle Domain Security](https://apis.io/security/angle/angle-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://angle.money)
+- [Documentation](https://github.com/AngleProtocol/angle-docs)
+- [Blog](https://angle.money/news/)
+- [Terms of service](https://angle.money/terms)
+- [Privacy policy](https://angle.money/privacy)
+- [GitHub](https://github.com/AngleProtocol)
+
+## API Evangelist rating
+
+**Kin Score 29.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 42.5 |
+| Contract governance | 4.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 39.9 |
+| Access clarity | 0.0 |
+
+**Agent readiness 26.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/angle/](https://apis.io/providers/angle/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Angle: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/angle/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
